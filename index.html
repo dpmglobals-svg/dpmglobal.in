@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPM GLOBAL - Import & Export & Real Estate</title>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0b3d91;
+            --primary-hover: #0077b6;
+            --secondary: #38bdf8;
+            --dark: #0f172a;
+            --light-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --whatsapp-green: #25d366;
+            --whatsapp-hover: #1ebd56;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        /* Topbar Styling */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: var(--primary-hover);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8%;
+            font-size: 13.5px;
+            z-index: 1001;
+        }
+
+        .topbar .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .topbar a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .topbar a:hover { opacity: 0.85; }
+
+        .topbar .right {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .topbar .right a {
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            padding: 10px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            height: 80px;     
+            background: #ffffff;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Logo 3D Flip Container & Animation */
+        .logo-flip-container {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            perspective: 600px;
+        }
+
+        .logo-flip-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .logo-front {
+            animation: flipFront 8s infinite linear;
+        }
+
+        .logo-back {
+            transform: rotateY(180deg);
+            animation: flipBack 8s infinite linear;
+        }
+
+        @keyframes flipFront {
+            0% { 
+                transform: rotateY(0deg); 
+                z-index: 2; 
+            }
+            50% { 
+                transform: rotateY(180deg); 
+                z-index: 1; 
+            }
+            50.01% { 
+                transform: rotateY(180deg); 
+                z-index: 0; 
+            }
+            100% { 
+                transform: rotateY(360deg); 
+                z-index: 2; 
+            }
+        }
+
+        @keyframes flipBack {
+            0% { 
+                transform: rotateY(180deg); 
+                z-index: 1; 
+            }
+            50% { 
+                transform: rotateY(360deg); 
+                z-index: 2; 
+            }
+            50.01% { 
+                transform: rotateY(0deg); 
+                z-index: 2; 
+            }
+            100% { 
+                transform: rotateY(180deg); 
+                z-index: 1; 
+            }
+        }
+
+        .logo {
+            font-size: 40px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        nav ul li a:hover { color: var(--primary-hover); }
+
+        .nav-btn {
+            background: #2e2a5c;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        
+        .nav-btn:hover { background: #1a1740; }
+
+        /* Floating WhatsApp Icon */
+        .whatsapp-float {
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: #FFF;
+            border-radius: 50px;
+            box-shadow: 2px 4px 12px rgba(0,0,0,0.25);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background-color: var(--whatsapp-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 120px;
+            min-height: calc(100vh - 120px);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+            overflow: hidden;     
+        }
+
+        .slider {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            animation: slideShow 15s infinite;
+        }
+
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 5s; }
+        .slide:nth-child(3) { animation-delay: 10s; }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero h1 span { color: var(--secondary); }
+
+        .hero p {
+            font-size: 20px;
+            color: #f1f5f9;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--secondary);
+            color: #0f172a;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Shared Section Layout */
+        section {
+            padding: 90px 8%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        #products .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+            border-color: var(--primary-hover);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .card h3 {
+            color: #0f172a;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .card-unit {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0284c7;
+            background: #e0f2fe;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.5;
+            font-size: 13.5px;
+            margin-bottom: 18px;
+        }
+
+        .card-order-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px 16px;
+            background-color: #0284c7;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .card-order-btn:hover {
+            background-color: #0369a1;
+            transform: translateY(-2px);
+        }
+
+        #about, #realestate { background: var(--light-bg); }
+
+        .realestate-card {
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .realestate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.09);
+            border-color: var(--primary);
+        }
+
+        .realestate-card h3 {
+            color: var(--primary);
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .realestate-card p {
+            color: #475569;
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .view-detail-btn {
+            display: inline-block;
+            color: #0284c7;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Order Section */
+        #order {
+            background-color: #ffffff;
+            text-align: left;
+            padding: 70px 8%;
+        }
+
+        .order-wrapper {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .order-left { flex: 1.2; min-width: 300px; }
+
+        .order-pre-heading {
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .order-left h2 {
+            font-size: 40px;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .order-left > p {
+            color: #475569;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 90%;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .product-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .product-item:hover {
+            border-color: #94a3b8;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .product-item.active {
+            border: 2px solid #3b82f6;
+            background-color: #f0f7ff;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .product-item span {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .order-right {
+            flex: 1;
+            background: #f1f3f5;
+            padding: 30px;
+            border-radius: 16px;
+            min-width: 300px;
+        }
+
+        .order-form .form-group { margin-bottom: 18px; }
+        .order-form .form-row { display: flex; gap: 15px; }
+        .order-form .form-group.half { flex: 1; }
+
+        .order-form label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .order-form select,
+        .order-form input,
+        .order-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            outline: none;
+            color: #334155;
+            font-family: inherit;
+        }
+
+        .order-form input:focus, 
+        .order-form textarea:focus, 
+        .order-form select:focus { border-color: #3b82f6; }
+
+        .order-form textarea { height: 80px; resize: none; }
+
+        .submit-order-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-order-btn:hover { background: var(--primary-hover); }
+
+        .response-time-notice {
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* Contact Section Form */
+        form.contact-form {
+            max-width: 600px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form.contact-form input,
+        form.contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        form.contact-form button {
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            background: var(--primary);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        form.contact-form button:hover { background: var(--primary-hover); }
+
+        /* Popup Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+        .modal-content {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .modal-content h3 { color: #0b3d91; font-size: 24px; margin-bottom: 10px; }
+        .modal-content p { color: #475569; font-size: 15px; margin-bottom: 20px; line-height: 1.6; }
+        .modal-btn {
+            background: #0b3d91;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-btn:hover { background: #0077b6; }
+
+        /* Footer Links Styling */
+        footer {
+            padding: 25px;
+            text-align: center;
+            background: #020617;
+            color: #94a3b8;
+        }
+
+        footer .social-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .social-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+
+        footer .social-links a:hover { transform: scale(1.15); }
+
+        @keyframes slideShow {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            30% { opacity: 1; }
+            40% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        @media (max-width: 1024px) {
+            #products .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .order-wrapper { flex-direction: column; }
+        }
+
+        @media (max-width: 600px) {
+            #products .grid-container { grid-template-columns: 1fr; }
+            .topbar { flex-direction: column; height: auto; padding: 5px; }
+            nav { top: 50px; flex-direction: column; height: auto; padding: 10px; }
+            nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .hero h1 { font-size: 36px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/919810088729" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" style="font-size: 32px;"></i>
+</a>
+
+<!-- Popup Modal for Confirmation -->
+<div class="modal-overlay" id="popupModal">
+    <div class="modal-content">
+        <h3 id="modalTitle">🎉 Order Submitted!</h3>
+        <p id="modalText">Our team will reply you in 2 days.</p>
+        <button class="modal-btn" onclick="closeModal()">OK</button>
+    </div>
+</div>
+
+<!-- Interactive Topbar -->
+<div class="topbar">
+    <div class="left">
+        📧 <a href="mailto:info@dpmglobal.in">info@dpmglobal.in</a> &nbsp;&nbsp; 
+        📞 <a href="tel:+919810088729">+91-9810088729</a> &nbsp;&nbsp; 
+        📞 <a href="tel:+919818150514">+91-9818150514</a>
+    </div>
+    <div class="right">
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-brand">
+        <div class="logo-flip-container">
+            <img src="dpm global logo.png" alt="DPM Global Logo 1" class="logo-front">
+            <img src="new logo.png" alt="DPM Global Logo 2" class="logo-back">
+        </div>
+        <div class="logo">DPM GLOBAL</div>
+    </div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="realestate.html">Real Estate</a></li>
+        <li><a href="index.html#order">Order</a></li>
+        <li><a href="#contact" class="nav-btn">Get In Touch &rarr;</a></li>
+    </ul>
+</nav>
+
+<!-- 1. HOME SECTION -->
+<section class="hero" id="home">
+    <div class="slider">
+        <div class="slide"><img src="BURJ.png" alt="BURJ"></div>
+        <div class="slide"><img src="house.png" alt="House"></div>
+        <div class="slide"><img src="shipss.png" alt="Ships"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Welcome to <span>DPM Global</span></h1>
+        <p>Export & Import of Agricultural Products — Your Trusted Partner in International Trade</p>
+        <a href="#order" class="btn">Place an Order</a>
+    </div>
+</section>
+
+<!-- 2. OUR SERVICES SECTION -->
+<section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="grid-container">
+        <!-- Global Export & Import -->
+        <a href="products.html" class="card service-card" style="text-align: center;">
+            <img src="export.png" alt="Export Services">
+            <h3 style="margin-bottom: 12px; color: #0b3d91;">Global Export & Import</h3>
+            <p>Providing seamless international supply chain solutions for high-grade agricultural products worldwide. (Click to view products)</p>
+        </a>
+        
+        <!-- Real Estate Solutions -->
+        <a href="realestate.html" class="card service-card" style="text-align: center;">
+            <img src="real estate.png" alt="Real Estate Services">
+            <h3 style="margin-bottom: 12px; color: #0b3d91;">Real Estate Solutions</h3>
+            <p>Reliable commercial, industrial, and residential real estate advisory and project developments. (Click to view projects)</p>
+        </a>
+    </div>
+</section>
+
+<!-- 3. ABOUT US PREVIEW SECTION -->
+<section id="about">
+    <h2 class="section-title">About Us</h2>
+    <div style="max-width: 900px; margin: auto; text-align: left; background: #ffffff; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
+        <p style="font-size: 16px; color: #334155; line-height: 1.8; margin-bottom: 15px;"><strong>DPM Global</strong> is an India-based export and import company established in 2007, committed to delivering quality products and reliable international trade solutions to buyers around the world.</p>
+        <p style="font-size: 16px; color: #334155; line-height: 1.8; margin-bottom: 20px;">At DPM Global, we believe that successful international business is built on <strong>Commitment, Honesty, Quality, and Reliability</strong>.</p>
+        <a href="aboutus.html" class="btn" style="padding: 10px 24px; font-size: 14px;">Read Full Story &rarr;</a>
+    </div>
+</section>
+
+<!-- 4. PRODUCTS SECTION -->
+<section id="products">
+    <h2 class="section-title">Products</h2>
+    <div class="grid-container">
+        
+        <!-- ONION -->
+        <div class="card">
+            <div>
+                <img src="onion.png" alt="Onions">
+                <div class="card-header">
+                    <h3>Onion</h3>
+                    <span class="card-unit">per MT</span>
+                </div>
+                <p>Premium red onions, graded and export-packed for long shelf life.</p>
+            </div>
+            <button class="card-order-btn" onclick="orderProductFromCard('Onion')">
+                🛒 Order Now
+            </button>
+        </div>
+
+        <!-- GREEN CHILLI -->
+        <div class="card">
+            <div>
+                <img src="green chilly.png" alt="Green Chilli">
+                <div class="card-header">
+                    <h3>Green Chilli</h3>
+                    <span class="card-unit">per MT</span>
+                </div>
+                <p>Fresh, vibrant green chillies with high pungency and consistent colour.</p>
+            </div>
+            <button class="card-order-btn" onclick="orderProductFromCard('Green Chilli')">
+                🛒 Order Now
+            </button>
+        </div>
+
+        <!-- GARLIC -->
+        <div class="card">
+            <div>
+                <img src="garlic.png" alt="Garlic">
+                <div class="card-header">
+                    <h3>Garlic</h3>
+                    <span class="card-unit">per MT</span>
+                </div>
+                <p>Plump white garlic bulbs with strong aroma and tight, clean skins.</p>
+            </div>
+            <button class="card-order-btn" onclick="orderProductFromCard('Garlic')">
+                🛒 Order Now
+            </button>
+        </div>
+
+        <!-- GINGER -->
+        <div class="card">
+            <div>
+                <img src="ginger.png" alt="Ginger">
+                <div class="card-header">
+                    <h3>Ginger</h3>
+                    <span class="card-unit">per MT</span>
+                </div>
+                <p>Fresh, fibre-rich ginger rhizomes with strong aroma and clean skins.</p>
+            </div>
+            <button class="card-order-btn" onclick="orderProductFromCard('Ginger')">
+                🛒 Order Now
+            </button>
+        </div>
+
+        <!-- EGGS -->
+        <div class="card">
+            <div>
+                <img src="egg.png" alt="Eggs">
+                <div class="card-header">
+                    <h3>Eggs</h3>
+                    <span class="card-unit">per Container</span>
+                </div>
+                <p>Fresh table eggs sourced with care to meet export safety standards.</p>
+            </div>
+            <button class="card-order-btn" onclick="orderProductFromCard('Eggs')">
+                🛒 Order Now
+            </button>
+        </div>
+
+        <!-- POTATO -->
+        <div class="card">
+            <div>
+                <img src="potato.png" alt="Potatoes">
+                <div class="card-header">
+                    <h3>Potato</h3>
+                    <span class="card-unit">per MT</span>
+                </div>
+                <p>Premium potatoes selected for freshness, size, and bulk shipping.</p>
+            </div>
+            <button class="card-order-btn" onclick="orderProductFromCard('Potato')">
+                🛒 Order Now
+            </button>
+        </div>
+
+        <!-- BASMATI RICE -->
+        <div class="card">
+            <div>
+                <img src="Basmati Rice.png" onerror="this.src='https://via.placeholder.com/200?text=Basmati+Rice'" alt="Basmati Rice">
+                <div class="card-header">
+                    <h3>Basmati Rice</h3>
+                    <span class="card-unit">per MT</span>
+                </div>
+                <p>Long-grain aromatic Basmati rice processed for rich taste and aroma.</p>
+            </div>
+            <button class="card-order-btn" onclick="orderProductFromCard('Basmati Rice')">
+                🛒 Order Now
+            </button>
+        </div>
+
+        <!-- CARDAMOM -->
+        <div class="card">
+            <div>
+                <img src="cardamom.png" alt="Cardamom">
+                <div class="card-header">
+                    <h3>Cardamom</h3>
+                    <span class="card-unit">per MT</span>
+                </div>
+                <p>Aromatic green cardamom pods ideal for global spice markets.</p>
+            </div>
+            <button class="card-order-btn" onclick="orderProductFromCard('Cardamom')">
+                🛒 Order Now
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- 5. REAL ESTATE SECTION -->
+<section id="realestate">
+    <h2 class="section-title">Real Estate Projects</h2>
+    <div class="grid-container">
+        
+        <div class="realestate-card" onclick="window.location.href='realestate.html'">
+            <h3>🏢 SONIPAT PROJECTS</h3>
+            <p>Prime commercial and residential land developments located in strategic growing sectors of Sonipat.</p>
+            <span class="view-detail-btn">View All Details &rarr;</span>
+        </div>
+
+        <div class="realestate-card" onclick="window.location.href='realestate.html'">
+            <h3>🏗️ KHARKHODA PROJECTS</h3>
+            <p>High-yield industrial hubs and commercial plots surrounded by major industrial developments in Kharkhoda.</p>
+            <span class="view-detail-btn">View All Details &rarr;</span>
+        </div>
+
+        <div class="realestate-card" onclick="window.location.href='realestate.html'">
+            <h3>🏡 DEEN DAYAL PROJECTS</h3>
+            <p>Affordable housing plots developed under government-backed scheme initiatives for high ROI investments.</p>
+            <span class="view-detail-btn">View All Details &rarr;</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- 6. ORDER SECTION -->
+<section id="order">
+    <div class="order-wrapper">
+        <div class="order-left">
+            <span class="order-pre-heading">PLACE AN ORDER</span>
+            <h2>Tell us what you need</h2>
+            <p>Select a product, enter your required quantity and phone number. Place your order below and our team will get back to you.</p>
+
+            <div class="product-grid">
+                <div class="product-item active" onclick="selectProduct('Onion', this)">
+                    <img src="onion.png" alt="Onion">
+                    <span>Onion</span>
+                </div>
+                <div class="product-item" onclick="selectProduct('Green Chilli', this)">
+                    <img src="green chilly.png" alt="Green Chilli">
+                    <span>Green Chilli</span>
+                </div>
+                <div class="product-item" onclick="selectProduct('Garlic', this)">
+                    <img src="GARLIC.png" alt="Garlic">
+                    <span>Garlic</span>
+                </div>
+                <div class="product-item" onclick="selectProduct('Ginger', this)">
+                    <img src="ginger.png" alt="Ginger">
+                    <span>Ginger</span>
+                </div>
+                <div class="product-item" onclick="selectProduct('Eggs', this)">
+                    <img src="egg.png" alt="Eggs">
+                    <span>Eggs</span>
+                </div>
+                <div class="product-item" onclick="selectProduct('Potato', this)">
+                    <img src="potato.png" alt="Potato">
+                    <span>Potato</span>
+                </div>
+                <div class="product-item" onclick="selectProduct('Basmati Rice', this)">
+                    <img src="Basmati Rice.png" onerror="this.src='https://via.placeholder.com/150?text=Rice'" alt="Basmati Rice">
+                    <span>Basmati Rice</span>
+                </div>
+                <div class="product-item" onclick="selectProduct('Cardamom', this)">
+                    <img src="CARDAMON.png" alt="Cardamom">
+                    <span>Cardamom</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-right">
+            <form class="order-form" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label>Product</label>
+                    <select id="product-dropdown">
+                        <option value="Onion">Onion</option>
+                        <option value="Green Chilli">Green Chilli</option>
+                        <option value="Garlic">Garlic</option>
+                        <option value="Ginger">Ginger</option>
+                        <option value="Eggs">Eggs</option>
+                        <option value="Potato">Potato</option>
+                        <option value="Basmati Rice">Basmati Rice</option>
+                        <option value="Cardamom">Cardamom</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>Quantity (MT)</label>
+                        <input type="text" id="order-qty" placeholder="e.g. 20" required>
+                    </div>
+                    <div class="form-group half">
+                        <label>Country</label>
+                        <input type="text" id="order-country" placeholder="Destination" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Full name</label>
+                    <input type="text" id="order-name" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone number</label>
+                    <input type="tel" id="order-phone" placeholder="+1 555 000 0000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Notes (optional)</label>
+                    <textarea id="order-notes" placeholder="Packaging, delivery terms, etc."></textarea>
+                </div>
+
+                <button type="submit" class="submit-order-btn">
+                    <span>Place Order</span>
+                </button>
+                <p class="response-time-notice">⚡ Our team typically replies within 2 business days.</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <form class="contact-form" onsubmit="sendMessage(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required style="height:150px; resize:none;"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 DPM Global. All Rights Reserved.</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+</footer>
+
+<script>
+    // Form selection handler for products
+    function selectProduct(productName, element) {
+        const items = document.querySelectorAll('.product-item');
+        items.forEach(item => item.classList.remove('active'));
+        if (element) {
+            element.classList.add('active');
+        }
+        document.getElementById('product-dropdown').value = productName;
+    }
+
+    function orderProductFromCard(productName) {
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+
+        const gridItems = document.querySelectorAll('.product-item');
+        gridItems.forEach(item => {
+            const spanText = item.querySelector('span').innerText.trim();
+            if (spanText.toLowerCase() === productName.toLowerCase()) {
+                selectProduct(productName, item);
+            }
+        });
+    }
+
+    // SAVES ORDER TO PANEL & SHOWS CONFIRMATION
+    function submitOrder(event) {
+        event.preventDefault();
+
+        const product = document.getElementById('product-dropdown').value;
+        const qty = document.getElementById('order-qty').value;
+        const country = document.getElementById('order-country').value;
+        const name = document.getElementById('order-name').value;
+        const phone = document.getElementById('order-phone').value;
+        const notes = document.getElementById('order-notes').value || "None";
+
+        const newOrder = {
+            product: product,
+            qty: qty,
+            country: country,
+            name: name,
+            phone: phone,
+            notes: notes,
+            time: new Date().toLocaleString()
+        };
+
+        let existingOrders = JSON.parse(localStorage.getItem('dpmOrders')) || [];
+        existingOrders.unshift(newOrder);
+        localStorage.setItem('dpmOrders', JSON.stringify(existingOrders));
+
+        document.getElementById('modalTitle').innerText = "🎉 Order Submitted!";
+        document.getElementById('modalText').innerText = "Our team will reply you in 2 days.";
+        document.getElementById('popupModal').style.display = 'flex';
+        
+        event.target.reset();
+        document.getElementById('product-dropdown').value = 'Onion';
+        const items = document.querySelectorAll('.product-item');
+        items.forEach(item => item.classList.remove('active'));
+        items[0].classList.add('active');
+    }
+
+    // CONTACT US FORM: SAVES QUERY & SHOWS POPUP
+    function sendMessage(event) {
+        event.preventDefault();
+
+        const formInputs = event.target.querySelectorAll('input, textarea');
+        const name = formInputs[0].value.trim();
+        const email = formInputs[1].value.trim();
+        const messageText = formInputs[2].value.trim();
+
+        const newQuery = {
+            name: name,
+            email: email,
+            message: messageText,
+            time: new Date().toLocaleString()
+        };
+
+        let existingQueries = JSON.parse(localStorage.getItem('dpmQueries')) || [];
+        existingQueries.unshift(newQuery);
+        localStorage.setItem('dpmQueries', JSON.stringify(existingQueries));
+
+        document.getElementById('modalTitle').innerText = "🎉 Thank You!";
+        document.getElementById('modalText').innerText = "Your message has been successfully sent. Our team will reply you in 2 days.";
+        document.getElementById('popupModal').style.display = 'flex';
+        
+        event.target.reset();
+    }
+
+    function closeModal() {
+        document.getElementById('popupModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
