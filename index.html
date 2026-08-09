@@ -196,7 +196,7 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            height: 80px;    
+            height: 80px;  
             background: #ffffff;
             z-index: 1000;
         }
@@ -207,7 +207,6 @@
             gap: 15px;
         }
 
-        /* Logo 3D Flip Container & Animation */
         .logo-flip-container {
             width: 80px;
             height: 80px;
@@ -226,14 +225,8 @@
             transform-style: preserve-3d;
         }
 
-        .logo-front {
-            animation: flipFront 8s infinite linear;
-        }
-
-        .logo-back {
-            transform: rotateY(180deg);
-            animation: flipBack 8s infinite linear;
-        }
+        .logo-front { animation: flipFront 8s infinite linear; }
+        .logo-back { transform: rotateY(180deg); animation: flipBack 8s infinite linear; }
 
         @keyframes flipFront {
             0% { transform: rotateY(0deg); z-index: 2; }
@@ -316,7 +309,7 @@
             align-items: center;
             text-align: center;
             padding: 100px 20px 50px;
-            overflow: hidden;     
+            overflow: hidden;      
         }
 
         .slider {
@@ -332,23 +325,10 @@
             opacity: 0;
         }
 
-        /* --- WAW-WORTHY 3D PERSPECTIVE CUBE & SLICE ANIMATIONS --- */
-        .slide:nth-child(1) {
-            animation: wahAnimation1 15s infinite;
-            animation-delay: 0s;
-        }
+        .slide:nth-child(1) { animation: wahAnimation1 15s infinite; animation-delay: 0s; }
+        .slide:nth-child(2) { animation: wahAnimation2 15s infinite; animation-delay: 5s; }
+        .slide:nth-child(3) { animation: wahAnimation3 15s infinite; animation-delay: 10s; }
 
-        .slide:nth-child(2) {
-            animation: wahAnimation2 15s infinite;
-            animation-delay: 5s;
-        }
-
-        .slide:nth-child(3) {
-            animation: wahAnimation3 15s infinite;
-            animation-delay: 10s;
-        }
-
-        /* 1st Image: 3D Rotate In from Right Side */
         @keyframes wahAnimation1 {
             0% { opacity: 0; transform: perspective(1000px) rotateY(45deg) translateX(150px) scale(1.1); filter: contrast(1.2); }
             5% { opacity: 1; transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1.05); filter: contrast(1); }
@@ -357,7 +337,6 @@
             100% { opacity: 0; transform: perspective(1000px) rotateY(45deg) translateX(150px) scale(1.1); }
         }
 
-        /* 2nd Image: Cinematic 3D Flip & Zoom Unfold */
         @keyframes wahAnimation2 {
             0% { opacity: 0; transform: perspective(1000px) rotateX(-45deg) scale(0.8); }
             5% { opacity: 1; transform: perspective(1000px) rotateX(0deg) scale(1.03); }
@@ -366,7 +345,6 @@
             100% { opacity: 0; transform: perspective(1000px) rotateX(-45deg) scale(0.8); }
         }
 
-        /* 3rd Image: Premium Diagonal Sliced Reveal */
         @keyframes wahAnimation3 {
             0% { opacity: 0; clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); transform: scale(1.1); }
             5% { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: scale(1.05); }
@@ -375,40 +353,13 @@
             100% { opacity: 0; clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); transform: scale(1.1); }
         }
 
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.65);
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 1; }
+        
+        .hero-content { max-width: 800px; position: relative; z-index: 2; }
+        .hero h1 { font-size: 52px; color: #ffffff; margin-bottom: 20px; font-weight: 800; }
         .hero h1 span { color: var(--secondary); }
-
-        .hero p {
-            font-size: 20px;
-            color: #f1f5f9;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
+        .hero p { font-size: 20px; color: #f1f5f9; line-height: 1.6; margin-bottom: 30px; }
 
         .btn {
             display: inline-block;
@@ -428,10 +379,7 @@
         }
 
         /* Shared Section Layout */
-        section {
-            padding: 90px 8%;
-            text-align: center;
-        }
+        section { padding: 90px 8%; text-align: center; }
 
         .section-title {
             font-size: 36px;
@@ -454,11 +402,7 @@
             gap: 20px;
         }
 
-        .service-card {
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-        }
+        .service-card { cursor: pointer; text-decoration: none; color: inherit; }
 
         .card {
             background: #ffffff;
@@ -486,34 +430,10 @@
             margin-bottom: 12px;
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .card h3 {
-            color: #0f172a;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .card-unit {
-            font-size: 12px;
-            font-weight: 700;
-            color: #0284c7;
-            background: #e0f2fe;
-            padding: 3px 10px;
-            border-radius: 12px;
-        }
-
-        .card p {
-            color: #64748b;
-            line-height: 1.5;
-            font-size: 13.5px;
-            margin-bottom: 18px;
-        }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .card h3 { color: #0f172a; font-size: 20px; font-weight: 700; }
+        .card-unit { font-size: 12px; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 3px 10px; border-radius: 12px; }
+        .card p { color: #64748b; line-height: 1.5; font-size: 13.5px; margin-bottom: 18px; }
 
         .card-order-btn {
             display: inline-flex;
@@ -532,10 +452,7 @@
             transition: background-color 0.2s ease, transform 0.2s ease;
         }
 
-        .card-order-btn:hover {
-            background-color: #0369a1;
-            transform: translateY(-2px);
-        }
+        .card-order-btn:hover { background-color: #0369a1; transform: translateY(-2px); }
 
         #about, #realestate { background: var(--light-bg); }
 
@@ -550,414 +467,97 @@
             cursor: pointer;
         }
 
-        .realestate-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.09);
-            border-color: var(--primary);
-        }
-
-        .realestate-card h3 {
-            color: var(--primary);
-            font-size: 22px;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .realestate-card p {
-            color: #475569;
-            font-size: 14.5px;
-            line-height: 1.6;
-            margin-bottom: 18px;
-        }
-
-        .view-detail-btn {
-            display: inline-block;
-            color: #0284c7;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .realestate-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.09); border-color: var(--primary); }
+        .realestate-card h3 { color: var(--primary); font-size: 22px; margin-bottom: 12px; font-weight: 700; }
+        .realestate-card p { color: #475569; font-size: 14.5px; line-height: 1.6; margin-bottom: 18px; }
+        .view-detail-btn { display: inline-block; color: #0284c7; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Order Section */
-        #order {
-            background-color: #ffffff;
-            text-align: left;
-            padding: 70px 8%;
-        }
-
-        .order-wrapper {
-            display: flex;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-
+        #order { background-color: #ffffff; text-align: left; padding: 70px 8%; }
+        .order-wrapper { display: flex; gap: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
         .order-left { flex: 1.2; min-width: 300px; }
+        .order-pre-heading { font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 10px; }
+        .order-left h2 { font-size: 40px; color: #1e293b; margin-bottom: 15px; font-weight: 800; }
+        .order-left > p { color: #475569; font-size: 16px; line-height: 1.6; margin-bottom: 30px; max-width: 90%; }
 
-        .order-pre-heading {
-            font-size: 13px;
-            font-weight: 700;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: block;
-            margin-bottom: 10px;
-        }
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .product-item { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+        .product-item:hover { border-color: #94a3b8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .product-item.active { border: 2px solid #3b82f6; background-color: #f0f7ff; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15); }
+        .product-item img { width: 100%; height: 60px; object-fit: cover; border-radius: 6px; margin-bottom: 8px; }
+        .product-item span { display: block; font-size: 13px; font-weight: 600; color: #334155; }
 
-        .order-left h2 {
-            font-size: 40px;
-            color: #1e293b;
-            margin-bottom: 15px;
-            font-weight: 800;
-        }
-
-        .order-left > p {
-            color: #475569;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            max-width: 90%;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .product-item {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .product-item:hover {
-            border-color: #94a3b8;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-
-        .product-item.active {
-            border: 2px solid #3b82f6;
-            background-color: #f0f7ff;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-        }
-
-        .product-item img {
-            width: 100%;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 8px;
-        }
-
-        .product-item span {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #334155;
-        }
-
-        .order-right {
-            flex: 1;
-            background: #f1f3f5;
-            padding: 30px;
-            border-radius: 16px;
-            min-width: 300px;
-        }
-
+        .order-right { flex: 1; background: #f1f3f5; padding: 30px; border-radius: 16px; min-width: 300px; }
         .order-form .form-group { margin-bottom: 18px; }
         .order-form .form-row { display: flex; gap: 15px; }
         .order-form .form-group.half { flex: 1; }
-
-        .order-form label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #475569;
-            margin-bottom: 6px;
+        .order-form label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px; }
+        
+        .order-form select, .order-form input, .order-form textarea {
+            width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; background: white; outline: none; color: #334155; font-family: inherit;
         }
-
-        .order-form select,
-        .order-form input,
-        .order-form textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 14px;
-            background: white;
-            outline: none;
-            color: #334155;
-            font-family: inherit;
-        }
-
-        .order-form input:focus, 
-        .order-form textarea:focus, 
-        .order-form select:focus { border-color: #3b82f6; }
-
+        .order-form input:focus, .order-form textarea:focus, .order-form select:focus { border-color: #3b82f6; }
         .order-form textarea { height: 80px; resize: none; }
 
         .submit-order-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-
         .submit-order-btn:hover { background: var(--primary-hover); }
-
-        .response-time-notice {
-            font-size: 12px;
-            color: #64748b;
-            text-align: center;
-            margin-top: 12px;
-        }
+        .response-time-notice { font-size: 12px; color: #64748b; text-align: center; margin-top: 12px; }
 
         /* Reviews Section Styling */
-        #reviews {
-            background: #ffffff;
-            padding: 90px 8%;
-            text-align: center;
-        }
+        #reviews { background: #ffffff; padding: 90px 8%; text-align: center; }
+        .reviews-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .review-card { background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
+        .review-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-color: var(--primary); }
+        .review-stars { color: #f59e0b; font-size: 16px; margin-bottom: 15px; }
+        .review-text { color: #475569; font-size: 14.5px; line-height: 1.6; margin-bottom: 20px; font-style: italic; }
+        .review-author { font-weight: 700; color: var(--primary); font-size: 15px; }
+        .review-location { font-size: 12px; color: #64748b; }
 
-        .reviews-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .review-card {
-            background: var(--light-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px;
-            text-align: left;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            border-color: var(--primary);
-        }
-
-        .review-stars {
-            color: #f59e0b;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .review-text {
-            color: #475569;
-            font-size: 14.5px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .review-author {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 15px;
-        }
-
-        .review-location {
-            font-size: 12px;
-            color: #64748b;
-        }
-
-        /* --- REAL VISITOR & LIVE COUNTER SECTION STYLING (AT THE VERY END) --- */
-        #visitor-counter-section {
-            background: linear-gradient(135deg, #0b132b 0%, #0b3d91 100%);
-            padding: 50px 8%;
-            text-align: center;
-            color: white;
-        }
-
-        .visitor-box-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .visitor-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 25px 40px;
-            border-radius: 16px;
-            min-width: 260px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .visitor-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .visitor-card i {
-            font-size: 32px;
-            color: var(--secondary);
-            margin-bottom: 12px;
-        }
-
-        .visitor-card h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #94a3b8;
-            margin-bottom: 8px;
-        }
-
-        .visitor-card .counter-number {
-            font-size: 38px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
+        /* --- VISITOR COUNTER SECTION STYLING (UPDATED SIZE) --- */
+        #visitor-counter-section { background: linear-gradient(135deg, #0b132b 0%, #0b3d91 100%); padding: 50px 8%; text-align: center; color: white; }
+        .visitor-box-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 700px; margin: 0 auto; }
+        .visitor-card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 20px 30px; border-radius: 12px; min-width: 220px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease; }
+        .visitor-card:hover { transform: translateY(-5px); }
+        .visitor-card i { font-size: 26px; color: var(--secondary); margin-bottom: 10px; }
+        .visitor-card h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 6px; }
+        .visitor-card .counter-number { font-size: 28px; font-weight: 800; color: #ffffff; letter-spacing: 1px; }
 
         /* Contact Section Form */
-        form.contact-form {
-            max-width: 600px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        form.contact-form input,
-        form.contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            outline: none;
-            font-size: 16px;
-            font-family: inherit;
-        }
-
-        form.contact-form button {
-            padding: 15px;
-            border: none;
-            border-radius: 30px;
-            background: var(--primary);
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
+        form.contact-form { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 15px; }
+        form.contact-form input, form.contact-form textarea { width: 100%; padding: 15px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; font-size: 16px; font-family: inherit; }
+        form.contact-form button { padding: 15px; border: none; border-radius: 30px; background: var(--primary); color: white; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
         form.contact-form button:hover { background: var(--primary-hover); }
 
         /* Popup Modals */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-        }
-        .modal-content {
-            background: white;
-            padding: 35px;
-            border-radius: 16px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); display: none; justify-content: center; align-items: center; z-index: 3000; }
+        .modal-content { background: white; padding: 35px; border-radius: 16px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .modal-content h3 { color: #0b3d91; font-size: 24px; margin-bottom: 10px; }
         .modal-content p { color: #475569; font-size: 15px; margin-bottom: 20px; line-height: 1.6; }
-        .modal-btn {
-            background: #0b3d91;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        .modal-btn { background: #0b3d91; color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; }
         .modal-btn:hover { background: #0077b6; }
 
-        /* Footer Links Styling */
-        footer {
-            padding: 25px;
-            text-align: center;
-            background: #020617;
-            color: #94a3b8;
-        }
-
-        footer .social-links {
-            margin-top: 12px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        footer .social-links a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-size: 20px;
-            transition: transform 0.2s;
-        }
-
+        footer { padding: 25px; text-align: center; background: #020617; color: #94a3b8; }
+        footer .social-links { margin-top: 12px; display: flex; justify-content: center; gap: 20px; }
+        footer .social-links a { color: var(--secondary); text-decoration: none; font-size: 20px; transition: transform 0.2s; }
         footer .social-links a:hover { transform: scale(1.15); }
 
-        @keyframes slideShow {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            30% { opacity: 1; }
-            40% { opacity: 0; }
-            100% { opacity: 0; }
-        }
-
-        @media (max-width: 1024px) {
-            #products .grid-container { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 900px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .order-wrapper { flex-direction: column; }
-        }
-
+        @media (max-width: 1024px) { #products .grid-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } .order-wrapper { flex-direction: column; } }
+        
+        /* --- MOBILE RESPONSIVE FIXES --- */
         @media (max-width: 600px) {
             #products .grid-container { grid-template-columns: 1fr; }
             .topbar { flex-direction: column; height: auto; padding: 5px; }
             nav { top: 50px; flex-direction: column; height: auto; padding: 10px; }
             nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
             .hero h1 { font-size: 36px; }
+
+            /* Fix Intro Splash for Mobile */
+            .intro-huge-logo { width: 150px; height: 150px; }
+            .pop-letter { font-size: 26px; }
+            .intro-pop-title { gap: 4px; }
         }
     </style>
 </head>
@@ -971,16 +571,7 @@
             <img src="new logo.png" class="back" alt="Logo 2">
         </div>
         <div class="intro-pop-title">
-            <span class="pop-letter">D</span>
-            <span class="pop-letter">P</span>
-            <span class="pop-letter">M</span>
-            <span class="pop-letter">&nbsp;</span>
-            <span class="pop-letter">G</span>
-            <span class="pop-letter">L</span>
-            <span class="pop-letter">O</span>
-            <span class="pop-letter">B</span>
-            <span class="pop-letter">A</span>
-            <span class="pop-letter">L</span>
+            <span class="pop-letter">D</span><span class="pop-letter">P</span><span class="pop-letter">M</span><span class="pop-letter">&nbsp;</span><span class="pop-letter">G</span><span class="pop-letter">L</span><span class="pop-letter">O</span><span class="pop-letter">B</span><span class="pop-letter">A</span><span class="pop-letter">L</span>
         </div>
     </div>
 </div>
@@ -1004,12 +595,8 @@
         📞 <a href="tel:+919818150514">+91-9818150514</a>
     </div>
     <div class="right">
-        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook">
-            <i class="fa-brands fa-facebook"></i>
-        </a>
-        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
     </div>
 </div>
 
@@ -1054,7 +641,6 @@
             <h3 style="margin-bottom: 12px; color: #0b3d91;">Global Export & Import</h3>
             <p>Providing seamless international supply chain solutions for high-grade agricultural products worldwide. (Click to view products)</p>
         </a>
-        
         <a href="realestate.html" class="card service-card" style="text-align: center;">
             <img src="real estate.png" alt="Real Estate Services">
             <h3 style="margin-bottom: 12px; color: #0b3d91;">Real Estate Solutions</h3>
@@ -1085,9 +671,7 @@
                 </div>
                 <p>Premium red onions, graded and export-packed for long shelf life.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Onion')">
-                🛒 Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Onion')">🛒 Order Now</button>
         </div>
 
         <div class="card">
@@ -1099,9 +683,7 @@
                 </div>
                 <p>Fresh, vibrant green chillies with high pungency and consistent colour.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Green Chilli')">
-                🛒 Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Green Chilli')">🛒 Order Now</button>
         </div>
 
         <div class="card">
@@ -1113,9 +695,7 @@
                 </div>
                 <p>Plump white garlic bulbs with strong aroma and tight, clean skins.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Garlic')">
-                🛒 Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Garlic')">🛒 Order Now</button>
         </div>
 
         <div class="card">
@@ -1127,9 +707,7 @@
                 </div>
                 <p>Fresh, fibre-rich ginger rhizomes with strong aroma and clean skins.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Ginger')">
-                🛒 Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Ginger')">🛒 Order Now</button>
         </div>
 
         <div class="card">
@@ -1141,9 +719,7 @@
                 </div>
                 <p>Fresh table eggs sourced with care to meet export safety standards.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Eggs')">
-                🛒 Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Eggs')">🛒 Order Now</button>
         </div>
 
         <div class="card">
@@ -1155,9 +731,7 @@
                 </div>
                 <p>Premium potatoes selected for freshness, size, and bulk shipping.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Potato')">
-                🛒 Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Potato')">🛒 Order Now</button>
         </div>
 
         <div class="card">
@@ -1169,9 +743,7 @@
                 </div>
                 <p>Long-grain aromatic Basmati rice processed for rich taste and aroma.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Basmati Rice')">
-                🛒 Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Basmati Rice')">🛒 Order Now</button>
         </div>
 
         <div class="card">
@@ -1183,9 +755,7 @@
                 </div>
                 <p>Aromatic green cardamom pods ideal for global spice markets.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Cardamom')">
-                🛒 Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Cardamom')">🛒 Order Now</button>
         </div>
 
     </div>
@@ -1225,36 +795,28 @@
 
             <div class="product-grid">
                 <div class="product-item active" onclick="selectProduct('Onion', this)">
-                    <img src="onion.png" alt="Onion">
-                    <span>Onion</span>
+                    <img src="onion.png" alt="Onion"><span>Onion</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Green Chilli', this)">
-                    <img src="green chilly.png" alt="Green Chilli">
-                    <span>Green Chilli</span>
+                    <img src="green chilly.png" alt="Green Chilli"><span>Green Chilli</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Garlic', this)">
-                    <img src="GARLIC.png" alt="Garlic">
-                    <span>Garlic</span>
+                    <img src="GARLIC.png" alt="Garlic"><span>Garlic</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Ginger', this)">
-                    <img src="ginger.png" alt="Ginger">
-                    <span>Ginger</span>
+                    <img src="ginger.png" alt="Ginger"><span>Ginger</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Eggs', this)">
-                    <img src="egg.png" alt="Eggs">
-                    <span>Eggs</span>
+                    <img src="egg.png" alt="Eggs"><span>Eggs</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Potato', this)">
-                    <img src="potato.png" alt="Potato">
-                    <span>Potato</span>
+                    <img src="potato.png" alt="Potato"><span>Potato</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Basmati Rice', this)">
-                    <img src="Basmati Rice.png" onerror="this.src='https://via.placeholder.com/150?text=Rice'" alt="Basmati Rice">
-                    <span>Basmati Rice</span>
+                    <img src="Basmati Rice.png" onerror="this.src='https://via.placeholder.com/150?text=Rice'" alt="Basmati Rice"><span>Basmati Rice</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Cardamom', this)">
-                    <img src="CARDAMON.png" alt="Cardamom">
-                    <span>Cardamom</span>
+                    <img src="CARDAMON.png" alt="Cardamom"><span>Cardamom</span>
                 </div>
             </div>
         </div>
@@ -1317,11 +879,7 @@
         <div class="review-card">
             <div>
                 <div class="review-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
                 <p class="review-text">"DPM Global has been our trusted partner for agricultural exports for years. Their quality and timely delivery are unmatched in the international market."</p>
             </div>
@@ -1334,11 +892,7 @@
         <div class="review-card">
             <div>
                 <div class="review-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
                 <p class="review-text">"Exceptional service in real estate advisory! Their properties in Sonipat and Kharkhoda have given us incredible returns on investment."</p>
             </div>
@@ -1351,11 +905,7 @@
         <div class="review-card">
             <div>
                 <div class="review-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
                 <p class="review-text">"The fresh onions and basmati rice we imported through DPM Global exceeded our expectations in quality and packaging. Highly recommended!"</p>
             </div>
@@ -1368,16 +918,6 @@
     </div>
 </section>
 
-<section id="contact">
-    <h2 class="section-title">Contact Us</h2>
-    <form class="contact-form" onsubmit="sendMessage(event)">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required style="height:150px; resize:none;"></textarea>
-        <button type="submit">Send Message</button>
-    </form>
-</section>
-
 <section id="visitor-counter-section">
     <h2 class="section-title" style="color: white; margin-bottom: 25px;">Website Traffic Analytics</h2>
     <div class="visitor-box-container">
@@ -1385,13 +925,14 @@
         <div class="visitor-card">
             <i class="fa-solid fa-users"></i>
             <h3>Total Unique Visitors</h3>
-            <div class="counter-number" id="total-views-count">1,000</div>
+            <div class="counter-number" id="total-views-count">Loading...</div>
         </div>
 
         <div class="visitor-card">
             <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
             <h3>Live Active Visitors</h3>
-            <div class="counter-number" id="live-users-count">1</div>
+            <!-- This will now show ORIGINAL data based on real active tabs -->
+            <div class="counter-number" id="live-users-count">...</div>
         </div>
 
     </div>
@@ -1400,81 +941,63 @@
 <footer>
     <p>© 2026 DPM Global. All Rights Reserved.</p>
     <div class="social-links">
-        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook">
-            <i class="fa-brands fa-facebook"></i>
-        </a>
-        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
     </div>
 </footer>
 
 <script>
-    // --- REAL UNIQUE VISITOR & TRUE LIVE ACTIVE USERS LOGIC ---
+    // --- 100% ORIGINAL GLOBAL TOTAL & LIVE VISITOR COUNTER ---
     window.addEventListener('DOMContentLoaded', () => {
-        // 1. Total Visitors Counter: Starts from 1000+ and increases ONLY when a brand new visitor opens the site
-        let totalViews = localStorage.getItem('dpmRealTotalViews');
-        let hasVisited = sessionStorage.getItem('dpmSessionActive');
-
-        if (!totalViews) {
-            totalViews = 1000; // Starting base from 1000+ as requested
-        }
-
-        if (!hasVisited) {
-            // New unique visitor in this session/browser
-            totalViews = parseInt(totalViews) + 1;
-            localStorage.setItem('dpmRealTotalViews', totalViews);
-            sessionStorage.setItem('dpmSessionActive', 'true');
-        }
-        document.getElementById('total-views-count').innerText = parseInt(totalViews).toLocaleString();
-
-        // 2. Live Active Users Counter: BroadcastChannel to count exact active tabs/windows open right now
-        let liveChannel = new BroadcastChannel('dpm_live_users_channel');
-        let activeId = 'user_' + Math.random();
-
-        // Retrieve active users list from localStorage or initialize
-        let getActiveUsers = () => JSON.parse(localStorage.getItem('dpmActiveUsersList') || '[]');
         
-        let updateActiveUsers = (isAdding) => {
-            let users = getActiveUsers();
-            let now = Date.now();
-            
-            // Filter out inactive users (older than 10 seconds)
-            users = users.filter(u => now - u.time < 10000);
+        // 1. Total Visitors (Starts from 1000 and adds real visits over time)
+        const baseTotalViews = 1000; 
+        fetch('https://api.counterapi.dev/v1/dpm_global_final_website/total_visits/up')
+            .then(response => response.json())
+            .then(data => {
+                let finalTotalCount = baseTotalViews + data.count;
+                document.getElementById('total-views-count').innerText = finalTotalCount.toLocaleString();
+            })
+            .catch(() => {
+                document.getElementById('total-views-count').innerText = "1,000+";
+            });
 
-            if (isAdding) {
-                // Remove existing if any, then add current
-                users = users.filter(u => u.id !== activeId);
-                users.push({ id: activeId, time: now });
-            }
 
-            localStorage.setItem('dpmActiveUsersList', JSON.stringify(users));
-            document.getElementById('live-users-count').innerText = Math.max(1, users.length);
-        };
+        // 2. TRUE LIVE ACTIVE VISITORS (Original Data Logic)
+        // Note: This uses "Entry (+1) & Exit (-1)" API logic for static HTML websites.
+        
+        const liveCounterAPI = 'https://api.counterapi.dev/v1/dpm_global_final_website/live_active';
+        
+        // Step A: When page loads, add +1 to Live Counter
+        fetch(`${liveCounterAPI}/up`)
+            .then(response => response.json())
+            .then(data => {
+                // Keep minimum at 1 to prevent negative numbers due to API delays
+                document.getElementById('live-users-count').innerText = Math.max(1, data.count);
+            })
+            .catch(() => {
+                document.getElementById('live-users-count').innerText = "1";
+            });
 
-        // Register self as active right now
-        updateActiveUsers(true);
-
-        // Heartbeat to keep presence alive every 4 seconds
+        // Step B: Automatically refresh the live count every 10 seconds to sync with others globally
         setInterval(() => {
-            updateActiveUsers(true);
-        }, 4000);
+            fetch(liveCounterAPI)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('live-users-count').innerText = Math.max(1, data.count);
+                });
+        }, 10000); 
 
-        // Listen to channel messages or storage changes from other tabs
-        window.addEventListener('storage', (e) => {
-            if (e.key === 'dpmActiveUsersList') {
-                updateActiveUsers(false);
-            }
+        // Step C: When user closes the website (Tab close/Refresh), instantly minus -1 from Live Counter
+        // We use "keepalive: true" so it successfully sends the request even after tab is closed.
+        window.addEventListener('pagehide', function() {
+            fetch(`${liveCounterAPI}/down`, { keepalive: true });
         });
-
-        // Clean up when user closes tab/window
-        window.addEventListener('beforeunload', () => {
-            let users = getActiveUsers();
-            users = users.filter(u => u.id !== activeId);
-            localStorage.setItem('dpmActiveUsersList', JSON.stringify(users));
-        });
+        
     });
 
+
+    // --- Order and Contact Logic ---
     function selectProduct(productName, element) {
         const items = document.querySelectorAll('.product-item');
         items.forEach(item => item.classList.remove('active'));
