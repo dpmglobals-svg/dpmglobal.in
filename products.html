@@ -257,8 +257,8 @@
 <!-- Popup Modal -->
 <div class="modal-overlay" id="popupModal">
     <div class="modal-content">
-        <h3>🎉 Order Submitted!</h3>
-        <p>Our team will reply you in 2 days.</p>
+        <h3 id="modalTitle">🎉 Order Submitted!</h3>
+        <p id="modalText">Our team will reply you in 2 days.</p>
         <button class="modal-btn" onclick="closeModal()">OK</button>
     </div>
 </div>
@@ -505,7 +505,7 @@
             <form class="order-form" onsubmit="submitOrder(event)">
                 <div class="form-group">
                     <label>Product</label>
-                    <select id="product-dropdown">
+                    <select id="product-dropdown" onchange="checkSpiceSelection()">
                         <option value="Onion">Onion</option>
                         <option value="Green Chilli">Green Chilli</option>
                         <option value="Garlic">Garlic</option>
@@ -515,6 +515,21 @@
                         <option value="Basmati Rice">Basmati Rice</option>
                         <option value="Cardamom">Cardamom</option>
                         <option value="Premium Spices">Premium Spices</option>
+                    </select>
+                </div>
+
+                <!-- Specific Spice Options (Hidden by default, shows only when Premium Spices is selected) -->
+                <div class="form-group" id="spice-container" style="display: none;">
+                    <label style="color: #0284c7; font-weight: 700;">Select Specific Spice Type</label>
+                    <select id="spice-dropdown">
+                        <option value="Haldi (Turmeric Powder)">Haldi (Turmeric Powder)</option>
+                        <option value="Namak (Salt)">Namak (Salt)</option>
+                        <option value="Kali Mirch (Black Pepper)">Kali Mirch (Black Pepper)</option>
+                        <option value="Dhaniya Powder (Coriander)">Dhaniya Powder (Coriander)</option>
+                        <option value="Lal Mirch (Red Chilli Powder)">Lal Mirch (Red Chilli Powder)</option>
+                        <option value="Jeera (Cumin Seeds)">Jeera (Cumin Seeds)</option>
+                        <option value="Garam Masala">Garam Masala</option>
+                        <option value="Other Spices">Other / Mix Spices</option>
                     </select>
                 </div>
 
@@ -567,6 +582,16 @@
 </footer>
 
 <script>
+    function checkSpiceSelection() {
+        const productVal = document.getElementById('product-dropdown').value;
+        const spiceContainer = document.getElementById('spice-container');
+        if (productVal === 'Premium Spices') {
+            spiceContainer.style.display = 'block';
+        } else {
+            spiceContainer.style.display = 'none';
+        }
+    }
+
     function selectProduct(productName, element) {
         const items = document.querySelectorAll('.product-item');
         items.forEach(item => item.classList.remove('active'));
@@ -574,6 +599,7 @@
             element.classList.add('active');
         }
         document.getElementById('product-dropdown').value = productName;
+        checkSpiceSelection();
     }
 
     function orderProductFromCard(productName) {
@@ -601,9 +627,15 @@
         const name = document.getElementById('order-name').value;
         const phone = document.getElementById('order-phone').value;
         const notes = document.getElementById('order-notes').value || "None";
+        
+        let finalProduct = product;
+        if (product === 'Premium Spices') {
+            const selectedSpice = document.getElementById('spice-dropdown').value;
+            finalProduct = `Premium Spices (${selectedSpice})`;
+        }
 
         const newOrder = {
-            product: product,
+            product: finalProduct,
             qty: qty,
             country: country,
             name: name,
@@ -618,10 +650,13 @@
         localStorage.setItem('dpmOrders', JSON.stringify(existingOrders));
 
         // Show Confirmation Popup
+        document.getElementById('modalTitle').innerText = "🎉 Order Submitted!";
+        document.getElementById('modalText').innerText = "Our team will reply you in 2 days.";
         document.getElementById('popupModal').style.display = 'flex';
         
         event.target.reset();
         document.getElementById('product-dropdown').value = 'Onion';
+        checkSpiceSelection();
         const items = document.querySelectorAll('.product-item');
         items.forEach(item => item.classList.remove('active'));
         items[0].classList.add('active');
