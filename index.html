@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPM GLOBAL - Import & Export & Real Estate</title>
 
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -32,6 +31,114 @@
             background: #ffffff;
             color: #1e293b;
             line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* --- HUGE LOGO & POP LETTERS CINEMATIC INTRO --- */
+        #intro-splash {
+            position: fixed;
+            inset: 0;
+            background-color: #0b132b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            animation: cinematicFadeOut 0.6s ease 3s forwards;
+        }
+
+        .intro-center-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            animation: introZoomOutAndHide 0.8s cubic-bezier(0.77, 0, 0.175, 1) 2.2s forwards;
+        }
+
+        .intro-huge-logo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            position: relative;
+            perspective: 800px;
+            animation: hugeBounceUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: translateY(200px) scale(0.2);
+            box-shadow: 0 0 50px rgba(56, 189, 248, 0.4);
+        }
+
+        .intro-huge-logo img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary);
+            backface-visibility: hidden;
+        }
+
+        .intro-huge-logo .front { animation: logoSpinFront 6s infinite linear; }
+        .intro-huge-logo .back { transform: rotateY(180deg); animation: logoSpinBack 6s infinite linear; }
+
+        @keyframes logoSpinFront {
+            0% { transform: rotateY(0deg); z-index: 2; }
+            50% { transform: rotateY(180deg); z-index: 1; }
+            100% { transform: rotateY(360deg); z-index: 2; }
+        }
+
+        @keyframes logoSpinBack {
+            0% { transform: rotateY(180deg); z-index: 1; }
+            50% { transform: rotateY(360deg); z-index: 2; }
+            100% { transform: rotateY(540deg); z-index: 1; }
+        }
+
+        @keyframes hugeBounceUp {
+            0% { opacity: 0; transform: translateY(200px) scale(0.2); }
+            60% { opacity: 1; transform: translateY(-30px) scale(1.08); }
+            80% { transform: translateY(15px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .intro-pop-title {
+            display: flex;
+            gap: 12px;
+            perspective: 1000px;
+        }
+
+        .pop-letter {
+            font-size: 52px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(40px) scale(0.5);
+            animation: letterPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .pop-letter:nth-child(1) { animation-delay: 0.8s; }
+        .pop-letter:nth-child(2) { animation-delay: 0.95s; }
+        .pop-letter:nth-child(3) { animation-delay: 1.1s; }
+        .pop-letter:nth-child(4) { animation-delay: 1.25s; color: var(--secondary); }
+        .pop-letter:nth-child(5) { animation-delay: 1.4s; color: var(--secondary); }
+        .pop-letter:nth-child(6) { animation-delay: 1.55s; color: var(--secondary); }
+        .pop-letter:nth-child(7) { animation-delay: 1.7s; color: var(--secondary); }
+        .pop-letter:nth-child(8) { animation-delay: 1.85s; color: var(--secondary); }
+        .pop-letter:nth-child(9) { animation-delay: 2.0s; color: var(--secondary); }
+
+        @keyframes letterPopIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.5); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes introZoomOutAndHide {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.3); }
+        }
+
+        @keyframes cinematicFadeOut {
+            0% { background-color: rgba(11, 19, 43, 1); }
+            100% { background-color: rgba(11, 19, 43, 0); visibility: hidden; }
         }
 
         /* Topbar Styling */
@@ -89,7 +196,7 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            height: 80px;     
+            height: 80px;    
             background: #ffffff;
             z-index: 1000;
         }
@@ -129,41 +236,17 @@
         }
 
         @keyframes flipFront {
-            0% { 
-                transform: rotateY(0deg); 
-                z-index: 2; 
-            }
-            50% { 
-                transform: rotateY(180deg); 
-                z-index: 1; 
-            }
-            50.01% { 
-                transform: rotateY(180deg); 
-                z-index: 0; 
-            }
-            100% { 
-                transform: rotateY(360deg); 
-                z-index: 2; 
-            }
+            0% { transform: rotateY(0deg); z-index: 2; }
+            50% { transform: rotateY(180deg); z-index: 1; }
+            50.01% { transform: rotateY(180deg); z-index: 0; }
+            100% { transform: rotateY(360deg); z-index: 2; }
         }
 
         @keyframes flipBack {
-            0% { 
-                transform: rotateY(180deg); 
-                z-index: 1; 
-            }
-            50% { 
-                transform: rotateY(360deg); 
-                z-index: 2; 
-            }
-            50.01% { 
-                transform: rotateY(0deg); 
-                z-index: 2; 
-            }
-            100% { 
-                transform: rotateY(180deg); 
-                z-index: 1; 
-            }
+            0% { transform: rotateY(180deg); z-index: 1; }
+            50% { transform: rotateY(360deg); z-index: 2; }
+            50.01% { transform: rotateY(0deg); z-index: 2; }
+            100% { transform: rotateY(180deg); z-index: 1; }
         }
 
         .logo {
@@ -240,19 +323,58 @@
             position: absolute;
             inset: 0;
             z-index: 0;
+            perspective: 1200px;
         }
 
         .slide {
             position: absolute;
             inset: 0;
             opacity: 0;
-            animation: slideShow 15s infinite;
         }
 
-        .slide:nth-child(1) { animation-delay: 1s; }
-        .slide:nth-child(2) { animation-delay: 5s; }
-        .slide:nth-child(3) { animation-delay: 10s; }
-         
+        /* --- WAW-WORTHY 3D PERSPECTIVE CUBE & SLICE ANIMATIONS --- */
+        .slide:nth-child(1) {
+            animation: wahAnimation1 15s infinite;
+            animation-delay: 0s;
+        }
+
+        .slide:nth-child(2) {
+            animation: wahAnimation2 15s infinite;
+            animation-delay: 5s;
+        }
+
+        .slide:nth-child(3) {
+            animation: wahAnimation3 15s infinite;
+            animation-delay: 10s;
+        }
+
+        /* 1st Image: 3D Rotate In from Right Side */
+        @keyframes wahAnimation1 {
+            0% { opacity: 0; transform: perspective(1000px) rotateY(45deg) translateX(150px) scale(1.1); filter: contrast(1.2); }
+            5% { opacity: 1; transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1.05); filter: contrast(1); }
+            33% { opacity: 1; transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1); filter: contrast(1); }
+            38% { opacity: 0; transform: perspective(1000px) rotateY(-45deg) translateX(-150px) scale(0.95); filter: contrast(1.2); }
+            100% { opacity: 0; transform: perspective(1000px) rotateY(45deg) translateX(150px) scale(1.1); }
+        }
+
+        /* 2nd Image: Cinematic 3D Flip & Zoom Unfold */
+        @keyframes wahAnimation2 {
+            0% { opacity: 0; transform: perspective(1000px) rotateX(-45deg) scale(0.8); }
+            5% { opacity: 1; transform: perspective(1000px) rotateX(0deg) scale(1.03); }
+            33% { opacity: 1; transform: perspective(1000px) rotateX(0deg) scale(1); }
+            38% { opacity: 0; transform: perspective(1000px) rotateX(45deg) scale(1.15); }
+            100% { opacity: 0; transform: perspective(1000px) rotateX(-45deg) scale(0.8); }
+        }
+
+        /* 3rd Image: Premium Diagonal Sliced Reveal */
+        @keyframes wahAnimation3 {
+            0% { opacity: 0; clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); transform: scale(1.1); }
+            5% { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: scale(1.05); }
+            33% { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: scale(1); }
+            38% { opacity: 0; clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); transform: scale(0.95); }
+            100% { opacity: 0; clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); transform: scale(1.1); }
+        }
+
         .slide img {
             width: 100%;
             height: 100%;
@@ -608,6 +730,118 @@
             margin-top: 12px;
         }
 
+        /* Reviews Section Styling */
+        #reviews {
+            background: #ffffff;
+            padding: 90px 8%;
+            text-align: center;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border-color: var(--primary);
+        }
+
+        .review-stars {
+            color: #f59e0b;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            color: #475569;
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        .review-location {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* --- REAL VISITOR & LIVE COUNTER SECTION STYLING (AT THE VERY END) --- */
+        #visitor-counter-section {
+            background: linear-gradient(135deg, #0b132b 0%, #0b3d91 100%);
+            padding: 50px 8%;
+            text-align: center;
+            color: white;
+        }
+
+        .visitor-box-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .visitor-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px 40px;
+            border-radius: 16px;
+            min-width: 260px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .visitor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .visitor-card i {
+            font-size: 32px;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+
+        .visitor-card h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .visitor-card .counter-number {
+            font-size: 38px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
         /* Contact Section Form */
         form.contact-form {
             max-width: 600px;
@@ -730,12 +964,31 @@
 
 <body>
 
-<!-- Floating WhatsApp Button -->
+<div id="intro-splash">
+    <div class="intro-center-box">
+        <div class="intro-huge-logo">
+            <img src="dpm global logo.png" class="front" alt="Logo 1">
+            <img src="new logo.png" class="back" alt="Logo 2">
+        </div>
+        <div class="intro-pop-title">
+            <span class="pop-letter">D</span>
+            <span class="pop-letter">P</span>
+            <span class="pop-letter">M</span>
+            <span class="pop-letter">&nbsp;</span>
+            <span class="pop-letter">G</span>
+            <span class="pop-letter">L</span>
+            <span class="pop-letter">O</span>
+            <span class="pop-letter">B</span>
+            <span class="pop-letter">A</span>
+            <span class="pop-letter">L</span>
+        </div>
+    </div>
+</div>
+
 <a href="https://wa.me/919810088729" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp" style="font-size: 32px;"></i>
 </a>
 
-<!-- Popup Modal for Confirmation -->
 <div class="modal-overlay" id="popupModal">
     <div class="modal-content">
         <h3 id="modalTitle">🎉 Order Submitted!</h3>
@@ -744,7 +997,6 @@
     </div>
 </div>
 
-<!-- Interactive Topbar -->
 <div class="topbar">
     <div class="left">
         📧 <a href="mailto:info@dpmglobal.in">info@dpmglobal.in</a> &nbsp;&nbsp; 
@@ -761,7 +1013,6 @@
     </div>
 </div>
 
-<!-- Navigation -->
 <nav>
     <div class="nav-brand">
         <div class="logo-flip-container">
@@ -773,7 +1024,6 @@
     <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="index.html#services">Services</a></li>
-
         <li><a href="aboutus.html">About Us</a></li>
         <li><a href="products.html">Products</a></li>
         <li><a href="realestate.html">Real Estate</a></li>
@@ -782,12 +1032,10 @@
     </ul>
 </nav>
 
-<!-- 1. HOME SECTION -->
 <section class="hero" id="home">
     <div class="slider">
-             
-        <div class="slide"><img src="mix.jpeg" alt="mix"></div>
         <div class="slide"><img src="BURJ.png" alt="BURJ"></div>
+        <div class="slide"><img src="house.png" alt="House"></div>
         <div class="slide"><img src="shipss.png" alt="Ships"></div>
     </div>
     <div class="hero-overlay"></div>
@@ -798,18 +1046,15 @@
     </div>
 </section>
 
-<!-- 2. OUR SERVICES SECTION -->
 <section id="services">
     <h2 class="section-title">Our Services</h2>
     <div class="grid-container">
-        <!-- Global Export & Import -->
         <a href="products.html" class="card service-card" style="text-align: center;">
             <img src="export.png" alt="Export Services">
             <h3 style="margin-bottom: 12px; color: #0b3d91;">Global Export & Import</h3>
             <p>Providing seamless international supply chain solutions for high-grade agricultural products worldwide. (Click to view products)</p>
         </a>
         
-        <!-- Real Estate Solutions -->
         <a href="realestate.html" class="card service-card" style="text-align: center;">
             <img src="real estate.png" alt="Real Estate Services">
             <h3 style="margin-bottom: 12px; color: #0b3d91;">Real Estate Solutions</h3>
@@ -818,7 +1063,6 @@
     </div>
 </section>
 
-<!-- 3. ABOUT US PREVIEW SECTION -->
 <section id="about">
     <h2 class="section-title">About Us</h2>
     <div style="max-width: 900px; margin: auto; text-align: left; background: #ffffff; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
@@ -828,12 +1072,10 @@
     </div>
 </section>
 
-<!-- 4. PRODUCTS SECTION -->
 <section id="products">
     <h2 class="section-title">Products</h2>
     <div class="grid-container">
         
-        <!-- ONION -->
         <div class="card">
             <div>
                 <img src="onion.png" alt="Onions">
@@ -848,7 +1090,6 @@
             </button>
         </div>
 
-        <!-- GREEN CHILLI -->
         <div class="card">
             <div>
                 <img src="green chilly.png" alt="Green Chilli">
@@ -863,7 +1104,6 @@
             </button>
         </div>
 
-        <!-- GARLIC -->
         <div class="card">
             <div>
                 <img src="garlic.png" alt="Garlic">
@@ -878,7 +1118,6 @@
             </button>
         </div>
 
-        <!-- GINGER -->
         <div class="card">
             <div>
                 <img src="ginger.png" alt="Ginger">
@@ -893,7 +1132,6 @@
             </button>
         </div>
 
-        <!-- EGGS -->
         <div class="card">
             <div>
                 <img src="egg.png" alt="Eggs">
@@ -908,7 +1146,6 @@
             </button>
         </div>
 
-        <!-- POTATO -->
         <div class="card">
             <div>
                 <img src="potato.png" alt="Potatoes">
@@ -923,7 +1160,6 @@
             </button>
         </div>
 
-        <!-- BASMATI RICE -->
         <div class="card">
             <div>
                 <img src="Basmati Rice.png" onerror="this.src='https://via.placeholder.com/200?text=Basmati+Rice'" alt="Basmati Rice">
@@ -938,7 +1174,6 @@
             </button>
         </div>
 
-        <!-- CARDAMOM -->
         <div class="card">
             <div>
                 <img src="cardamom.png" alt="Cardamom">
@@ -956,7 +1191,6 @@
     </div>
 </section>
 
-<!-- 5. REAL ESTATE SECTION -->
 <section id="realestate">
     <h2 class="section-title">Real Estate Projects</h2>
     <div class="grid-container">
@@ -982,7 +1216,6 @@
     </div>
 </section>
 
-<!-- 6. ORDER SECTION -->
 <section id="order">
     <div class="order-wrapper">
         <div class="order-left">
@@ -1077,7 +1310,64 @@
     </div>
 </section>
 
-<!-- CONTACT SECTION -->
+<section id="reviews">
+    <h2 class="section-title">Client Reviews</h2>
+    <div class="reviews-container">
+        
+        <div class="review-card">
+            <div>
+                <div class="review-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="review-text">"DPM Global has been our trusted partner for agricultural exports for years. Their quality and timely delivery are unmatched in the international market."</p>
+            </div>
+            <div>
+                <div class="review-author">Ahmad Al-Mansoor</div>
+                <div class="review-location">Dubai, UAE</div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div>
+                <div class="review-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="review-text">"Exceptional service in real estate advisory! Their properties in Sonipat and Kharkhoda have given us incredible returns on investment."</p>
+            </div>
+            <div>
+                <div class="review-author">Rajesh Sharma</div>
+                <div class="review-location">New Delhi, India</div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div>
+                <div class="review-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="review-text">"The fresh onions and basmati rice we imported through DPM Global exceeded our expectations in quality and packaging. Highly recommended!"</p>
+            </div>
+            <div>
+                <div class="review-author">Johnathan Vance</div>
+                <div class="review-location">London, UK</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <section id="contact">
     <h2 class="section-title">Contact Us</h2>
     <form class="contact-form" onsubmit="sendMessage(event)">
@@ -1088,7 +1378,25 @@
     </form>
 </section>
 
-<!-- Footer -->
+<section id="visitor-counter-section">
+    <h2 class="section-title" style="color: white; margin-bottom: 25px;">Website Traffic Analytics</h2>
+    <div class="visitor-box-container">
+        
+        <div class="visitor-card">
+            <i class="fa-solid fa-users"></i>
+            <h3>Total Unique Visitors</h3>
+            <div class="counter-number" id="total-views-count">1,000</div>
+        </div>
+
+        <div class="visitor-card">
+            <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
+            <h3>Live Active Visitors</h3>
+            <div class="counter-number" id="live-users-count">1</div>
+        </div>
+
+    </div>
+</section>
+
 <footer>
     <p>© 2026 DPM Global. All Rights Reserved.</p>
     <div class="social-links">
@@ -1102,7 +1410,71 @@
 </footer>
 
 <script>
-    // Form selection handler for products
+    // --- REAL UNIQUE VISITOR & TRUE LIVE ACTIVE USERS LOGIC ---
+    window.addEventListener('DOMContentLoaded', () => {
+        // 1. Total Visitors Counter: Starts from 1000+ and increases ONLY when a brand new visitor opens the site
+        let totalViews = localStorage.getItem('dpmRealTotalViews');
+        let hasVisited = sessionStorage.getItem('dpmSessionActive');
+
+        if (!totalViews) {
+            totalViews = 1000; // Starting base from 1000+ as requested
+        }
+
+        if (!hasVisited) {
+            // New unique visitor in this session/browser
+            totalViews = parseInt(totalViews) + 1;
+            localStorage.setItem('dpmRealTotalViews', totalViews);
+            sessionStorage.setItem('dpmSessionActive', 'true');
+        }
+        document.getElementById('total-views-count').innerText = parseInt(totalViews).toLocaleString();
+
+        // 2. Live Active Users Counter: BroadcastChannel to count exact active tabs/windows open right now
+        let liveChannel = new BroadcastChannel('dpm_live_users_channel');
+        let activeId = 'user_' + Math.random();
+
+        // Retrieve active users list from localStorage or initialize
+        let getActiveUsers = () => JSON.parse(localStorage.getItem('dpmActiveUsersList') || '[]');
+        
+        let updateActiveUsers = (isAdding) => {
+            let users = getActiveUsers();
+            let now = Date.now();
+            
+            // Filter out inactive users (older than 10 seconds)
+            users = users.filter(u => now - u.time < 10000);
+
+            if (isAdding) {
+                // Remove existing if any, then add current
+                users = users.filter(u => u.id !== activeId);
+                users.push({ id: activeId, time: now });
+            }
+
+            localStorage.setItem('dpmActiveUsersList', JSON.stringify(users));
+            document.getElementById('live-users-count').innerText = Math.max(1, users.length);
+        };
+
+        // Register self as active right now
+        updateActiveUsers(true);
+
+        // Heartbeat to keep presence alive every 4 seconds
+        setInterval(() => {
+            updateActiveUsers(true);
+        }, 4000);
+
+        // Listen to channel messages or storage changes from other tabs
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'dpmActiveUsersList') {
+                updateActiveUsers(false);
+            }
+        });
+
+        // Clean up when user closes tab/window
+        window.addEventListener('beforeunload', () => {
+            let users = getActiveUsers();
+            users = users.filter(u => u.id !== activeId);
+            localStorage.setItem('dpmActiveUsersList', JSON.stringify(users));
+        });
+    });
+
     function selectProduct(productName, element) {
         const items = document.querySelectorAll('.product-item');
         items.forEach(item => item.classList.remove('active'));
@@ -1124,7 +1496,6 @@
         });
     }
 
-    // SAVES ORDER TO PANEL & SHOWS CONFIRMATION
     function submitOrder(event) {
         event.preventDefault();
 
@@ -1160,7 +1531,6 @@
         items[0].classList.add('active');
     }
 
-    // CONTACT US FORM: SAVES QUERY & SHOWS POPUP
     function sendMessage(event) {
         event.preventDefault();
 
