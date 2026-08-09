@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Certificates | DPM GLOBAL</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0b3d91;
+            --primary-hover: #0077b6;
+            --secondary: #38bdf8;
+            --dark: #0f172a;
+            --light-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --whatsapp-green: #25d366;
+            --whatsapp-hover: #1ebd56;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Topbar Styling */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: var(--primary-hover);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8%;
+            font-size: 13.5px;
+            z-index: 1001;
+        }
+
+        .topbar .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .topbar a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .topbar a:hover { opacity: 0.85; }
+
+        .topbar .right {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .topbar .right a {
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            padding: 10px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            height: 80px;  
+            background: #ffffff;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            white-space: nowrap;
+        }
+
+        /* --- CLASSIC 3D COIN FLIP LOGO (NAVBAR) --- */
+        .logo-flip-container {
+            width: 70px;
+            height: 70px;
+            position: relative;
+            perspective: 600px;
+            flex-shrink: 0;
+        }
+
+        .logo-flip-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .logo-front { animation: flipFront 8s infinite linear; }
+        .logo-back { transform: rotateY(180deg); animation: flipBack 8s infinite linear; }
+
+        @keyframes flipFront {
+            0% { transform: rotateY(0deg); z-index: 2; }
+            50% { transform: rotateY(180deg); z-index: 1; }
+            50.01% { transform: rotateY(180deg); z-index: 0; }
+            100% { transform: rotateY(360deg); z-index: 2; }
+        }
+
+        @keyframes flipBack {
+            0% { transform: rotateY(180deg); z-index: 1; }
+            50% { transform: rotateY(360deg); z-index: 2; }
+            50.01% { transform: rotateY(0deg); z-index: 2; }
+            100% { transform: rotateY(180deg); z-index: 1; }
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: bold;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        nav ul li a:hover { color: var(--primary-hover); }
+
+        .nav-btn {
+            background: #2e2a5c;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        
+        .nav-btn:hover { background: #1a1740; }
+
+        /* Floating WhatsApp Icon */
+        .whatsapp-float {
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: #FFF;
+            border-radius: 50px;
+            box-shadow: 2px 4px 12px rgba(0,0,0,0.25);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background-color: var(--whatsapp-hover);
+        }
+
+        /* Certificates Section Layout */
+        .page-header {
+            margin-top: 120px; /* Space for fixed nav */
+            padding: 60px 8% 30px;
+            text-align: center;
+            background: var(--light-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-header h1 {
+            font-size: 40px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            color: #475569;
+            font-size: 18px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .certificates-content {
+            padding: 60px 8% 90px;
+            background: #ffffff;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .cert-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--primary-hover);
+        }
+
+        .cert-image-box {
+            width: 100%;
+            height: 300px; /* Fixed height for consistency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-bg);
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .cert-image-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .cert-card:hover .cert-image-box img {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        .cert-card h3 {
+            color: var(--primary);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .cert-card p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+            background: #020617;
+            color: #94a3b8;
+        }
+
+        footer .social-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .social-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+
+        footer .social-links a:hover {
+            transform: scale(1.15);
+        }
+
+        @media (max-width: 900px) { 
+            .logo { font-size: 28px; }
+        }
+        
+        @media (max-width: 600px) {
+            .topbar { flex-direction: column; height: auto; padding: 5px; }
+            nav { top: 50px; flex-direction: column; height: auto; padding: 10px; }
+            nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+            .nav-brand { flex-wrap: nowrap; }
+            .logo { font-size: 24px; }
+            .page-header { margin-top: 150px; padding-top: 40px; }
+            .page-header h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919810088729" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" style="font-size: 32px;"></i>
+</a>
+
+<!-- Topbar -->
+<div class="topbar">
+    <div class="left">
+        📧 <a href="mailto:info@dpmglobal.in">info@dpmglobal.in</a> &nbsp;&nbsp; 
+        📞 <a href="tel:+919810088729">+91-9810088729</a> &nbsp;&nbsp; 
+        📞 <a href="tel:+919818150514">+91-9818150514</a>
+    </div>
+    <div class="right">
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+</div>
+
+<!-- Navigation Bar -->
+<nav>
+    <div class="nav-brand">
+        <div class="logo-flip-container">
+            <img src="dpm global logo.png" alt="DPM Global Logo 1" class="logo-front">
+            <img src="new logo.png" alt="DPM Global Logo 2" class="logo-back">
+        </div>
+        <div class="logo">DPM GLOBAL</div>
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="certificates.html" style="color: var(--primary-hover);">Certificates</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="realestate.html">Real Estate</a></li>
+        <li><a href="index.html#order">Order</a></li>
+        <li><a href="index.html#contact" class="nav-btn">Get In Touch &rarr;</a></li>
+    </ul>
+</nav>
+
+<!-- Page Header -->
+<header class="page-header">
+    <h1>Our Certificates</h1>
+    <p>We are a verified, authorized, and compliant organization. Here are our official registrations and global standard certificates that prove our genuinity.</p>
+</header>
+
+<!-- Certificates Grid Section -->
+<section class="certificates-content">
+    <div class="grid-container">
+
+        <!-- 1. APEDA Certificate -->
+        <div class="cert-card">
+            <div class="cert-image-box">
+                <!-- Change src to your real APEDA photo (e.g., 'apeda-document.jpg') -->
+                <img src="apeda-cert.png" onerror="this.src='https://via.placeholder.com/400x500?text=APEDA+Certificate'" alt="APEDA Certificate">
+            </div>
+            <h3>APEDA Registration</h3>
+            <p>Authorized by the Agricultural and Processed Food Products Export Development Authority. Ensures our exports meet strict international quality guidelines.</p>
+        </div>
+
+        <!-- 2. GST Registration -->
+        <div class="cert-card">
+            <div class="cert-image-box">
+                <!-- Change src to your real GST photo (e.g., 'gst-certificate.jpg') -->
+                <img src="gst-cert.png" onerror="this.src='https://via.placeholder.com/400x500?text=GST+Certificate'" alt="GST Certificate">
+            </div>
+            <h3>GST Certificate</h3>
+            <p>Fully compliant with the Goods and Services Tax framework of India. A testament to our transparent and legal domestic trading footprint.</p>
+        </div>
+
+        <!-- 3. IEC (Import Export Code) -->
+        <div class="cert-card">
+            <div class="cert-image-box">
+                <!-- Change src to your real IEC photo (e.g., 'iec-certificate.jpg') -->
+                <img src="iec-cert.png" onerror="this.src='https://via.placeholder.com/400x500?text=IEC+Certificate'" alt="IEC Certificate">
+            </div>
+            <h3>IEC (Import Export Code)</h3>
+            <p>Issued by the Directorate General of Foreign Trade (DGFT). This validates our authority to legally ship and import goods across international borders.</p>
+        </div>
+
+        <!-- 4. FSSAI License -->
+        <div class="cert-card">
+            <div class="cert-image-box">
+                <!-- Change src to your real FSSAI photo (e.g., 'fssai-license.jpg') -->
+                <img src="fssai-cert.png" onerror="this.src='https://via.placeholder.com/400x500?text=FSSAI+License'" alt="FSSAI License">
+            </div>
+            <h3>FSSAI License</h3>
+            <p>Certified by the Food Safety and Standards Authority of India. Guarantees that our agricultural products are 100% safe, hygienic, and consumable.</p>
+        </div>
+
+        <!-- 5. Spices Board India -->
+        <div class="cert-card">
+            <div class="cert-image-box">
+                <!-- Change src to your real Spices Board photo (e.g., 'spice-board.jpg') -->
+                <img src="spice-board-cert.png" onerror="this.src='https://via.placeholder.com/400x500?text=Spices+Board+India'" alt="Spices Board Certificate">
+            </div>
+            <h3>Spices Board India</h3>
+            <p>Proudly registered as an authorized exporter of premium and authentic Indian spices to markets worldwide.</p>
+        </div>
+
+        <!-- 6. ISO Certificate -->
+        <div class="cert-card">
+            <div class="cert-image-box">
+                <!-- Change src to your real ISO photo (e.g., 'iso-certificate.jpg') -->
+                <img src="iso-cert.png" onerror="this.src='https://via.placeholder.com/400x500?text=ISO+9001:2015'" alt="ISO Certificate">
+            </div>
+            <h3>ISO 9001:2015</h3>
+            <p>Internationally recognized certification for Quality Management Systems. We maintain high standards in processing, packaging, and delivery.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 DPM Global. All Rights Reserved.</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+</footer>
+
+</body>
+</html>
