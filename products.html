@@ -49,7 +49,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1%; /* Extreme Left Alignment */
+            padding: 0 1%;
             font-size: 13.5px;
             z-index: 1001;
         }
@@ -66,7 +66,7 @@
             top: 40px;
             left: 0;
             width: 100%;
-            padding: 10px 1%; /* Extreme Left Alignment */
+            padding: 10px 1%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -79,7 +79,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* --- 3D COIN FLIP LOGO STYLING --- */
+        /* --- LOGO ALIGNMENT (EXTREME LEFT) --- */
         .nav-brand {
             display: flex;
             align-items: center;
@@ -132,20 +132,61 @@
             letter-spacing: 0.5px;
         }
 
-        /* Navigation Links Styling */
-        nav ul.nav-links { display: flex; list-style: none; gap: 40px; align-items: center; margin: 0 auto; }
-        nav ul.nav-links li a { color: #1e293b; text-decoration: none; font-size: 15px; font-weight: 600; transition: color 0.2s; white-space: nowrap; }
-        nav ul.nav-links li a:hover { color: var(--primary-hover); }
-        .nav-links li a.active { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+        /* --- NAVIGATION LINKS STYLING (REDUCED GAP) --- */
+        nav ul.nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px; 
+            align-items: center;
+            margin: 0 auto; 
+        }
 
-        .nav-btn { background: #2e2a5c; color: white !important; padding: 10px 20px; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
+        nav ul.nav-links li a {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
+            white-space: nowrap; 
+        }
+
+        nav ul.nav-links li a:hover { color: var(--primary-hover); }
+        nav ul.nav-links li a.active { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+
+        .nav-btn {
+            background: #2e2a5c;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            white-space: nowrap; 
+        }
+        
         .nav-btn:hover { background: #1a1740; }
 
         /* Floating WhatsApp Icon */
         .whatsapp-float {
-            position: fixed; width: 56px; height: 56px; bottom: 30px; right: 30px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.5); z-index: 1002; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.2s, background-color 0.2s;
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: #FFF;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.5);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
         }
-        .whatsapp-float:hover { transform: scale(1.08); background-color: var(--whatsapp-hover); }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background-color: var(--whatsapp-hover);
+        }
 
         /* Hero Banner */
         .products-hero {
@@ -220,7 +261,7 @@
         /* Responsive Breakpoints */
         @media (max-width: 1024px) {
             .grid-container { grid-template-columns: repeat(2, 1fr); }
-            nav ul.nav-links { gap: 20px; }
+            nav ul.nav-links { gap: 12px; }
         }
 
         @media (max-width: 900px) {
@@ -231,17 +272,16 @@
         @media (max-width: 820px) {
             nav { height: auto; padding: 15px 1%; flex-wrap: wrap; justify-content: center; gap: 15px; }
             .nav-brand { margin-right: 0; }
-            nav ul.nav-links { margin: 5px 0; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            nav ul.nav-links { margin: 5px 0; flex-wrap: wrap; justify-content: center; gap: 10px; }
             .products-hero { margin-top: 130px; }
         }
 
         @media (max-width: 600px) {
             .grid-container { grid-template-columns: 1fr; }
             .topbar { flex-direction: column; height: auto; padding: 5px 1%; }
-            nav { top: 50px; flex-direction: column; padding: 10px 1%; }
+            nav { top: 50px; flex-direction: column; }
             .nav-brand { flex-wrap: nowrap; align-self: flex-start; margin-left: 0; margin-right: auto; }
             .logo { font-size: 24px; }
-            .logo-flip-container { width: 50px; height: 50px; }
             .products-hero h1 { font-size: 36px; }
         }
     </style>
@@ -280,7 +320,7 @@
     </div>
 </div>
 
-<!-- Universal Navigation -->
+<!-- Universal Navigation matching index.html exactly -->
 <nav>
     <div class="nav-brand">
         <div class="logo-flip-container">
@@ -289,6 +329,7 @@
         </div>
         <div class="logo">DPM GLOBAL</div>
     </div>
+    
     <ul class="nav-links">
         <li><a href="index.html#home">Home</a></li>
         <li><a href="index.html#services">Services</a></li>
@@ -299,6 +340,7 @@
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="#order">Order</a></li>
     </ul>
+    
     <a href="index.html#contact" class="nav-btn">Get In Touch &rarr;</a>
 </nav>
 
@@ -348,7 +390,7 @@
         <!-- GARLIC -->
         <div class="card">
             <div>
-                <img src="GARLIC.png" alt="Garlic">
+                <img src="garlic.png" alt="Garlic">
                 <div class="card-header">
                     <h3>Garlic</h3>
                     <span class="card-unit">per MT</span>
@@ -423,7 +465,7 @@
         <!-- CARDAMOM -->
         <div class="card">
             <div>
-                <img src="CARDAMON.png" alt="Cardamom">
+                <img src="CARDAMOM.png" onerror="this.src='https://via.placeholder.com/200?text=Cardamom'" alt="Cardamom">
                 <div class="card-header">
                     <h3>Cardamom</h3>
                     <span class="card-unit">per MT</span>
@@ -471,7 +513,7 @@
                     <span>Green Chilli</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Garlic', this)">
-                    <img src="GARLIC.png" alt="Garlic">
+                    <img src="garlic.png" alt="Garlic">
                     <span>Garlic</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Ginger', this)">
@@ -487,15 +529,15 @@
                     <span>Potato</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Basmati Rice', this)">
-                    <img src="basmati.png" onerror="this.src='https://via.placeholder.com/150?text=Rice'" alt="Basmati Rice">
+                    <img src="basmati.png" alt="Basmati Rice">
                     <span>Basmati Rice</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Cardamom', this)">
-                    <img src="CARDAMON.png" alt="Cardamom">
+                    <img src="CARDAMOM.png" alt="Cardamom">
                     <span>Cardamom</span>
                 </div>
                 <div class="product-item" onclick="selectProduct('Premium Spices', this)">
-                    <img src="spices.png" onerror="this.src='https://via.placeholder.com/150?text=Spices'" alt="Premium Spices">
+                    <img src="spices.png" alt="Premium Spices">
                     <span>Premium Spices</span>
                 </div>
             </div>
@@ -518,7 +560,7 @@
                     </select>
                 </div>
 
-                <!-- Specific Spice Options (Hidden by default, shows only when Premium Spices is selected) -->
+                <!-- Specific Spice Options (Hidden by default) -->
                 <div class="form-group" id="spice-container" style="display: none;">
                     <label style="color: #0284c7; font-weight: 700;">Select Specific Spice Type</label>
                     <select id="spice-dropdown">
@@ -556,7 +598,7 @@
 
                 <div class="form-group">
                     <label>Notes (optional)</label>
-                    <textarea id="order-notes" placeholder="Packaging, delivery terms, specific spice names etc."></textarea>
+                    <textarea id="order-notes" placeholder="Packaging, delivery terms, etc."></textarea>
                 </div>
 
                 <button type="submit" class="submit-order-btn">
@@ -572,16 +614,19 @@
 <footer>
     <p>© 2026 DPM Global. All Rights Reserved.</p>
     <div class="social-links">
-        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook">
-            <i class="fa-brands fa-facebook"></i>
-        </a>
-        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
     </div>
 </footer>
 
 <script>
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('popupModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
     function checkSpiceSelection() {
         const productVal = document.getElementById('product-dropdown').value;
         const spiceContainer = document.getElementById('spice-container');
@@ -603,21 +648,17 @@
     }
 
     function orderProductFromCard(productName) {
-        const orderSection = document.getElementById('order');
-        if (orderSection) {
-            orderSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
 
         const gridItems = document.querySelectorAll('.product-item');
         gridItems.forEach(item => {
-            const spanText = item.querySelector('span') ? item.querySelector('span').innerText.trim() : '';
+            const spanText = item.querySelector('span').innerText.trim();
             if (spanText.toLowerCase() === productName.toLowerCase()) {
                 selectProduct(productName, item);
             }
         });
     }
 
-    // SAVES ORDER TO orders.html PANEL & SHOWS POPUP CONFIRMATION
     function submitOrder(event) {
         event.preventDefault();
 
@@ -627,7 +668,7 @@
         const name = document.getElementById('order-name').value;
         const phone = document.getElementById('order-phone').value;
         const notes = document.getElementById('order-notes').value || "None";
-        
+
         let finalProduct = product;
         if (product === 'Premium Spices') {
             const selectedSpice = document.getElementById('spice-dropdown').value;
@@ -644,12 +685,10 @@
             time: new Date().toLocaleString()
         };
 
-        // Save order locally so it shows up in orders.html admin panel
         let existingOrders = JSON.parse(localStorage.getItem('dpmOrders')) || [];
         existingOrders.unshift(newOrder);
         localStorage.setItem('dpmOrders', JSON.stringify(existingOrders));
 
-        // Show Confirmation Popup
         document.getElementById('modalTitle').innerText = "🎉 Order Submitted!";
         document.getElementById('modalText').innerText = "Our team will reply you in 2 days.";
         document.getElementById('popupModal').style.display = 'flex';
@@ -665,14 +704,6 @@
     function closeModal() {
         document.getElementById('popupModal').style.display = 'none';
     }
-
-    // Close Modal on Outside Click
-    window.onclick = function(event) {
-        const modal = document.getElementById('popupModal');
-        if (event.target === modal) {
-            closeModal();
-        }
-    };
 </script>
 
 </body>
