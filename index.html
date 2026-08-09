@@ -515,7 +515,7 @@
         .review-author { font-weight: 700; color: var(--primary); font-size: 15px; }
         .review-location { font-size: 12px; color: #64748b; }
 
-        /* --- VISITOR COUNTER SECTION STYLING (UPDATED SIZE) --- */
+        /* --- VISITOR COUNTER SECTION STYLING --- */
         #visitor-counter-section { background: linear-gradient(135deg, #0b132b 0%, #0b3d91 100%); padding: 50px 8%; text-align: center; color: white; }
         .visitor-box-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 700px; margin: 0 auto; }
         .visitor-card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 20px 30px; border-radius: 12px; min-width: 220px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease; }
@@ -925,14 +925,14 @@
         <div class="visitor-card">
             <i class="fa-solid fa-users"></i>
             <h3>Total Unique Visitors</h3>
-            <div class="counter-number" id="total-views-count">Loading...</div>
+            <div class="counter-number" id="total-views-count">1,000</div>
         </div>
 
         <div class="visitor-card">
             <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
             <h3>Live Active Visitors</h3>
-            <!-- This will now show ORIGINAL data based on real active tabs -->
-            <div class="counter-number" id="live-users-count">...</div>
+            <!-- This will securely display 1 or more, NEVER showing NaN -->
+            <div class="counter-number" id="live-users-count">1</div>
         </div>
 
     </div>
@@ -947,51 +947,62 @@
 </footer>
 
 <script>
-    // --- 100% ORIGINAL GLOBAL TOTAL & LIVE VISITOR COUNTER ---
+    // --- 100% BUG-FREE & SAFE COUNTER LOGIC (NO MORE 'NaN') ---
     window.addEventListener('DOMContentLoaded', () => {
         
-        // 1. Total Visitors (Starts from 1000 and adds real visits over time)
+        // --- 1. Total Visitors (1000 se start hokar hamesha badhega) ---
         const baseTotalViews = 1000; 
-        fetch('https://api.counterapi.dev/v1/dpm_global_final_website/total_visits/up')
+        
+        fetch('https://api.counterapi.dev/v1/dpm_global_final_2026/total_visits/up')
             .then(response => response.json())
             .then(data => {
-                let finalTotalCount = baseTotalViews + data.count;
+                // Security Check: Agar API se koi galat text aata hai (undefined / null), toh use 0 maan lenge
+                let apiCount = data.count || data.value || 0;
+                if (isNaN(apiCount)) { apiCount = 0; }
+                
+                let finalTotalCount = baseTotalViews + parseInt(apiCount);
                 document.getElementById('total-views-count').innerText = finalTotalCount.toLocaleString();
             })
             .catch(() => {
+                // Agar internet/API ka issue ho, tab bhi NaN nahi dikhega
                 document.getElementById('total-views-count').innerText = "1,000+";
             });
 
 
-        // 2. TRUE LIVE ACTIVE VISITORS (Original Data Logic)
-        // Note: This uses "Entry (+1) & Exit (-1)" API logic for static HTML websites.
+        // --- 2. Live Active Visitors (Original Data) ---
+        const liveCounterAPI = 'https://api.counterapi.dev/v1/dpm_global_final_2026/live_active';
         
-        const liveCounterAPI = 'https://api.counterapi.dev/v1/dpm_global_final_website/live_active';
-        
-        // Step A: When page loads, add +1 to Live Counter
+        // Function to safely update Live Counter without NaN
+        function updateLiveUI(countVal) {
+            let safeCount = parseInt(countVal);
+            if (isNaN(safeCount) || safeCount < 1) { safeCount = 1; } // kam se kam '1' (current user) zarur dikhayega
+            document.getElementById('live-users-count').innerText = safeCount;
+        }
+
+        // Step A: Load hone par live me +1 add karega
         fetch(`${liveCounterAPI}/up`)
             .then(response => response.json())
             .then(data => {
-                // Keep minimum at 1 to prevent negative numbers due to API delays
-                document.getElementById('live-users-count').innerText = Math.max(1, data.count);
+                updateLiveUI(data.count || data.value);
             })
             .catch(() => {
-                document.getElementById('live-users-count').innerText = "1";
+                updateLiveUI(1);
             });
 
-        // Step B: Automatically refresh the live count every 10 seconds to sync with others globally
+        // Step B: Har 10 second me numbers update karega takki baaki visitors ka data bhi milta rahe
         setInterval(() => {
             fetch(liveCounterAPI)
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('live-users-count').innerText = Math.max(1, data.count);
-                });
+                    updateLiveUI(data.count || data.value);
+                })
+                .catch(() => {});
         }, 10000); 
 
-        // Step C: When user closes the website (Tab close/Refresh), instantly minus -1 from Live Counter
-        // We use "keepalive: true" so it successfully sends the request even after tab is closed.
+        // Step C: Tab band hone par / Refresh karne par instantly -1 karega
         window.addEventListener('pagehide', function() {
-            fetch(`${liveCounterAPI}/down`, { keepalive: true });
+            // 'navigator.sendBeacon' background me bhi successfully signal bhejta hai
+            navigator.sendBeacon(`${liveCounterAPI}/down`);
         });
         
     });
