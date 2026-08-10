@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About DPM Global - Your Trusted Global Partner in International Trade & Real Estate Solutions Since 2007.">
-    <title>DPM GLOBAL - About Us</title>
+    <meta name="description" content="About DPM Global - Sole Proprietorship owned by Sunil Kumar Sharma. Trusted Global Partner in Agricultural Exports & Real Estate Solutions Since 2007.">
+    <title>DPM GLOBAL - About Us & Leadership</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -22,10 +22,10 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; color: #1e293b; line-height: 1.5; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; color: #1e293b; line-height: 1.6; overflow-x: hidden; }
 
         /* Topbar */
-        .topbar { position: fixed; top: 0; left: 0; width: 100%; height: 40px; background: var(--primary-hover); color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 1%; font-size: 13.5px; z-index: 1001; }
+        .topbar { position: fixed; top: 0; left: 0; width: 100%; height: 40px; background: var(--primary-hover); color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 2%; font-size: 13.5px; z-index: 1001; }
         .topbar a { color: white; text-decoration: none; transition: opacity 0.2s; }
         .topbar a:hover { opacity: 0.85; }
         .topbar .left { display: flex; align-items: center; gap: 15px; }
@@ -33,12 +33,27 @@
         .topbar .right a { font-size: 18px; display: inline-flex; align-items: center; justify-content: center; }
 
         /* Navbar */
-        nav { position: fixed; top: 40px; left: 0; width: 100%; padding: 10px 1%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 80px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+        nav { 
+            position: fixed; 
+            top: 40px; 
+            left: 0; 
+            width: 100%; 
+            padding: 10px 2%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
+            height: 80px; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
+        }
         
-        /* --- LOGO ALIGNMENT (EXTREME LEFT) --- */
-        .nav-brand { display: flex; align-items: center; gap: 15px; white-space: nowrap; margin-left: 0; margin-right: auto; }
+        .nav-brand { display: flex; align-items: center; gap: 15px; white-space: nowrap; }
         
-        .logo-flip-container { width: 70px; height: 70px; position: relative; perspective: 600px; flex-shrink: 0; }
+        .logo-flip-container { width: 60px; height: 60px; position: relative; perspective: 600px; flex-shrink: 0; }
         .logo-flip-container img { position: absolute; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); backface-visibility: hidden; transform-style: preserve-3d; }
         .logo-front { animation: flipFront 8s infinite linear; }
         .logo-back { transform: rotateY(180deg); animation: flipBack 8s infinite linear; }
@@ -46,73 +61,470 @@
         @keyframes flipFront { 0% { transform: rotateY(0deg); z-index: 2; } 50% { transform: rotateY(180deg); z-index: 1; } 50.01% { transform: rotateY(180deg); z-index: 0; } 100% { transform: rotateY(360deg); z-index: 2; } }
         @keyframes flipBack { 0% { transform: rotateY(180deg); z-index: 1; } 50% { transform: rotateY(360deg); z-index: 2; } 50.01% { transform: rotateY(0deg); z-index: 2; } 100% { transform: rotateY(180deg); z-index: 1; } }
 
-        .logo { font-size: 40px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px; }
+        .logo { font-size: 32px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px; }
 
-        /* --- NAVIGATION LINKS STYLING (REDUCED GAP) --- */
-        nav ul.nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin: 0 auto; }
-        nav ul.nav-links li a { color: #1e293b; text-decoration: none; font-size: 15px; font-weight: 600; transition: color 0.2s; white-space: nowrap; }
-        nav ul.nav-links li a:hover { color: var(--primary-hover); }
-        .nav-links li a.active { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+        /* THREE DOTS MOBILE MENU TOGGLE BUTTON */
+        .menu-toggle {
+            display: none;
+            font-size: 22px;
+            color: var(--primary);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
 
-        .nav-btn { background: #2e2a5c; color: white !important; padding: 10px 20px; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
-        .nav-btn:hover { background: #1a1740; }
+        .menu-toggle:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        /* STYLED BUTTON NAV LINKS */
+        nav ul.nav-links { display: flex; list-style: none; gap: 8px; align-items: center; }
+        nav ul.nav-links li a { 
+            color: #1e293b; 
+            text-decoration: none; 
+            font-size: 13.5px; 
+            font-weight: 600; 
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            transition: all 0.25s ease;
+            white-space: nowrap; 
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        nav ul.nav-links li a:hover { 
+            color: #ffffff; 
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(11, 61, 145, 0.25);
+        }
+        .nav-links li a.active { 
+            background: var(--primary); 
+            color: white; 
+            border-color: var(--primary); 
+        }
+
+        .nav-btn { 
+            background: #2e2a5c !important; 
+            color: white !important; 
+            border-color: #2e2a5c !important;
+            padding: 9px 20px !important; 
+            border-radius: 20px !important; 
+            box-shadow: 0 4px 12px rgba(46, 42, 92, 0.25) !important;
+        }
+        .nav-btn:hover { 
+            background: #1a1740 !important; 
+            border-color: #1a1740 !important;
+        }
 
         /* WhatsApp Float */
         .whatsapp-float { position: fixed; width: 56px; height: 56px; bottom: 30px; right: 30px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.5); z-index: 1002; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.2s, background-color 0.2s; }
         .whatsapp-float:hover { transform: scale(1.08); background-color: var(--whatsapp-hover); }
 
-        /* --- ABOUT US SPECIFIC STYLES --- */
+        /* --- EXPANDED ABOUT US SPECIFIC STYLES --- */
         .about-hero {
             margin-top: 120px;
-            background: linear-gradient(rgba(11, 61, 145, 0.85), rgba(2, 6, 23, 0.9)), url('BURJ.png') center/cover no-repeat;
+            background: linear-gradient(rgba(11, 61, 145, 0.9), rgba(2, 6, 23, 0.92)), url('BURJ.png') center/cover no-repeat;
             color: white;
             text-align: center;
-            padding: 90px 20px;
+            padding: 110px 20px;
         }
 
-        .about-hero h1 { font-size: 48px; margin-bottom: 15px; font-weight: 800; }
-        .about-hero p { font-size: 18px; color: #cbd5e1; max-width: 600px; margin: auto; line-height: 1.6; }
+        .about-hero h1 { font-size: 52px; margin-bottom: 15px; font-weight: 800; }
+        .about-hero p { font-size: 20px; color: #cbd5e1; max-width: 750px; margin: auto; line-height: 1.6; }
 
-        section { padding: 80px 8%; }
+        /* Stats Strip */
+        .stats-strip {
+            background: #ffffff;
+            margin: -50px auto 40px;
+            max-width: 1100px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
 
-        .about-container { max-width: 1000px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
+        .stat-item {
+            padding: 15px;
+            border-right: 1px solid var(--border-color);
+        }
 
-        .about-card { background: #ffffff; padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease; }
+        .stat-item:last-child { border-right: none; }
+
+        .stat-number {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        section.about-main-section { padding: 40px 6% 80px; }
+
+        .about-container { max-width: 1150px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
+
+        /* Proprietor Profile Section */
+        .proprietor-card { 
+            display: flex; 
+            align-items: center; 
+            gap: 40px; 
+            background: #ffffff; 
+            padding: 40px; 
+            border-radius: 16px; 
+            border: 1px solid var(--border-color); 
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08); 
+            transition: transform 0.3s ease; 
+        }
+
+        .proprietor-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px -5px rgba(0,0,0,0.12); border-color: var(--primary-hover); }
+        
+        .proprietor-img-box {
+            flex-shrink: 0;
+            width: 220px;
+            height: 260px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 4px solid var(--primary);
+            box-shadow: 0 10px 25px rgba(11, 61, 145, 0.2);
+        }
+
+        .proprietor-img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .proprietor-info h2 { font-size: 30px; color: var(--primary); margin-bottom: 5px; font-weight: 800; }
+        .proprietor-badge { 
+            display: inline-block; 
+            background: #e0f2fe; 
+            color: #0284c7; 
+            font-size: 13px; 
+            font-weight: 700; 
+            padding: 4px 14px; 
+            border-radius: 20px; 
+            margin-bottom: 18px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+        }
+
+        .proprietor-info p { color: #334155; line-height: 1.8; font-size: 15.5px; margin-bottom: 12px; }
+
+        .about-card { 
+            background: #ffffff; 
+            padding: 40px; 
+            border-radius: 16px; 
+            border: 1px solid var(--border-color); 
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08); 
+            transition: transform 0.3s ease; 
+        }
+
         .about-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px -5px rgba(0,0,0,0.12); border-color: var(--primary-hover); }
-        .about-card h2 { color: var(--primary); font-size: 28px; margin-bottom: 15px; font-weight: 700; }
-        .about-card p { font-size: 16px; color: #334155; line-height: 1.8; margin-bottom: 15px; }
+        .about-card h2 { color: var(--primary); font-size: 28px; margin-bottom: 18px; font-weight: 700; position: relative; padding-bottom: 8px; }
+        .about-card h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: var(--secondary); }
+        .about-card p { font-size: 16px; color: #334155; line-height: 1.8; margin-bottom: 16px; }
 
-        .ceo-section { display: flex; align-items: center; gap: 30px; background: #ffffff; padding: 30px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease; }
-        .ceo-section:hover { transform: translateY(-3px); box-shadow: 0 15px 35px -5px rgba(0,0,0,0.12); border-color: var(--primary-hover); }
-        .ceo-section img { width: 180px; height: 180px; object-fit: cover; border-radius: 12px; border: 3px solid var(--primary); }
-        .ceo-info h3 { font-size: 24px; color: var(--primary); margin-bottom: 5px; font-weight: 700; }
-        .ceo-info span { font-size: 14px; font-weight: bold; color: #64748b; display: block; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .ceo-info p { font-style: italic; color: #475569; line-height: 1.6; }
+        /* Grid Section for Pillars */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 10px;
+        }
 
-        /* Footer */
-        footer { padding: 25px; text-align: center; background: #020617; color: #94a3b8; border-top: 1px solid #1e293b; }
-        footer .social-links { margin-top: 12px; display: flex; justify-content: center; gap: 20px; }
-        footer .social-links a { color: var(--secondary); text-decoration: none; font-size: 20px; transition: transform 0.2s; }
-        footer .social-links a:hover { transform: scale(1.15); }
+        .pillar-item {
+            background: var(--light-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
 
-        /* Responsive Fixes */
-        @media (max-width: 1024px) { nav ul.nav-links { gap: 12px; } }
+        .pillar-item:hover {
+            background: #ffffff;
+            border-color: var(--secondary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .pillar-item i {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .pillar-item h3 {
+            font-size: 19px;
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .pillar-item p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Mission Vision Row */
+        .mv-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .mv-card {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+        }
+
+        .mv-card h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mv-card p {
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        /* --- FOOTER STYLING --- */
+        footer { 
+            background: #020617; 
+            color: #94a3b8; 
+            border-top: 1px solid #1e293b; 
+            padding: 60px 4% 20px;
+            text-align: left;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .footer-col h3 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links li a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s, padding-left 0.2s;
+            display: inline-block;
+        }
+
+        .footer-links li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .footer-contact-item i {
+            color: var(--secondary);
+            font-size: 16px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .footer-contact-item a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-contact-item a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 20px auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p {
+            font-size: 13.5px;
+            color: #64748b;
+        }
+
+        footer .social-links { 
+            display: flex; 
+            gap: 16px; 
+        }
+
+        footer .social-links a { 
+            color: var(--secondary); 
+            text-decoration: none; 
+            font-size: 18px; 
+            transition: transform 0.2s, color 0.2s; 
+        }
+
+        footer .social-links a:hover { 
+            transform: translateY(-3px); 
+            color: #ffffff;
+        }
+
+        /* --- MOBILE & RESPONSIVE FIXES --- */
         @media (max-width: 820px) {
-            nav { height: auto; padding: 15px 1%; flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .nav-brand { margin-right: 0; }
-            nav ul.nav-links { margin: 5px 0; flex-wrap: wrap; justify-content: center; gap: 10px; }
-            .about-hero { margin-top: 130px; }
+            .topbar {
+                position: relative;
+                flex-direction: column;
+                height: auto;
+                padding: 8px 2%;
+                gap: 5px;
+            }
+            nav { 
+                position: relative;
+                top: 0;
+                height: auto; 
+                padding: 12px 4%; 
+                flex-wrap: wrap; 
+                justify-content: space-between; 
+            }
+
+            .about-hero { 
+                margin-top: 0; 
+                padding: 70px 20px 80px;
+            }
+
+            .stats-strip {
+                margin: -30px 15px 30px;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul.nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+                gap: 10px;
+                background: #ffffff;
+                padding: 15px;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                border: 1px solid #e2e8f0;
+            }
+
+            nav ul.nav-links.active {
+                display: flex;
+            }
+
+            nav ul.nav-links li {
+                width: 100%;
+            }
+
+            nav ul.nav-links li a {
+                display: block;
+                text-align: center;
+                width: 100%;
+                padding: 12px;
+                font-size: 15px;
+            }
+
+            .proprietor-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
         }
-        @media (max-width: 768px) {
-            .ceo-section { flex-direction: column; text-align: center; }
-            .about-hero h1 { font-size: 36px; }
-        }
+
         @media (max-width: 600px) {
-            .topbar { flex-direction: column; height: auto; padding: 5px 1%; }
-            nav { top: 50px; flex-direction: column; }
-            .nav-brand { flex-wrap: nowrap; align-self: flex-start; margin-left: 0; margin-right: auto; }
-            .logo { font-size: 24px; } 
+            .logo { font-size: 22px; } 
             .logo-flip-container { width: 50px; height: 50px; }
+            .about-hero h1 { font-size: 34px; }
+            .stats-strip { grid-template-columns: 1fr; }
+            .stat-item { border-bottom: 1px solid var(--border-color) !important; }
+            .stat-item:last-child { border-bottom: none !important; }
         }
     </style>
 </head>
@@ -132,12 +544,14 @@
         📞 <a href="tel:+919818150514">+91-9818150514</a>
     </div>
     <div class="right">
+        <a href="https://wa.me/919810088729" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" aria-label="Facebook Profile" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" aria-label="Instagram Profile" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" aria-label="Instagram Profile" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/dpm-global" target="_blank" aria-label="LinkedIn Profile" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
     </div>
 </div>
 
-<!-- Universal Navigation matching index.html exactly -->
+<!-- Navigation Bar -->
 <nav>
     <div class="nav-brand">
         <div class="logo-flip-container">
@@ -146,65 +560,215 @@
         </div>
         <div class="logo">DPM GLOBAL</div>
     </div>
+
+    <!-- THREE DOTS MOBILE TOGGLE -->
+    <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
     
-    <ul class="nav-links">
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="aboutus.html" class="active">About Us</a></li>
-        <li><a href="certificates.html">Certificates</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="realestate.html">Real Estate</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="index.html#order">Order</a></li>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home" onclick="closeMenu()">Home</a></li>
+        <li><a href="index.html#services" onclick="closeMenu()">Services</a></li>
+        <li><a href="aboutus.html" class="active" onclick="closeMenu()">About Us</a></li>
+        <li><a href="certificates.html" onclick="closeMenu()">Certificates</a></li>
+        <li><a href="products.html" onclick="closeMenu()">Products</a></li>
+        <li><a href="realestate.html" onclick="closeMenu()">Real Estate</a></li>
+        <li><a href="gallery.html" onclick="closeMenu()">Gallery</a></li>
+        <li><a href="index.html#order" onclick="closeMenu()">Order</a></li>
+        <li><a href="index.html#contact" class="nav-btn" onclick="closeMenu()">Get In Touch &rarr;</a></li>
     </ul>
-    
-    <a href="index.html#contact" class="nav-btn">Get In Touch &rarr;</a>
 </nav>
 
 <!-- Hero Section -->
 <div class="about-hero">
     <h1>About DPM Global</h1>
-    <p>Your Trusted Global Partner in International Trade & Real Estate Solutions Since 2007.</p>
+    <p>A Premier Sole Proprietorship Firm Dedicated to Excellence in Agricultural Exports & Real Estate Solutions Since 2007.</p>
+</div>
+
+<!-- STATS HIGHLIGHT STRIP -->
+<div class="stats-strip">
+    <div class="stat-item">
+        <div class="stat-number">2007</div>
+        <div class="stat-label">Year Established</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">18+</div>
+        <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Export Products</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Govt & APEDA Compliant</div>
+    </div>
 </div>
 
 <!-- Main Content -->
-<section>
+<section class="about-main-section">
     <div class="about-container">
         
-        <!-- CEO Section -->
-        <div class="ceo-section">
-            <img src="SUNIL KUMAR SHARMA.png" onerror="this.src='https://via.placeholder.com/180?text=CEO'" alt="Sunil Kumar Sharma">
-            <div class="ceo-info">
-                <h3>Sunil Kumar Sharma</h3>
-                <span>Chief Executive Officer (CEO)</span>
-                <p>"At DPM Global, we believe that long-term business success is built on unwavering commitment, transparency, and superior quality in every shipment we handle."</p>
+        <!-- PROPRIETOR LEADERSHIP SECTION -->
+        <div class="proprietor-card">
+            <div class="proprietor-img-box">
+                <img src="SUNIL KUMAR SHARMA.png" onerror="this.src='https://via.placeholder.com/220x260?text=Sunil+Kumar+Sharma'" alt="Sunil Kumar Sharma - Sole Proprietor">
+            </div>
+            <div class="proprietor-info">
+                <h2>Sunil Kumar Sharma</h2>
+                <span class="proprietor-badge">Sole Proprietor & Founder</span>
+                <p><strong>DPM Global</strong> is operated as a registered <strong>Sole Proprietorship firm</strong> under the visionary sole ownership of <strong>Mr. Sunil Kumar Sharma</strong>. Established in 2007, the company reflects his personal dedication to transparent business practices, direct client accountability, and global trade excellence.</p>
+                <p><em>"As a sole proprietor, every deal bearing the name of DPM Global carries my personal guarantee of commitment, honesty, superior product quality, and reliable execution."</em></p>
             </div>
         </div>
 
-        <!-- About Overview -->
+        <!-- WHO WE ARE OVERVIEW -->
         <div class="about-card">
-            <h2>Who We Are</h2>
-            <p><strong>DPM Global</strong> is an India-based export and import company established in 2007, committed to delivering top-quality products and reliable international trade solutions to buyers worldwide.</p>
-            <p>We specialize in exporting premium agricultural commodities including fresh onions, potatoes, garlic, ginger, green chillies, basmati rice, table eggs, and aromatic spices.</p>
+            <h2>Who We Are & What We Do</h2>
+            <p><strong>DPM Global</strong> is an India-based international export-import enterprise and real estate advisory firm. Founded in 2007, we have spent over 18 years building robust supply chain networks and strategic real estate land developments.</p>
+            <p>Our core commercial operations span two primary industry verticals:</p>
+            
+            <div class="pillars-grid">
+                <div class="pillar-item">
+                    <i class="fa-solid fa-wheat-awt"></i>
+                    <h3>Agricultural Exports</h3>
+                    <p>Direct sourcing, export grading, and shipping of fresh onions, basmati rice, potatoes, garlic, ginger, table eggs, green chillies, and authentic Indian spices to buyers worldwide.</p>
+                </div>
+                <div class="pillar-item">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <h3>Real Estate Plotting</h3>
+                    <p>Advisory and strategic land development focusing on high-ROI commercial, industrial, and residential plotting in key industrial growth hubs of Sonipat and Kharkhoda.</p>
+                </div>
+                <div class="pillar-item">
+                    <i class="fa-solid fa-file-contract"></i>
+                    <h3>Regulatory Assistance</h3>
+                    <p>Assisting corporate clients and trade partners in fulfilling essential government compliance, import-export filings, and documentation requirements smoothly.</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Core Values -->
+        <!-- OUR 4 PILLARS OF EXCELLENCE -->
         <div class="about-card">
-            <h2>Our Core Values</h2>
-            <p>Our core operation revolves around four key pillars: <strong>Commitment, Honesty, Quality, and Reliability</strong>. We closely collaborate with international buyers to provide customized packing, seamless shipping terms, and consistent supply chains.</p>
+            <h2>Our Core Pillars</h2>
+            <p>Operating as a Sole Proprietorship allows DPM Global to maintain direct control over quality standards, immediate response times, and uncompromised ethical standards across all transactions.</p>
+            
+            <div class="pillars-grid">
+                <div class="pillar-item">
+                    <i class="fa-solid fa-handshake"></i>
+                    <h3>Commitment</h3>
+                    <p>Fulfilling every contracted commitment on time, adhering strictly to agreed shipping terms and product specifications.</p>
+                </div>
+                <div class="pillar-item">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <h3>Honesty</h3>
+                    <p>Transparent pricing, clear communication, and accurate product grading without hidden fees or misleading claims.</p>
+                </div>
+                <div class="pillar-item">
+                    <i class="fa-solid fa-award"></i>
+                    <h3>Quality</h3>
+                    <p>Direct farm sourcing and export-grade packaging ensured through strict inspection before container loading.</p>
+                </div>
+                <div class="pillar-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Reliability</h3>
+                    <p>Authorized and fully registered under APEDA, GST, IEC, and DGFT, guaranteeing 100% legal domestic and international trade safety.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MISSION & VISION ROW -->
+        <div class="mv-row">
+            <div class="mv-card">
+                <h3><i class="fa-solid fa-bullseye"></i> Our Mission</h3>
+                <p>To deliver top-tier agricultural commodities from Indian farms directly to international markets while providing secure, high-yield land plotting solutions in Haryana's fastest-growing industrial corridors.</p>
+            </div>
+            <div class="mv-card">
+                <h3><i class="fa-solid fa-eye"></i> Our Vision</h3>
+                <p>To establish DPM Global as a globally recognized brand synonymous with trust, quality agricultural exports, and reliable real estate advisory through continuous customer satisfaction and personal business integrity.</p>
+            </div>
         </div>
 
     </div>
 </section>
 
-<!-- Footer -->
+<!-- FOOTER WITH ADDRESS & QUICK LINKS -->
 <footer>
-    <p>© 2026 DPM Global. All Rights Reserved.</p>
-    <div class="social-links">
-        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" aria-label="Facebook Profile" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" aria-label="Instagram Profile" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <div class="footer-container">
+        <!-- Column 1: About -->
+        <div class="footer-col">
+            <h3>DPM GLOBAL</h3>
+            <p>Premier Indian Exporter of fresh agricultural produce & trusted Real Estate Advisors. Operating as a sole proprietorship committed to excellence since 2007.</p>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="certificates.html">Certificates</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="realestate.html">Real Estate Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.html#order">Place an Order</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="footer-col">
+            <h3>Services</h3>
+            <ul class="footer-links">
+                <li><a href="products.html">Global Import & Export</a></li>
+                <li><a href="realestate.html">Real Estate Solutions</a></li>
+                <li><a href="realestate.html">Sonipat Land Advisory</a></li>
+                <li><a href="realestate.html">Kharkhoda Industrial Plots</a></li>
+                <li><a href="realestate.html">Deen Dayal Housing</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 4: Office Contact Info -->
+        <div class="footer-col">
+            <h3>Office Address</h3>
+            <div class="footer-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>1st Floor, Varun Tower, Near Ajronda Chowk, Sec 20B, Faridabad - 121001</span>
+            </div>
+            <div class="footer-contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <span><a href="tel:+919810088729">+91-9810088729</a>, <a href="tel:+919818150514">+91-9818150514</a></span>
+            </div>
+            <div class="footer-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span><a href="mailto:info@dpmglobal.in">info@dpmglobal.in</a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 DPM Global. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://wa.me/919810088729" target="_blank" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/dpm-global" target="_blank" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
     </div>
 </footer>
+
+<script>
+    // --- Mobile Menu Toggle Logic ---
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');
+    }
+
+    function closeMenu() {
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+        }
+    }
+</script>
 
 </body>
 </html>
