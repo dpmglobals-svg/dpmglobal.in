@@ -161,27 +161,30 @@
             100% { background-color: rgba(11, 19, 43, 0); visibility: hidden; }
         }
 
-        /* Topbar Styling */
+        /* --- TOPBAR STYLING (REDUCED SIZE TO PREVENT BREAKING) --- */
         .topbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 40px;
+            height: 35px;
             background: var(--primary-hover);
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2%;
-            font-size: 13.5px;
+            padding: 0 1.5%;
+            font-size: 12px;
             z-index: 1001;
+            white-space: nowrap;
         }
 
         .topbar .left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .topbar a {
@@ -194,12 +197,12 @@
 
         .topbar .right {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             align-items: center;
         }
 
         .topbar .right a {
-            font-size: 17px;
+            font-size: 15px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -208,7 +211,7 @@
         /* Navigation Bar */
         nav {
             position: fixed;
-            top: 40px;
+            top: 35px;
             left: 0;
             width: 100%;
             padding: 10px 2%;
@@ -216,7 +219,7 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            height: 80px;  
+            height: 80px;      
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -296,7 +299,7 @@
             border-color: var(--primary);
         }
 
-        /* --- STYLED BUTTON NAV LINKS --- */
+        /* STYLED BUTTON NAV LINKS */
         nav ul.nav-links {
             display: flex;
             list-style: none;
@@ -367,8 +370,8 @@
 
         /* Hero Section */
         .hero {
-            margin-top: 120px;
-            min-height: calc(100vh - 120px);
+            margin-top: 115px;
+            min-height: calc(100vh - 115px);
             position: relative;
             display: flex;
             justify-content: center;
@@ -460,6 +463,11 @@
         }
 
         .service-card { cursor: pointer; text-decoration: none; color: inherit; }
+
+        /* MIRRORED EXPORT IMAGE EFFECT */
+        .mirrored-img {
+            transform: scaleX(-1);
+        }
 
         .card, .realestate-card, .review-card {
             background: #ffffff;
@@ -618,7 +626,7 @@
         .modal-btn { background: #0b3d91; color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
         .modal-btn:hover { background: #0077b6; }
 
-        /* --- FOOTER STYLING --- */
+        /* --- ENHANCED FOOTER --- */
         footer { 
             background: #020617; 
             color: #94a3b8; 
@@ -751,8 +759,14 @@
                 position: relative;
                 flex-direction: column;
                 height: auto;
-                padding: 8px 2%;
-                gap: 5px;
+                padding: 6px 2%;
+                gap: 4px;
+                font-size: 11.5px;
+            }
+            .topbar .left {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
             }
             nav { 
                 position: relative;
@@ -922,7 +936,7 @@
     <h2 class="section-title">Services</h2>
     <div class="grid-container">
         <a href="products.html" class="card service-card" style="text-align: center;">
-            <img src="export.png" alt="Global logistics and export shipping services">
+            <img src="export.png" class="mirrored-img" alt="Global logistics and export shipping services">
             <h3 style="margin-bottom: 12px; color: #0b3d91;">Global Export & Import</h3>
             <p>Providing seamless international supply chain solutions for high-grade agricultural products worldwide. (Click to view products)</p>
         </a>
@@ -1145,6 +1159,7 @@
                     </select>
                 </div>
 
+                <!-- Specific Spice Options (Hidden by default) -->
                 <div class="form-group" id="spice-container" style="display: none;">
                     <label style="color: #0284c7; font-weight: 700;">Select Specific Spice Type</label>
                     <select id="spice-dropdown">
@@ -1250,7 +1265,7 @@
     </form>
 </section>
 
-<!-- FOOTER WITH UPDATED "Services" HEADING -->
+<!-- FOOTER WITH ADDRESS & QUICK LINKS -->
 <footer>
     <div class="footer-container">
         <!-- Column 1: About -->
@@ -1273,7 +1288,7 @@
             </ul>
         </div>
 
-        <!-- Column 3: Services (Updated Header) -->
+        <!-- Column 3: Services -->
         <div class="footer-col">
             <h3>Services</h3>
             <ul class="footer-links">
