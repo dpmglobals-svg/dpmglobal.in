@@ -49,7 +49,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* --- LOGO ALIGNMENT (EXTREME LEFT) & 3D FLIP --- */
+        /* Logo & 3D Flip */
         .nav-brand {
             display: flex;
             align-items: center;
@@ -102,7 +102,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- NAVIGATION LINKS STYLING (REDUCED GAP) --- */
+        /* Nav Links */
         nav ul.nav-links {
             display: flex;
             list-style: none;
@@ -135,7 +135,7 @@
         
         .nav-btn:hover { background: #1a1740; }
 
-        /* WhatsApp */
+        /* Floating WhatsApp Icon */
         .whatsapp-float { position: fixed; width: 56px; height: 56px; bottom: 30px; right: 30px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.5); z-index: 1002; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.2s; }
         .whatsapp-float:hover { transform: scale(1.08); background-color: var(--whatsapp-hover); }
 
@@ -163,9 +163,38 @@
         .gallery-subtitle {
             color: #64748b;
             font-size: 16px;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
+        /* Filter Buttons */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 9px 22px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            color: #334155;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(11, 61, 145, 0.25);
+        }
+
+        /* Gallery Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -197,7 +226,7 @@
         /* Hover Caption Effect */
         .gallery-caption {
             position: absolute;
-            bottom: -60px; /* Hidden by default */
+            bottom: -70px;
             left: 0;
             width: 100%;
             background: rgba(11, 61, 145, 0.9);
@@ -209,7 +238,7 @@
         }
 
         .gallery-item:hover .gallery-caption {
-            bottom: 0; /* Slides up on hover */
+            bottom: 0;
         }
 
         .gallery-caption h4 {
@@ -219,6 +248,42 @@
         
         .gallery-caption p {
             font-size: 13px;
+            color: var(--secondary);
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(6px);
+            padding: 20px;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .lightbox-close:hover {
             color: var(--secondary);
         }
 
@@ -285,10 +350,17 @@
     <h1 class="section-title">Our Gallery</h1>
     <p class="gallery-subtitle">A glimpse into our global operations, exports, and real estate projects.</p>
     
+    <!-- CATEGORY FILTERS -->
+    <div class="gallery-filters">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+        <button class="filter-btn" onclick="filterGallery('export', this)">Exports & Produce</button>
+        <button class="filter-btn" onclick="filterGallery('realestate', this)">Real Estate & Plotting</button>
+    </div>
+
     <div class="gallery-grid">
         <!-- Gallery Item 1 -->
-        <div class="gallery-item">
-            <img src="shipss.png" alt="Global Export Shipping">
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="shipss.png" alt="Global Export Shipping" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>Global Export Operations</h4>
                 <p>Ensuring timely delivery worldwide</p>
@@ -296,8 +368,8 @@
         </div>
 
         <!-- Gallery Item 2 -->
-        <div class="gallery-item">
-            <img src="BURJ.png" alt="Dubai Trade">
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="BURJ.png" alt="Dubai Trade" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>International Trade</h4>
                 <p>Expanding our footprint across borders</p>
@@ -305,8 +377,8 @@
         </div>
 
         <!-- Gallery Item 3 -->
-        <div class="gallery-item">
-            <img src="onion.png" alt="Fresh Produce">
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="onion.png" alt="Fresh Produce" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>Premium Agricultural Produce</h4>
                 <p>Export-quality sorting and packaging</p>
@@ -314,8 +386,8 @@
         </div>
 
         <!-- Gallery Item 4 -->
-        <div class="gallery-item">
-            <img src="house.png" alt="Real Estate Development">
+        <div class="gallery-item" data-category="realestate" onclick="triggerLightbox(this)">
+            <img src="house.png" alt="Real Estate Development" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>Real Estate Development</h4>
                 <p>Modern housing & infrastructure</p>
@@ -323,8 +395,8 @@
         </div>
         
         <!-- Gallery Item 5 -->
-        <div class="gallery-item">
-            <img src="export.png" alt="Logistics">
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="export.png" alt="Logistics" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>Seamless Logistics</h4>
                 <p>End-to-end supply chain management</p>
@@ -332,42 +404,84 @@
         </div>
 
         <!-- Gallery Item 6 -->
-        <div class="gallery-item">
-            <img src="Basmati Rice.png" onerror="this.src='https://via.placeholder.com/600x400?text=Basmati+Rice'" alt="Basmati Rice">
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="basmati.png" alt="Basmati Rice" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>Export Grade Rice</h4>
                 <p>Aromatic long-grain basmati</p>
             </div>
         </div>
 
-        <!-- Gallery Item 7 (DPM1) -->
-        <div class="gallery-item">
-            <img src="DPM1.webp" alt="DPM Global Services">
+        <!-- Gallery Item 7 -->
+        <div class="gallery-item" data-category="realestate" onclick="triggerLightbox(this)">
+            <img src="DPM1.webp" alt="DPM Global Services" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>Residential, Commercial & Industrial</h4>
                 <p>Comprehensive advisory & project solutions</p>
             </div>
         </div>
 
-        <!-- Gallery Item 8 (DPM2) -->
-        <div class="gallery-item">
-            <img src="DPM2.webp" alt="DPM Global Real Estate Portfolio">
+        <!-- Gallery Item 8 -->
+        <div class="gallery-item" data-category="realestate" onclick="triggerLightbox(this)">
+            <img src="DPM2.webp" alt="DPM Global Real Estate Portfolio" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>Real Estate Portfolio</h4>
                 <p>Showcasing premier infrastructure projects</p>
             </div>
         </div>
 
-        <!-- Gallery Item 9 (DPM3 Logo) -->
-        <div class="gallery-item">
-            <img src="DPM3.jpg" alt="DPM Global Official Logo Emblem">
+        <!-- Gallery Item 9 -->
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="DPM3.jpg" alt="DPM Global Official Logo Emblem" loading="lazy" onerror="handleImgError(this)">
             <div class="gallery-caption">
                 <h4>DPM Global Emblem</h4>
                 <p>Our trusted symbol of quality & global reach</p>
             </div>
         </div>
+
+        <!-- Gallery Item 10 -->
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="DPM4.jpg" alt="DPM Global Agricultural Export" loading="lazy" onerror="handleImgError(this)">
+            <div class="gallery-caption">
+                <h4>Quality Agricultural Produce</h4>
+                <p>Direct farm sourcing & export grading</p>
+            </div>
+        </div>
+
+        <!-- Gallery Item 11 -->
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="DPM5.jpg" alt="DPM Global Processing & Packaging" loading="lazy" onerror="handleImgError(this)">
+            <div class="gallery-caption">
+                <h4>Export Packaging & Storage</h4>
+                <p>Maintained to international safety standards</p>
+            </div>
+        </div>
+
+        <!-- Gallery Item 12 -->
+        <div class="gallery-item" data-category="realestate" onclick="triggerLightbox(this)">
+            <img src="DPM6.jpg" alt="DPM Global Land Plotting Projects" loading="lazy" onerror="handleImgError(this)">
+            <div class="gallery-caption">
+                <h4>Sonipat & Kharkhoda Plotting</h4>
+                <p>Strategic land investments and development</p>
+            </div>
+        </div>
+
+        <!-- Gallery Item 13 (Packaging Label Sticker) -->
+        <div class="gallery-item" data-category="export" onclick="triggerLightbox(this)">
+            <img src="sticker.jpeg" alt="DPM Global Official Packaging Label" loading="lazy" onerror="handleImgError(this)">
+            <div class="gallery-caption">
+                <h4>Export Packaging Label</h4>
+                <p>Official DPM Global product branding & checklist</p>
+            </div>
+        </div>
     </div>
 </section>
+
+<!-- LIGHTBOX MODAL -->
+<div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightboxImg" class="lightbox-content" alt="Enlarged View">
+</div>
 
 <footer>
     <p>© 2026 DPM Global. All Rights Reserved.</p>
@@ -376,6 +490,63 @@
         <a href="https://www.instagram.com/s.k.dpm.global?igsh=MXFjaWQ4Z2d4a2QwZA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
     </div>
 </footer>
+
+<script>
+    // Automatic format fallback: checks .jpg -> .png -> .jpeg -> .webp
+    function handleImgError(img) {
+        if (!img.dataset.tried) {
+            img.dataset.tried = "png";
+            img.src = img.src.replace(/\.(jpg|jpeg|webp)$/i, ".png");
+        } else if (img.dataset.tried === "png") {
+            img.dataset.tried = "jpeg";
+            img.src = img.src.replace(/\.(png)$/i, ".jpeg");
+        } else if (img.dataset.tried === "jpeg") {
+            img.dataset.tried = "webp";
+            img.src = img.src.replace(/\.(jpeg)$/i, ".webp");
+        } else {
+            img.src = 'https://via.placeholder.com/600x400?text=Image+Not+Found';
+        }
+    }
+
+    function triggerLightbox(container) {
+        const img = container.querySelector('img');
+        if (img && img.src) {
+            openLightbox(img.src);
+        }
+    }
+
+    function openLightbox(src) {
+        const modal = document.getElementById('lightboxModal');
+        const img = document.getElementById('lightboxImg');
+        img.src = src;
+        modal.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightboxModal').style.display = 'none';
+    }
+
+    function filterGallery(category, btn) {
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const items = document.querySelectorAll('.gallery-item');
+        items.forEach(item => {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+</script>
 
 </body>
 </html>
