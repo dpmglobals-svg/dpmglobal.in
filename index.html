@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DPM Global - Premier Indian Exporter of fresh agricultural produce (Onions, Rice, Spices) and Real Estate Advisors in Sonipat & Kharkhoda since 2007.">
-    <title>DPM GLOBAL - Import & Export & Real Estate</title>
+    <meta name="description" content="DPM Global - Premier Indian Exporter of fresh agricultural produce (Onions, Rice, Spices), Real Estate Advisors, and Exclusive Designer Ladies Suits & Sarees.">
+    <title>DPM GLOBAL - Import & Export, Real Estate & Ethnic Wear</title>
 
-    <!-- Favicon & Google Logo Display Settings (Fully Fixed) -->
+    <!-- Favicon Links -->
     <link rel="icon" type="image/png" sizes="32x32" href="dpm global logo.png">
     <link rel="icon" type="image/png" sizes="192x192" href="dpm global logo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="dpm global logo.png">
@@ -177,7 +177,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 1.5%;
-            font-size: 12px;
+            font-size: 11.5px;
             z-index: 1001;
             white-space: nowrap;
         }
@@ -198,6 +198,21 @@
 
         .topbar a:hover { opacity: 0.85; }
 
+        .topbar-ethnic-link {
+            background: #be185d;
+            padding: 2px 10px;
+            border-radius: 12px;
+            color: #fff !important;
+            font-weight: bold;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; background: #e11d48; }
+            100% { opacity: 0.9; }
+        }
+
         .topbar .right {
             display: flex;
             gap: 14px;
@@ -211,7 +226,7 @@
             justify-content: center;
         }
 
-        /* Navigation Bar */
+        /* --- NAVIGATION BAR --- */
         nav {
             position: fixed;
             top: 35px;
@@ -280,7 +295,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* THREE DOTS MOBILE MENU TOGGLE BUTTON */
         .menu-toggle {
             display: none;
             font-size: 22px;
@@ -302,20 +316,19 @@
             border-color: var(--primary);
         }
 
-        /* STYLED BUTTON NAV LINKS */
         nav ul.nav-links {
             display: flex;
             list-style: none;
-            gap: 8px; 
+            gap: 6px; 
             align-items: center;
         }
 
         nav ul.nav-links li a {
             color: #1e293b;
             text-decoration: none;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 600;
-            padding: 8px 16px;
+            padding: 7px 12px;
             background: #f1f5f9;
             border: 1px solid #cbd5e1;
             border-radius: 20px;
@@ -337,7 +350,7 @@
             background: #2e2a5c !important;
             color: white !important;
             border-color: #2e2a5c !important;
-            padding: 9px 20px !important;
+            padding: 8px 16px !important;
             border-radius: 20px !important;
             box-shadow: 0 4px 12px rgba(46, 42, 92, 0.25) !important;
         }
@@ -441,7 +454,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
 
-        /* Shared Section Layout */
         section { padding: 90px 4%; text-align: center; }
 
         .section-title {
@@ -571,7 +583,6 @@
         .realestate-card p { color: #475569; font-size: 14.5px; line-height: 1.6; margin-bottom: 18px; }
         .view-detail-btn { display: inline-block; color: #0284c7; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto; }
 
-        /* Order Section */
         #order { background-color: #ffffff; text-align: left; padding: 70px 4%; }
         .order-wrapper { display: flex; gap: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
         .order-left { flex: 1.2; min-width: 300px; }
@@ -600,7 +611,6 @@
         .submit-order-btn:hover { background: var(--primary-hover); }
         .response-time-notice { font-size: 12px; color: #64748b; text-align: center; margin-top: 12px; }
 
-        /* Reviews Section Styling */
         #reviews { background: #ffffff; padding: 90px 4%; text-align: center; }
         .reviews-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
         .review-card { background: var(--light-bg); padding: 30px; text-align: left; }
@@ -609,7 +619,6 @@
         .review-author { font-weight: 700; color: var(--primary); font-size: 15px; margin-top: auto; }
         .review-location { font-size: 12px; color: #64748b; }
 
-        /* Contact Section Form */
         #contact { background: var(--light-bg); padding: 90px 4%; }
         form.contact-form { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 15px; }
         form.contact-form input, form.contact-form textarea { width: 100%; padding: 15px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; font-size: 16px; font-family: inherit; transition: border-color 0.2s; }
@@ -617,7 +626,6 @@
         form.contact-form button { padding: 15px; border: none; border-radius: 30px; background: var(--primary); color: white; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.2s, transform 0.2s; }
         form.contact-form button:hover { background: var(--primary-hover); transform: translateY(-2px); }
 
-        /* Popup Modals */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); display: none; justify-content: center; align-items: center; z-index: 3000; backdrop-filter: blur(4px); }
         .modal-content { background: white; padding: 35px; border-radius: 16px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transform: scale(0.95); animation: modalPop 0.3s ease forwards; }
         
@@ -628,7 +636,6 @@
         .modal-btn { background: #0b3d91; color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
         .modal-btn:hover { background: #0077b6; }
 
-        /* --- ENHANCED FOOTER --- */
         footer { 
             background: #020617; 
             color: #94a3b8; 
@@ -751,7 +758,6 @@
             color: #ffffff;
         }
 
-        /* --- MOBILE & RESPONSIVE FIXES --- */
         @media (max-width: 1024px) { 
             #products .grid-container { grid-template-columns: repeat(2, 1fr); } 
         }
@@ -763,12 +769,12 @@
                 height: auto;
                 padding: 6px 2%;
                 gap: 4px;
-                font-size: 11.5px;
+                font-size: 11px;
             }
             .topbar .left {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 8px;
+                gap: 6px;
             }
             nav { 
                 position: relative;
@@ -813,8 +819,8 @@
                 display: block;
                 text-align: center;
                 width: 100%;
-                padding: 12px;
-                font-size: 15px;
+                padding: 10px;
+                font-size: 14px;
             }
 
             .grid-container, #products .grid-container, .product-grid { grid-template-columns: 1fr; }
@@ -833,10 +839,8 @@
             .hero h1 { font-size: 34px; }
             .logo { font-size: 22px; } 
             .logo-flip-container { width: 50px; height: 50px; }
-
             .intro-huge-logo { width: 140px; height: 140px; }
             .pop-letter { font-size: 24px; }
-            .intro-pop-title { gap: 4px; }
         }
     </style>
 </head>
@@ -865,7 +869,6 @@
     </div>
 </div>
 
-<!-- Floating WhatsApp Button -->
 <a href="https://wa.me/919810088729" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp" style="font-size: 32px;"></i>
 </a>
@@ -880,15 +883,14 @@
 
 <div class="topbar">
     <div class="left">
+        <a href="suit.html" class="topbar-ethnic-link">✨ Explore Suits & Sarees Store →</a> &nbsp;&nbsp;|&nbsp;&nbsp;
         📧 <a href="mailto:info@dpmglobal.in">info@dpmglobal.in</a> &nbsp;&nbsp; 
-        📞 <a href="tel:+919810088729">+91-9810088729</a> &nbsp;&nbsp; 
-        📞 <a href="tel:+919818150514">+91-9818150514</a>
+        📞 <a href="tel:+919810088729">+91-9810088729</a>
     </div>
     <div class="right">
-        <a href="https://wa.me/919810088729" target="_blank" aria-label="WhatsApp Direct Chat" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" aria-label="Facebook Profile" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" aria-label="Instagram Profile" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/company/dpm-global" target="_blank" aria-label="LinkedIn Profile" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://wa.me/919810088729" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
     </div>
 </div>
 
@@ -901,7 +903,6 @@
         <div class="logo">DPM GLOBAL</div>
     </div>
 
-    <!-- THREE DOTS MOBILE TOGGLE -->
     <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">
         <i class="fa-solid fa-ellipsis-vertical"></i>
     </div>
@@ -909,27 +910,32 @@
     <ul class="nav-links" id="navLinks">
         <li><a href="#home" onclick="closeMenu()">Home</a></li>
         <li><a href="#services" onclick="closeMenu()">Services</a></li>
+        <!-- SUIT.HTML LINK BUTTON -->
+        <li><a href="suit.html" style="color: #db2777; font-weight: bold;" onclick="closeMenu()"><i class="fa-solid fa-shirt"></i> Suits & Sarees</a></li>
         <li><a href="aboutus.html" onclick="closeMenu()">About Us</a></li>
         <li><a href="certificates.html" onclick="closeMenu()">Certificates</a></li>
         <li><a href="products.html" onclick="closeMenu()">Products</a></li>
         <li><a href="realestate.html" onclick="closeMenu()">Real Estate</a></li>
         <li><a href="gallery.html" onclick="closeMenu()">Gallery</a></li>
         <li><a href="#order" onclick="closeMenu()">Order</a></li>
+        <!-- PERMANENT LOGIN / SIGNUP LINK IN NAVBAR -->
+        <li><a href="login.html" id="navAuthLink" style="background: #fdf2f8 !important; color: #db2777 !important; border-color: #fbcfe8 !important;" onclick="closeMenu()"><i class="fa-solid fa-user"></i> Login</a></li>
         <li><a href="#contact" class="nav-btn" onclick="closeMenu()">Get In Touch &rarr;</a></li>
     </ul>
 </nav>
 
 <section class="hero" id="home">
     <div class="slider">
-        <div class="slide"><img src="BURJ.png" alt="Dubai Burj Khalifa landscape highlighting global trade"></div>
-        <div class="slide"><img src="house.png" alt="Modern real estate housing project"></div>
-        <div class="slide"><img src="shipss.png" alt="Cargo shipping containers for global export"></div>
-        <div class="slide"><img src="spices.png" alt="Premium Indian Spices Collection"></div>
+        <div class="slide"><img src="BURJ.png" alt="Global Trade"></div>
+        <div class="slide"><img src="house.png" alt="Real Estate"></div>
+        <div class="slide"><img src="shipss.png" alt="Export"></div>
+        <div class="slide"><img src="spices.png" alt="Spices"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>Welcome to <span>DPM Global</span></h1>
-        <p>Export & Import of Agricultural Products — Your Trusted Partner in International Trade</p>
+        <p>Export & Import, Real Estate, and Now Introducing Exclusive Designer Ethnic Wear — Suits & Sarees!</p>
+        <a href="suit.html" class="btn" style="background: #db2777; color: white; margin-right: 10px;">Shop Suits & Sarees ✨</a>
         <a href="#order" class="btn">Place an Order</a>
     </div>
 </section>
@@ -938,14 +944,19 @@
     <h2 class="section-title">Services</h2>
     <div class="grid-container">
         <a href="products.html" class="card service-card" style="text-align: center;">
-            <img src="export.png" class="mirrored-img" alt="Global logistics and export shipping services">
+            <img src="export.png" class="mirrored-img" alt="Global logistics">
             <h3 style="margin-bottom: 12px; color: #0b3d91;">Global Export & Import</h3>
             <p>Providing seamless international supply chain solutions for high-grade agricultural products worldwide. (Click to view products)</p>
         </a>
         <a href="realestate.html" class="card service-card" style="text-align: center;">
-            <img src="real estate.png" alt="Commercial and residential real estate services">
+            <img src="real estate.png" alt="Real Estate">
             <h3 style="margin-bottom: 12px; color: #0b3d91;">Real Estate Solutions</h3>
-            <p>Reliable commercial, industrial, and residential real estate advisory and project developments. (Click to view projects)</p>
+            <p>Reliable commercial, industrial, and residential real estate advisory and project developments in Sonipat & Kharkhoda.</p>
+        </a>
+        <a href="suit.html" class="card service-card" style="text-align: center; border: 2px solid #fbcfe8;">
+            <img src="suit1.jpeg" alt="Designer Ladies Suits and Sarees">
+            <h3 style="margin-bottom: 12px; color: #db2777;">Designer Suits & Sarees</h3>
+            <p>Explore our exclusive boutique collection of royal traditional sarees and modern designer ladies suits. (Click to shop)</p>
         </a>
     </div>
 </section>
@@ -954,25 +965,26 @@
     <h2 class="section-title">About Us</h2>
     <div class="about-content-wrapper">
         <div class="about-founder-img-box">
-            <img src="SUNIL KUMAR SHARMA.png" alt="Sunil Kumar Sharma - Founder & Director, DPM Global">
+            <img src="SUNIL KUMAR SHARMA.png" alt="Sunil Kumar Sharma - Sole Proprietor, DPM Global">
         </div>
         <div class="about-text-content">
             <div class="about-founder-name">Sunil Kumar Sharma</div>
-            <span class="about-founder-title">Founder & Managing Director</span>
-            <p style="font-size: 15px; color: #334155; line-height: 1.7; margin-bottom: 12px;"><strong>DPM Global</strong> is an India-based export and import company established in 2007, committed to delivering quality products and reliable international trade solutions to buyers around the world.</p>
-            <p style="font-size: 15px; color: #334155; line-height: 1.7; margin-bottom: 20px;">At DPM Global, under visionary leadership, we believe that successful international business is built entirely on <strong>Commitment, Honesty, Quality, and Reliability</strong>.</p>
+            <span class="about-founder-title">Sole Proprietor & Founder</span>
+            <p style="font-size: 15px; color: #334155; line-height: 1.7; margin-bottom: 12px;"><strong>DPM Global</strong> is an India-based enterprise established in 2007, operating with full commitment, honesty, quality, and reliability across exports, real estate, and now ethnic fashion.</p>
+            <p style="font-size: 15px; color: #334155; line-height: 1.7; margin-bottom: 20px;">We believe in diversifying to serve our clients better while maintaining uncompromising standards.</p>
             <a href="aboutus.html" class="btn" style="padding: 10px 24px; font-size: 14px;">Read Full Story &rarr;</a>
         </div>
     </div>
 </section>
 
+<!-- PRODUCTS SECTION -->
 <section id="products">
     <h2 class="section-title">Products</h2>
     <div class="grid-container">
         
         <div class="card">
             <div>
-                <img src="onion.png" alt="Premium export quality red onions">
+                <img src="onion.png" alt="Onion">
                 <div class="card-header">
                     <h3>Onion</h3>
                     <span class="card-unit">per MT</span>
@@ -984,7 +996,7 @@
 
         <div class="card">
             <div>
-                <img src="green chilly.png" alt="Fresh high pungency green chillies">
+                <img src="green chilly.png" alt="Green Chilli">
                 <div class="card-header">
                     <h3>Green Chilli</h3>
                     <span class="card-unit">per MT</span>
@@ -996,7 +1008,7 @@
 
         <div class="card">
             <div>
-                <img src="garlic.png" alt="Plump white garlic bulbs for export">
+                <img src="garlic.png" alt="Garlic">
                 <div class="card-header">
                     <h3>Garlic</h3>
                     <span class="card-unit">per MT</span>
@@ -1008,7 +1020,7 @@
 
         <div class="card">
             <div>
-                <img src="ginger.png" alt="Fresh fibre-rich ginger rhizomes">
+                <img src="ginger.png" alt="Ginger">
                 <div class="card-header">
                     <h3>Ginger</h3>
                     <span class="card-unit">per MT</span>
@@ -1020,7 +1032,7 @@
 
         <div class="card">
             <div>
-                <img src="egg.png" alt="Fresh farm table eggs in trays">
+                <img src="egg.png" alt="Eggs">
                 <div class="card-header">
                     <h3>Eggs</h3>
                     <span class="card-unit">per Container</span>
@@ -1032,7 +1044,7 @@
 
         <div class="card">
             <div>
-                <img src="potato.png" alt="Premium graded potatoes for bulk shipping">
+                <img src="potato.png" alt="Potato">
                 <div class="card-header">
                     <h3>Potato</h3>
                     <span class="card-unit">per MT</span>
@@ -1044,7 +1056,7 @@
 
         <div class="card">
             <div>
-                <img src="basmati.png" onerror="this.src='https://via.placeholder.com/200?text=Basmati+Rice'" alt="Long-grain aromatic Basmati rice">
+                <img src="basmati.png" onerror="this.src='https://via.placeholder.com/200?text=Basmati+Rice'" alt="Basmati Rice">
                 <div class="card-header">
                     <h3>Basmati Rice</h3>
                     <span class="card-unit">per MT</span>
@@ -1056,7 +1068,7 @@
 
         <div class="card">
             <div>
-                <img src="CARDAMOM.png" onerror="this.src='https://via.placeholder.com/200?text=Cardamom'" alt="Aromatic green cardamom pods">
+                <img src="CARDAMOM.png" onerror="this.src='https://via.placeholder.com/200?text=Cardamom'" alt="Cardamom">
                 <div class="card-header">
                     <h3>Cardamom</h3>
                     <span class="card-unit">per MT</span>
@@ -1084,25 +1096,21 @@
 <section id="realestate">
     <h2 class="section-title">Real Estate Projects</h2>
     <div class="grid-container">
-        
         <div class="realestate-card" onclick="window.location.href='realestate.html'">
             <h3>🏢 SONIPAT PROJECTS</h3>
             <p>Prime commercial and residential land developments located in strategic growing sectors of Sonipat.</p>
             <span class="view-detail-btn">View All Details &rarr;</span>
         </div>
-
         <div class="realestate-card" onclick="window.location.href='realestate.html'">
             <h3>🏗️ KHARKHODA PROJECTS</h3>
             <p>High-yield industrial hubs and commercial plots surrounded by major industrial developments in Kharkhoda.</p>
             <span class="view-detail-btn">View All Details &rarr;</span>
         </div>
-
         <div class="realestate-card" onclick="window.location.href='realestate.html'">
             <h3>🏡 DEEN DAYAL PROJECTS</h3>
             <p>Affordable housing plots developed under government-backed scheme initiatives for high ROI investments.</p>
             <span class="view-detail-btn">View All Details &rarr;</span>
         </div>
-
     </div>
 </section>
 
@@ -1114,33 +1122,15 @@
             <p>Select a product, enter your required quantity and phone number. Place your order below and our team will get back to you.</p>
 
             <div class="product-grid">
-                <div class="product-item active" onclick="selectProduct('Onion', this)">
-                    <img src="onion.png" alt="Onion"><span>Onion</span>
-                </div>
-                <div class="product-item" onclick="selectProduct('Green Chilli', this)">
-                    <img src="green chilly.png" alt="Green Chilli"><span>Green Chilli</span>
-                </div>
-                <div class="product-item" onclick="selectProduct('Garlic', this)">
-                    <img src="garlic.png" alt="Garlic"><span>Garlic</span>
-                </div>
-                <div class="product-item" onclick="selectProduct('Ginger', this)">
-                    <img src="ginger.png" alt="Ginger"><span>Ginger</span>
-                </div>
-                <div class="product-item" onclick="selectProduct('Eggs', this)">
-                    <img src="egg.png" alt="Eggs"><span>Eggs</span>
-                </div>
-                <div class="product-item" onclick="selectProduct('Potato', this)">
-                    <img src="potato.png" alt="Potato"><span>Potato</span>
-                </div>
-                <div class="product-item" onclick="selectProduct('Basmati Rice', this)">
-                    <img src="basmati.png" alt="Basmati Rice"><span>Basmati Rice</span>
-                </div>
-                <div class="product-item" onclick="selectProduct('Cardamom', this)">
-                    <img src="CARDAMOM.png" alt="Cardamom"><span>Cardamom</span>
-                </div>
-                <div class="product-item" onclick="selectProduct('Premium Spices', this)">
-                    <img src="spices.png" alt="Premium Spices"><span>Premium Spices</span>
-                </div>
+                <div class="product-item active" onclick="selectProduct('Onion', this)"><img src="onion.png" alt="Onion"><span>Onion</span></div>
+                <div class="product-item" onclick="selectProduct('Green Chilli', this)"><img src="green chilly.png" alt="Green Chilli"><span>Green Chilli</span></div>
+                <div class="product-item" onclick="selectProduct('Garlic', this)"><img src="garlic.png" alt="Garlic"><span>Garlic</span></div>
+                <div class="product-item" onclick="selectProduct('Ginger', this)"><img src="ginger.png" alt="Ginger"><span>Ginger</span></div>
+                <div class="product-item" onclick="selectProduct('Eggs', this)"><img src="egg.png" alt="Eggs"><span>Eggs</span></div>
+                <div class="product-item" onclick="selectProduct('Potato', this)"><img src="potato.png" alt="Potato"><span>Potato</span></div>
+                <div class="product-item" onclick="selectProduct('Basmati Rice', this)"><img src="basmati.png" alt="Basmati Rice"><span>Basmati Rice</span></div>
+                <div class="product-item" onclick="selectProduct('Cardamom', this)"><img src="CARDAMOM.png" alt="Cardamom"><span>Cardamom</span></div>
+                <div class="product-item" onclick="selectProduct('Premium Spices', this)"><img src="spices.png" alt="Premium Spices"><span>Premium Spices</span></div>
             </div>
         </div>
 
@@ -1161,7 +1151,6 @@
                     </select>
                 </div>
 
-                <!-- Specific Spice Options (Hidden by default) -->
                 <div class="form-group" id="spice-container" style="display: none;">
                     <label style="color: #0284c7; font-weight: 700;">Select Specific Spice Type</label>
                     <select id="spice-dropdown">
@@ -1214,12 +1203,9 @@
 <section id="reviews">
     <h2 class="section-title">Client Reviews</h2>
     <div class="reviews-container">
-        
         <div class="review-card">
             <div>
-                <div class="review-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
+                <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 <p class="review-text">"DPM Global has been our trusted partner for agricultural exports for years. Their quality and timely delivery are unmatched in the international market."</p>
             </div>
             <div>
@@ -1227,12 +1213,9 @@
                 <div class="review-location">Dubai, UAE</div>
             </div>
         </div>
-
         <div class="review-card">
             <div>
-                <div class="review-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
+                <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 <p class="review-text">"Exceptional service in real estate advisory! Their properties in Sonipat and Kharkhoda have given us incredible returns on investment."</p>
             </div>
             <div>
@@ -1240,12 +1223,9 @@
                 <div class="review-location">New Delhi, India</div>
             </div>
         </div>
-
         <div class="review-card">
             <div>
-                <div class="review-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
+                <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 <p class="review-text">"The fresh onions and basmati rice we imported through DPM Global exceeded our expectations in quality and packaging. Highly recommended!"</p>
             </div>
             <div>
@@ -1253,7 +1233,6 @@
                 <div class="review-location">London, UK</div>
             </div>
         </div>
-
     </div>
 </section>
 
@@ -1267,42 +1246,36 @@
     </form>
 </section>
 
-<!-- FOOTER WITH ADDRESS & QUICK LINKS -->
+<!-- FOOTER -->
 <footer>
     <div class="footer-container">
-        <!-- Column 1: About -->
         <div class="footer-col">
             <h3>DPM GLOBAL</h3>
-            <p>Premier Indian Exporter of fresh agricultural produce & trusted Real Estate Advisors. Committed to delivering excellence, quality, and integrity since 2007.</p>
+            <p>Premier Indian Exporter of fresh agricultural produce, Real Estate Advisors, and Ethnic Wear. Committed to excellence since 2007.</p>
         </div>
 
-        <!-- Column 2: Quick Links -->
         <div class="footer-col">
             <h3>Quick Links</h3>
             <ul class="footer-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="suit.html">Suits & Sarees Store</a></li>
                 <li><a href="aboutus.html">About Us</a></li>
                 <li><a href="certificates.html">Certificates</a></li>
                 <li><a href="products.html">Products</a></li>
-                <li><a href="realestate.html">Real Estate Projects</a></li>
+                <li><a href="realestate.html">Real Estate</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#order">Place an Order</a></li>
             </ul>
         </div>
 
-        <!-- Column 3: Services -->
         <div class="footer-col">
             <h3>Services</h3>
             <ul class="footer-links">
                 <li><a href="products.html">Global Import & Export</a></li>
                 <li><a href="realestate.html">Real Estate Solutions</a></li>
-                <li><a href="realestate.html">Sonipat Land Advisory</a></li>
-                <li><a href="realestate.html">Kharkhoda Industrial Plots</a></li>
-                <li><a href="realestate.html">Deen Dayal Housing</a></li>
+                <li><a href="suit.html">Designer Suits & Sarees</a></li>
             </ul>
         </div>
 
-        <!-- Column 4: Office Contact Info -->
         <div class="footer-col">
             <h3>Office Address</h3>
             <div class="footer-contact-item">
@@ -1323,16 +1296,14 @@
     <div class="footer-bottom">
         <p>© 2026 DPM Global. All Rights Reserved.</p>
         <div class="social-links">
-            <a href="https://wa.me/919810088729" target="_blank" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/dpm-global" target="_blank" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://wa.me/919810088729" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
     </div>
 </footer>
 
 <script>
-    // --- Mobile Menu Toggle Logic ---
     function toggleMenu() {
         const navLinks = document.getElementById('navLinks');
         navLinks.classList.toggle('active');
@@ -1345,7 +1316,6 @@
         }
     }
 
-    // --- Close Modal by Clicking Outside ---
     window.addEventListener('click', (event) => {
         const modal = document.getElementById('popupModal');
         if (event.target === modal) {
@@ -1363,7 +1333,6 @@
         }
     }
 
-    // --- Order and Contact Logic ---
     function selectProduct(productName, element) {
         const items = document.querySelectorAll('.product-item');
         items.forEach(item => item.classList.remove('active'));
@@ -1376,7 +1345,6 @@
 
     function orderProductFromCard(productName) {
         document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
-
         const gridItems = document.querySelectorAll('.product-item');
         gridItems.forEach(item => {
             const spanText = item.querySelector('span').innerText.trim();
@@ -1388,7 +1356,6 @@
 
     function submitOrder(event) {
         event.preventDefault();
-
         const product = document.getElementById('product-dropdown').value;
         const qty = document.getElementById('order-qty').value;
         const country = document.getElementById('order-country').value;
@@ -1419,7 +1386,6 @@
         document.getElementById('modalTitle').innerText = "🎉 Order Submitted!";
         document.getElementById('modalText').innerText = "Our team will reply you in 2 days.";
         document.getElementById('popupModal').style.display = 'flex';
-        
         event.target.reset();
         document.getElementById('product-dropdown').value = 'Onion';
         checkSpiceSelection();
@@ -1430,7 +1396,6 @@
 
     function sendMessage(event) {
         event.preventDefault();
-
         const formInputs = event.target.querySelectorAll('input, textarea');
         const name = formInputs[0].value.trim();
         const email = formInputs[1].value.trim();
@@ -1450,13 +1415,62 @@
         document.getElementById('modalTitle').innerText = "🎉 Thank You!";
         document.getElementById('modalText').innerText = "Your message has been successfully sent. Our team will reply you in 2 days.";
         document.getElementById('popupModal').style.display = 'flex';
-        
         event.target.reset();
     }
 
     function closeModal() {
         document.getElementById('popupModal').style.display = 'none';
     }
+</script>
+
+<!-- FIREBASE PERMANENT AUTHENTICATION SCRIPT -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+    import { 
+        getAuth, 
+        onAuthStateChanged, 
+        signOut, 
+        setPersistence, 
+        browserLocalPersistence 
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAG6Z4KSuoCshgTxkGK9tIqrTj_jaazrrY",
+        authDomain: "dpm-global-bf7e9.firebaseapp.com",
+        projectId: "dpm-global-bf7e9",
+        storageBucket: "dpm-global-bf7e9.firebasestorage.app",
+        messagingSenderId: "175208146465",
+        appId: "1:175208146465:web:20e37efaa002c56a4ae560",
+        measurementId: "G-SN7X11G9KM"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    setPersistence(auth, browserLocalPersistence).catch((error) => {
+        console.error("Auth persistence error:", error);
+    });
+
+    onAuthStateChanged(auth, (user) => {
+        const authLink = document.getElementById('navAuthLink');
+        if (user && authLink) {
+            authLink.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #16a34a;"></i> ${user.email.split('@')[0]}`;
+            authLink.href = "#";
+            authLink.style.background = "#f0fdf4 !important";
+            authLink.style.color = "#15803d !important";
+            authLink.style.borderColor = "#bbf7d0 !important";
+
+            authLink.onclick = function(e) {
+                e.preventDefault();
+                if(confirm("Do you want to logout?")) {
+                    signOut(auth).then(() => {
+                        alert("Logged out successfully!");
+                        window.location.reload();
+                    });
+                }
+            };
+        }
+    });
 </script>
 
 </body>

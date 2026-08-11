@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile & Password Sign Up - DPM Global</title>
+    <link rel="icon" type="image/png" href="dpm global logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --primary: #0b3d91; --accent-pink: #db2777; --bg-light: #f8fafc; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: var(--bg-light); display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .auth-container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 400px; text-align: center; }
+        .auth-container h2 { color: var(--primary); margin-bottom: 20px; font-weight: 800; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #475569; }
+        .phone-input-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 6px; background: white; overflow: hidden; }
+        .phone-prefix { background: #f1f5f9; padding: 12px; font-size: 14px; font-weight: 600; color: #334155; border-right: 1px solid #cbd5e1; }
+        .phone-input-box input { border: none; outline: none; padding: 12px; font-size: 14px; width: 100%; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; }
+        .auth-btn { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .auth-btn:hover { background: #0077b6; }
+        .step-section { display: none; }
+        .step-section.active { display: block; }
+        #errorMsg { color: #dc2626; font-size: 13px; margin-bottom: 10px; display: none; }
+        #recaptcha-container { margin: 15px 0; display: flex; justify-content: center; }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <h2 id="formTitle">Mobile Sign Up</h2>
+        <div id="errorMsg"></div>
+
+        <!-- STEP 1: Enter Mobile Number -->
+        <div id="step1" class="step-section active">
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <div class="phone-input-box">
+                    <span class="phone-prefix">+91</span>
+                    <input type="tel" id="phoneNumber" placeholder="Enter 10-digit mobile number" maxlength="10">
+                </div>
+            </div>
+            
+            <!-- RECAPTCHA CONTAINER -->
+            <div id="recaptcha-container"></div>
+
+            <button class="auth-btn" onclick="sendOTP()">Send OTP</button>
+        </div>
+
+        <!-- STEP 2: Verify OTP -->
+        <div id="step2" class="step-section">
+            <div class="form-group">
+                <label>Enter 6-Digit OTP</label>
+                <input type="text" id="otpCode" placeholder="123456" maxlength="6">
+            </div>
+            <button class="auth-btn" onclick="verifyOTP()">Verify OTP</button>
+        </div>
+
+        <!-- STEP 3: Set Password -->
+        <div id="step3" class="step-section">
+            <div class="form-group">
+                <label>Create Secure Password</label>
+                <input type="password" id="newPassword" placeholder="Enter password">
+            </div>
+            <button class="auth-btn" onclick="completeSignUp()">Complete Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Firebase App & Auth SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+        import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, updatePassword } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAG6Z4KSuoCshgTxkGK9tIqrTj_jaazrrY",
+            authDomain: "dpm-global-bf7e9.firebaseapp.com",
+            projectId: "dpm-global-bf7e9",
+            storageBucket: "dpm-global-bf7e9.firebasestorage.app",
+            messagingSenderId: "175208146465",
+            appId: "1:175208146465:web:20e37efaa002c56a4ae560",
+            measurementId: "G-SN7X11G9KM"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.confirmationResultObj = null;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            try {
+                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                    'size': 'normal'
+                });
+                window.recaptchaVerifier.render();
+            } catch (e) {
+                console.log("Recaptcha error:", e);
+            }
+        });
+
+        window.sendOTP = function() {
+            const rawNumber = document.getElementById('phoneNumber').value.trim();
+            const errorDiv = document.getElementById('errorMsg');
+            
+            if(!rawNumber || rawNumber.length < 10) {
+                errorDiv.style.display = 'block';
+                errorDiv.innerText = "Please enter a valid 10-digit mobile number.";
+                return;
+            }
+
+            const fullPhoneNumber = "+91" + rawNumber;
+            errorDiv.style.display = 'none';
+            const appVerifier = window.recaptchaVerifier;
+
+            signInWithPhoneNumber(auth, fullPhoneNumber, appVerifier)
+                .then((confirmationResult) => {
+                    window.confirmationResultObj = confirmationResult;
+                    alert("OTP sent successfully to your mobile number!");
+                    document.getElementById('step1').classList.remove('active');
+                    document.getElementById('step2').classList.add('active');
+                    document.getElementById('formTitle').innerText = "Verify OTP";
+                }).catch((error) => {
+                    errorDiv.style.display = 'block';
+                    errorDiv.innerText = error.message;
+                });
+        }
+
+        window.verifyOTP = function() {
+            const code = document.getElementById('otpCode').value.trim();
+            if(!code) {
+                alert("Please enter the OTP.");
+                return;
+            }
+
+            window.confirmationResultObj.confirm(code).then((result) => {
+                alert("Mobile number verified successfully!");
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step3').classList.add('active');
+                document.getElementById('formTitle').innerText = "Set Password";
+            }).catch((error) => {
+                alert("Invalid OTP. Please try again.");
+            });
+        }
+
+        window.completeSignUp = function() {
+            const password = document.getElementById('newPassword').value;
+            const user = auth.currentUser;
+
+            if(!password || password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return;
+            }
+
+            updatePassword(user, password).then(() => {
+                alert("Password created and Account setup complete!");
+                window.location.href = "index.html";
+            }).catch((error) => {
+                alert("Error setting password: " + error.message);
+            });
+        }
+    </script>
+</body>
+</html>
