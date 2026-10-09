@@ -9,6 +9,13 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Dark Mode Anti-Flicker Script (Keep this at the top of head) -->
+    <script>
+        if (localStorage.getItem('dpmDarkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
     <style>
         /* --- CORE STYLES --- */
         :root {
@@ -20,6 +27,22 @@
             --border-color: #e2e8f0;
             --whatsapp-green: #25d366;
             --whatsapp-hover: #1ebd56;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --body-bg: #ffffff;
+        }
+
+        /* --- DARK MODE VARIABLES --- */
+        html.dark-mode, body.dark-mode {
+            --primary: #38bdf8;
+            --primary-hover: #7dd3fc;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --light-bg: #020617;
+            --border-color: #1e293b;
+            --card-bg: #0f172a;
+            --body-bg: #0f172a;
         }
 
         * {
@@ -31,175 +54,63 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #ffffff;
-            color: #1e293b;
+            background: var(--body-bg);
+            color: var(--text-main);
             line-height: 1.5;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Topbar Styling */
-        .topbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: var(--primary-hover);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2%;
-            font-size: 13.5px;
-            z-index: 1001;
-        }
-
-        .topbar .left { display: flex; align-items: center; gap: 15px; }
+        /* ========================================= */
+        /* --- TOPBAR STYLING --- */
+        /* ========================================= */
+        .topbar { position: fixed; top: 0; left: 0; width: 100%; height: 35px; background: #0077b6; color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5%; font-size: 12px; z-index: 1001; white-space: nowrap; }
+        body.dark-mode .topbar { background: #020617; border-bottom: 1px solid #1e293b; }
+        .topbar .left { display: flex; align-items: center; gap: 12px; overflow: hidden; text-overflow: ellipsis; }
         .topbar a { color: white; text-decoration: none; transition: opacity 0.2s; }
         .topbar a:hover { opacity: 0.85; }
-        .topbar .right { display: flex; gap: 18px; align-items: center; }
-        .topbar .right a { font-size: 18px; display: inline-flex; align-items: center; justify-content: center; }
+        .topbar .right { display: flex; gap: 16px; align-items: center; }
+        .topbar .right a { font-size: 15px; display: inline-flex; align-items: center; justify-content: center; }
 
-        /* Navigation Bar */
-        nav {
-            position: fixed;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            padding: 10px 2%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            height: 80px;      
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        #darkModeToggle { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; transition: background 0.3s; display: flex; align-items: center; gap: 6px; }
+        #darkModeToggle:hover { background: rgba(255,255,255,0.4); }
+        body.dark-mode #darkModeToggle { background: #1e293b; color: #f59e0b; }
+
+        /* ========================================= */
+        /* --- NAVIGATION BAR --- */
+        /* ========================================= */
+        nav { position: fixed; top: 35px; left: 0; width: 100%; padding: 10px 1.5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); height: 80px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s; }
+        body.dark-mode nav { background: rgba(15, 23, 42, 0.95); }
+        .nav-brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; text-decoration: none; }
+
+        .logo-flip-container { width: 50px; height: 50px; position: relative; perspective: 1000px; flex-shrink: 0; }
+        .nav-flipper { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: coinFlip 6s infinite linear; }
+        .nav-flipper img { 
+            position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; 
+            object-fit: cover; border: 2px solid var(--primary); 
+            -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: border-color 0.3s ease;
         }
+        body.dark-mode .nav-flipper img { border-color: #38bdf8; }
+        .nav-flipper img.logo-front { transform: rotateY(0deg); }
+        .nav-flipper img.logo-back { transform: rotateY(180deg); }
 
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            white-space: nowrap;
-        }
+        .logo { font-size: 28px; font-weight: 900; color: var(--primary); letter-spacing: 0.5px; transition: color 0.3s ease; }
 
-        .logo-flip-container {
-            width: 60px;
-            height: 60px;
-            position: relative;
-            perspective: 600px;
-            flex-shrink: 0;
-        }
+        .menu-toggle { display: none; font-size: 22px; color: var(--primary); cursor: pointer; width: 44px; height: 44px; border-radius: 10px; background: var(--light-bg); border: 1px solid var(--border-color); align-items: center; justify-content: center; transition: all 0.2s ease; }
+        .menu-toggle:hover { background: var(--primary); color: #ffffff; border-color: var(--primary); }
 
-        .logo-flip-container img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary);
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-        }
+        nav ul.nav-links { display: flex; list-style: none; gap: 4px; align-items: center; flex-wrap: nowrap; }
+        nav ul.nav-links li a { color: var(--text-main); text-decoration: none; font-size: 11.5px; font-weight: 600; padding: 5px 9px; background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 50px; transition: all 0.25s ease; white-space: nowrap; display: inline-block; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+        nav ul.nav-links li a:hover, nav ul.nav-links li a.active { color: #ffffff; background: #0b3d91; border-color: #0b3d91; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(11, 61, 145, 0.25); }
+        body.dark-mode nav ul.nav-links li a:hover, body.dark-mode nav ul.nav-links li a.active { background: #38bdf8; color: #020617; border-color: #38bdf8; }
 
-        .logo-front { animation: flipFront 8s infinite linear; }
-        .logo-back { transform: rotateY(180deg); animation: flipBack 8s infinite linear; }
+        .nav-btn { background: #2e2a5c !important; color: white !important; border-color: #2e2a5c !important; padding: 5px 12px !important; border-radius: 50px !important; box-shadow: 0 4px 12px rgba(46, 42, 92, 0.25) !important; font-size: 11.5px !important; }
+        .nav-btn:hover { background: #1a1740 !important; border-color: #1a1740 !important; }
+        body.dark-mode .nav-btn { background: #38bdf8 !important; color: #020617 !important; border-color: #38bdf8 !important; }
 
-        @keyframes flipFront {
-            0% { transform: rotateY(0deg); z-index: 2; }
-            50% { transform: rotateY(180deg); z-index: 1; }
-            50.01% { transform: rotateY(180deg); z-index: 0; }
-            100% { transform: rotateY(360deg); z-index: 2; }
-        }
-
-        @keyframes flipBack {
-            0% { transform: rotateY(180deg); z-index: 1; }
-            50% { transform: rotateY(360deg); z-index: 2; }
-            50.01% { transform: rotateY(0deg); z-index: 2; }
-            100% { transform: rotateY(180deg); z-index: 1; }
-        }
-
-        .logo {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: 0.5px;
-        }
-
-        /* THREE DOTS MOBILE MENU TOGGLE BUTTON */
-        .menu-toggle {
-            display: none;
-            font-size: 22px;
-            color: var(--primary);
-            cursor: pointer;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: #f1f5f9;
-            border: 1px solid #cbd5e1;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .menu-toggle:hover {
-            background: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
-        }
-
-        /* STYLED BUTTON NAV LINKS */
-        nav ul.nav-links {
-            display: flex;
-            list-style: none;
-            gap: 8px; 
-            align-items: center;
-        }
-
-        nav ul.nav-links li a {
-            color: #1e293b;
-            text-decoration: none;
-            font-size: 13.5px;
-            font-weight: 600;
-            padding: 8px 16px;
-            background: #f1f5f9;
-            border: 1px solid #cbd5e1;
-            border-radius: 20px;
-            transition: all 0.25s ease;
-            white-space: nowrap; 
-            display: inline-block;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-        }
-
-        nav ul.nav-links li a:hover { 
-            color: #ffffff; 
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(11, 61, 145, 0.25);
-        }
-
-        nav ul.nav-links li a.active { 
-            background: var(--primary); 
-            color: white; 
-            border-color: var(--primary); 
-        }
-
-        .nav-btn {
-            background: #2e2a5c !important;
-            color: white !important;
-            border-color: #2e2a5c !important;
-            padding: 9px 20px !important;
-            border-radius: 20px !important;
-            box-shadow: 0 4px 12px rgba(46, 42, 92, 0.25) !important;
-        }
-        
-        .nav-btn:hover { 
-            background: #1a1740 !important; 
-            border-color: #1a1740 !important;
+        @keyframes coinFlip {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
 
         /* Floating WhatsApp Icon */
@@ -220,15 +131,11 @@
             text-decoration: none;
             transition: transform 0.2s, background-color 0.2s;
         }
-
-        .whatsapp-float:hover {
-            transform: scale(1.08);
-            background-color: var(--whatsapp-hover);
-        }
+        .whatsapp-float:hover { transform: scale(1.08); background-color: var(--whatsapp-hover); }
 
         /* Hero Banner */
         .products-hero {
-            margin-top: 120px;
+            margin-top: 115px; 
             background: linear-gradient(rgba(11, 61, 145, 0.85), rgba(2, 6, 23, 0.9)), url('shipss.png') center/cover no-repeat;
             color: white;
             text-align: center;
@@ -240,55 +147,62 @@
         /* Sections */
         section { padding: 80px 8%; text-align: center; }
         .section-title { font-size: 36px; margin-bottom: 10px; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
-        .section-subtitle { color: #64748b; font-size: 16px; margin-bottom: 40px; }
+        .section-subtitle { color: var(--text-muted); font-size: 16px; margin-bottom: 40px; }
 
         /* Products Grid */
         .grid-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-        .card { background: #ffffff; padding: 20px; border-radius: 16px; border: 1px solid var(--border-color); transition: all 0.3s ease; text-align: left; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08); }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 15px 35px -5px rgba(0,0,0,0.12); border-color: var(--primary-hover); }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border-color); transition: all 0.3s ease; text-align: left; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08); }
+        body.dark-mode .card { box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5); }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 15px 35px -5px rgba(0,0,0,0.12); border-color: var(--primary); }
         .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .card h3 { color: #0f172a; font-size: 20px; font-weight: 700; }
+        .card h3 { color: var(--primary); font-size: 20px; font-weight: 700; }
         .card-unit { font-size: 12px; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 3px 10px; border-radius: 12px; }
-        .card p { color: #64748b; line-height: 1.5; font-size: 13.5px; margin-bottom: 18px; }
+        body.dark-mode .card-unit { background: #0c4a6e; color: #38bdf8; }
+        .card p { color: var(--text-muted); line-height: 1.5; font-size: 13.5px; margin-bottom: 18px; }
         .card-order-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px 16px; background-color: #0284c7; color: #ffffff; font-size: 14px; font-weight: 600; border: none; border-radius: 20px; cursor: pointer; text-decoration: none; transition: background-color 0.2s ease, transform 0.2s ease; margin-top: auto; }
         .card-order-btn:hover { background-color: #0369a1; transform: translateY(-2px); }
 
         /* Order Section Styling */
-        #order { background-color: var(--light-bg); text-align: left; padding: 70px 8%; border-top: 1px solid var(--border-color); }
+        #order { background-color: var(--body-bg); text-align: left; padding: 70px 8%; border-top: 1px solid var(--border-color); }
         .order-wrapper { display: flex; gap: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
         .order-left { flex: 1.2; min-width: 300px; }
-        .order-pre-heading { font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 10px; }
-        .order-left h2 { font-size: 40px; color: #1e293b; margin-bottom: 15px; font-weight: 800; }
-        .order-left > p { color: #475569; font-size: 16px; line-height: 1.6; margin-bottom: 30px; max-width: 90%; }
+        .order-pre-heading { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 10px; }
+        .order-left h2 { font-size: 40px; color: var(--text-main); margin-bottom: 15px; font-weight: 800; }
+        .order-left > p { color: var(--text-muted); font-size: 16px; line-height: 1.6; margin-bottom: 30px; max-width: 90%; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-        .product-item { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
-        .product-item:hover { border-color: #94a3b8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+        .product-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+        .product-item:hover { border-color: var(--text-muted); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
         .product-item.active { border: 2px solid #3b82f6; background-color: #f0f7ff; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15); }
+        body.dark-mode .product-item.active { background-color: #1e3a8a; border-color: #60a5fa; }
         .product-item img { width: 100%; height: 60px; object-fit: cover; border-radius: 6px; margin-bottom: 8px; }
-        .product-item span { display: block; font-size: 13px; font-weight: 600; color: #334155; }
+        .product-item span { display: block; font-size: 13px; font-weight: 600; color: var(--text-main); }
 
-        .order-right { flex: 1; background: #ffffff; padding: 30px; border-radius: 16px; min-width: 300px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .order-right { flex: 1; background: var(--light-bg); padding: 30px; border-radius: 16px; min-width: 300px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         .order-form .form-group { margin-bottom: 18px; }
         .order-form .form-row { display: flex; gap: 15px; }
         .order-form .form-group.half { flex: 1; }
-        .order-form label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px; }
-        .order-form select, .order-form input, .order-form textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; background: white; outline: none; color: #334155; font-family: inherit; transition: border-color 0.2s; }
+        .order-form label { display: block; font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+        .order-form select, .order-form input, .order-form textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; background: var(--card-bg); outline: none; color: var(--text-main); font-family: inherit; transition: border-color 0.2s, background 0.3s, color 0.3s; }
         .order-form input:focus, .order-form textarea:focus, .order-form select:focus { border-color: #3b82f6; }
         .order-form textarea { height: 80px; resize: none; }
         .submit-order-btn { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        body.dark-mode .submit-order-btn { background: #38bdf8; color: #020617; }
         .submit-order-btn:hover { background: var(--primary-hover); }
-        .response-time-notice { font-size: 12px; color: #64748b; text-align: center; margin-top: 12px; }
+        body.dark-mode .submit-order-btn:hover { background: #7dd3fc; }
+        .response-time-notice { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px; }
 
         /* Popup Modal */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); display: none; justify-content: center; align-items: center; z-index: 3000; backdrop-filter: blur(4px); }
-        .modal-content { background: white; padding: 35px; border-radius: 16px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: fadeIn 0.3s ease forwards; transform: scale(0.95); }
+        .modal-content { background: var(--card-bg); padding: 35px; border-radius: 16px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: fadeIn 0.3s ease forwards; transform: scale(0.95); border: 1px solid var(--border-color); }
         @keyframes fadeIn { to { opacity: 1; transform: scale(1); } }
-        .modal-content h3 { color: #0b3d91; font-size: 24px; margin-bottom: 10px; }
-        .modal-content p { color: #475569; font-size: 15px; margin-bottom: 20px; line-height: 1.6; }
-        .modal-btn { background: #0b3d91; color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; }
-        .modal-btn:hover { background: #0077b6; }
+        .modal-content h3 { color: var(--primary); font-size: 24px; margin-bottom: 10px; }
+        .modal-content p { color: var(--text-muted); font-size: 15px; margin-bottom: 20px; line-height: 1.6; }
+        .modal-btn { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+        body.dark-mode .modal-btn { background: #38bdf8; color: #020617; }
+        .modal-btn:hover { background: var(--primary-hover); }
+        body.dark-mode .modal-btn:hover { background: #7dd3fc; }
 
         /* --- FOOTER STYLING --- */
         footer { 
@@ -335,102 +249,38 @@
             margin-bottom: 15px;
         }
 
-        .footer-links {
-            list-style: none;
-        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links li a { color: #94a3b8; text-decoration: none; font-size: 14px; transition: color 0.2s, padding-left 0.2s; display: inline-block; }
+        .footer-links li a:hover { color: var(--secondary); padding-left: 5px; }
 
-        .footer-links li {
-            margin-bottom: 10px;
-        }
+        .footer-contact-item { display: flex; gap: 12px; margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
+        .footer-contact-item i { color: var(--secondary); font-size: 16px; margin-top: 3px; flex-shrink: 0; }
+        .footer-contact-item a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
+        .footer-contact-item a:hover { color: #ffffff; }
 
-        .footer-links li a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s, padding-left 0.2s;
-            display: inline-block;
-        }
-
-        .footer-links li a:hover {
-            color: var(--secondary);
-            padding-left: 5px;
-        }
-
-        .footer-contact-item {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 12px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .footer-contact-item i {
-            color: var(--secondary);
-            font-size: 16px;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .footer-contact-item a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-contact-item a:hover {
-            color: #ffffff;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 20px auto 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .footer-bottom p {
-            font-size: 13.5px;
-            color: #64748b;
-        }
-
-        footer .social-links { 
-            display: flex; 
-            gap: 16px; 
-        }
-
-        footer .social-links a { 
-            color: var(--secondary); 
-            text-decoration: none; 
-            font-size: 18px; 
-            transition: transform 0.2s, color 0.2s; 
-        }
-
-        footer .social-links a:hover { 
-            transform: translateY(-3px); 
-            color: #ffffff;
-        }
+        .footer-bottom { max-width: 1200px; margin: 20px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .footer-bottom p { font-size: 13.5px; color: #64748b; }
+        footer .social-links { display: flex; gap: 16px; }
+        footer .social-links a { color: var(--secondary); text-decoration: none; font-size: 18px; transition: transform 0.2s, color 0.2s; }
+        footer .social-links a:hover { transform: translateY(-3px); color: #ffffff; }
 
         /* Responsive Breakpoints */
-        @media (max-width: 1024px) {
+        @media (max-width: 1250px) {
+            nav ul.nav-links li a, .nav-btn { padding: 4px 7px !important; font-size: 11px !important; }
+        }
+
+        @media (max-width: 1050px) {
             .grid-container { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 900px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .order-wrapper { flex-direction: column; }
-        }
-
-        @media (max-width: 820px) {
             .topbar {
                 position: relative;
                 flex-direction: column;
                 height: auto;
-                padding: 8px 2%;
-                gap: 5px;
+                padding: 6px 2%;
+                gap: 4px;
+                font-size: 11.5px;
             }
+            .topbar .left { flex-wrap: wrap; justify-content: center; gap: 8px; }
             nav { 
                 position: relative;
                 top: 0;
@@ -440,53 +290,36 @@
                 justify-content: space-between; 
             }
 
-            .products-hero { 
-                margin-top: 0; 
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
+            .products-hero { margin-top: 0; }
+            .menu-toggle { display: flex; }
             nav ul.nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
                 margin-top: 15px;
                 gap: 10px;
-                background: #ffffff;
+                background: var(--card-bg);
                 padding: 15px;
                 border-radius: 12px;
                 box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                border: 1px solid #e2e8f0;
+                border: 1px solid var(--border-color);
             }
+            nav ul.nav-links.active { display: flex; }
+            nav ul.nav-links li { width: 100%; }
+            nav ul.nav-links li a, .nav-btn { display: block; text-align: center; width: 100%; padding: 12px !important; font-size: 15px !important; border-radius: 10px !important; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
 
-            nav ul.nav-links.active {
-                display: flex;
-            }
-
-            nav ul.nav-links li {
-                width: 100%;
-            }
-
-            nav ul.nav-links li a {
-                display: block;
-                text-align: center;
-                width: 100%;
-                padding: 12px;
-                font-size: 15px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
+        @media (max-width: 900px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+            .order-wrapper { flex-direction: column; }
         }
 
         @media (max-width: 600px) {
             .grid-container { grid-template-columns: 1fr; }
-            .logo { font-size: 22px; }
-            .logo-flip-container { width: 50px; height: 50px; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .logo { font-size: 24px; }
+            .logo-flip-container { width: 45px; height: 45px; }
             .products-hero h1 { font-size: 36px; }
         }
     </style>
@@ -508,7 +341,9 @@
     </div>
 </div>
 
-<!-- Interactive Topbar -->
+<!-- ========================================= -->
+<!-- TOPBAR & NAVBAR                           -->
+<!-- ========================================= -->
 <div class="topbar">
     <div class="left">
         📧 <a href="mailto:info@dpmglobal.in">info@dpmglobal.in</a> &nbsp;&nbsp; 
@@ -516,22 +351,28 @@
         📞 <a href="tel:+919818150514">+91-9818150514</a>
     </div>
     <div class="right">
-        <a href="https://wa.me/919810088729" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/company/dpm-global" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <!-- Dark Mode Toggle Button -->
+        <a href="#" id="darkModeToggle" aria-label="Toggle Dark Mode" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+            <span id="modeText" style="font-weight: bold; font-size: 12px;">Light Mode</span>
+        </a>
+        <a href="https://wa.me/919810088729" target="_blank" aria-label="WhatsApp Direct Chat" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" aria-label="Facebook Profile" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" aria-label="Instagram Profile" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/dpm-global" target="_blank" aria-label="LinkedIn Profile" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
     </div>
 </div>
 
-<!-- Navigation Bar -->
 <nav>
-    <div class="nav-brand">
+    <a href="index.html" class="nav-brand">
         <div class="logo-flip-container">
-            <img src="dpm global logo.png" alt="DPM Global Logo Front" class="logo-front">
-            <img src="new logo.png" alt="DPM Global Logo Back" class="logo-back">
+            <div class="nav-flipper">
+                <img src="dpm global logo.png" alt="DPM Global Logo Front" class="logo-front">
+                <img src="new logo.png" alt="DPM Global Logo Back" class="logo-back">
+            </div>
         </div>
         <div class="logo">DPM GLOBAL</div>
-    </div>
+    </a>
 
     <!-- THREE DOTS MOBILE TOGGLE -->
     <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">
@@ -542,11 +383,13 @@
         <li><a href="index.html#home" onclick="closeMenu()">Home</a></li>
         <li><a href="index.html#services" onclick="closeMenu()">Services</a></li>
         <li><a href="aboutus.html" onclick="closeMenu()">About Us</a></li>
-        <li><a href="certificates.html" onclick="closeMenu()">Certificates</a></li>
         <li><a href="products.html" class="active" onclick="closeMenu()">Products</a></li>
         <li><a href="realestate.html" onclick="closeMenu()">Real Estate</a></li>
+        <li><a href="compliance.html" onclick="closeMenu()">Compliance & Liaisoning</a></li>
+        <li><a href="certificates.html" onclick="closeMenu()">Certificates</a></li>
         <li><a href="gallery.html" onclick="closeMenu()">Gallery</a></li>
-        <li><a href="#order" onclick="closeMenu()">Order</a></li>
+        <li><a href="index.html#order" onclick="closeMenu()">Order</a></li>
+        <li><a href="index.html#reviews" onclick="closeMenu()">Feedback</a></li>
         <li><a href="index.html#contact" class="nav-btn" onclick="closeMenu()">Get In Touch &rarr;</a></li>
     </ul>
 </nav>
@@ -554,7 +397,7 @@
 <!-- Hero Section -->
 <div class="products-hero">
     <h1>Export Agricultural Products</h1>
-    <p>Premium quality fresh produce and rich Indian spices, sourced carefully and packed to meet strict global export standards.</p>
+    <p>Premium quality fresh produce, meat, and rich Indian spices, sourced carefully and packed to meet strict global export standards.</p>
 </div>
 
 <!-- Products Showcase -->
@@ -574,9 +417,7 @@
                 </div>
                 <p>Premium red onions, graded and export-packed for long shelf life.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Onion')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Onion')">🛒 Order Now</button>
         </div>
 
         <!-- GREEN CHILLI -->
@@ -589,9 +430,7 @@
                 </div>
                 <p>Fresh, vibrant green chillies with high pungency and consistent colour.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Green Chilli')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Green Chilli')">🛒 Order Now</button>
         </div>
 
         <!-- GARLIC -->
@@ -604,9 +443,7 @@
                 </div>
                 <p>Plump white garlic bulbs with strong aroma and tight, clean skins.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Garlic')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Garlic')">🛒 Order Now</button>
         </div>
 
         <!-- GINGER -->
@@ -619,9 +456,7 @@
                 </div>
                 <p>Fresh, fibre-rich ginger rhizomes with strong aroma and clean skins.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Ginger')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Ginger')">🛒 Order Now</button>
         </div>
 
         <!-- EGGS -->
@@ -634,9 +469,7 @@
                 </div>
                 <p>Fresh table eggs sourced with care to meet export safety standards.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Eggs')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Eggs')">🛒 Order Now</button>
         </div>
 
         <!-- POTATO -->
@@ -649,9 +482,7 @@
                 </div>
                 <p>Premium potatoes selected for freshness, size, and bulk shipping.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Potato')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Potato')">🛒 Order Now</button>
         </div>
 
         <!-- BASMATI RICE -->
@@ -664,9 +495,7 @@
                 </div>
                 <p>Long-grain aromatic Basmati rice processed for rich taste and aroma.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Basmati Rice')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Basmati Rice')">🛒 Order Now</button>
         </div>
 
         <!-- CARDAMOM -->
@@ -679,9 +508,7 @@
                 </div>
                 <p>Aromatic green cardamom pods ideal for global spice markets.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Cardamom')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Cardamom')">🛒 Order Now</button>
         </div>
 
         <!-- PREMIUM SPICES -->
@@ -694,20 +521,16 @@
                 </div>
                 <p>Assorted high-quality whole and grounded Indian spices with rich aroma and flavour.</p>
             </div>
-            <button class="card-order-btn" onclick="orderProductFromCard('Premium Spices')">
-                <i class="fa-solid fa-cart-shopping"></i> Order Now
-            </button>
+            <button class="card-order-btn" onclick="orderProductFromCard('Premium Spices')">🛒 Order Now</button>
         </div>
 
-    </div>
-</section>
-<div class="card">
- <!-- Meat -->        
-    <div>
+        <!-- MEAT -->
+        <div class="card">
+            <div>
                 <img src="meat.png" onerror="this.src='https://via.placeholder.com/200?text=Meat'" alt="Premium Export Quality Meat">
                 <div class="card-header">
                     <h3>Meat</h3>
-                    <span class="card-unit">per KG</span>
+                    <span class="card-unit">per MT</span>
                 </div>
                 <p>Premium quality halal meat, sourced and packed to meet strict Gulf country export and hygiene standards.</p>
             </div>
@@ -762,6 +585,10 @@
                     <img src="spices.png" alt="Premium Spices">
                     <span>Premium Spices</span>
                 </div>
+                <div class="product-item" onclick="selectProduct('Meat', this)">
+                    <img src="meat.png" onerror="this.src='https://via.placeholder.com/100?text=Meat'" alt="Meat">
+                    <span>Meat</span>
+                </div>
             </div>
         </div>
 
@@ -769,7 +596,7 @@
             <form class="order-form" onsubmit="submitOrder(event)">
                 <div class="form-group">
                     <label>Product</label>
-                    <select id="product-dropdown" onchange="checkSpiceSelection()">
+                    <select id="product-dropdown" onchange="checkSubProductSelection()">
                         <option value="Onion">Onion</option>
                         <option value="Green Chilli">Green Chilli</option>
                         <option value="Garlic">Garlic</option>
@@ -779,10 +606,11 @@
                         <option value="Basmati Rice">Basmati Rice</option>
                         <option value="Cardamom">Cardamom</option>
                         <option value="Premium Spices">Premium Spices</option>
+                        <option value="Meat">Meat</option>
                     </select>
                 </div>
 
-                <!-- Specific Spice Options (Hidden by default) -->
+                <!-- Specific Spice Options -->
                 <div class="form-group" id="spice-container" style="display: none;">
                     <label style="color: #0284c7; font-weight: 700;">Select Specific Spice Type</label>
                     <select id="spice-dropdown">
@@ -794,6 +622,18 @@
                         <option value="Jeera (Cumin Seeds)">Jeera (Cumin Seeds)</option>
                         <option value="Garam Masala">Garam Masala</option>
                         <option value="Other Spices">Other / Mix Spices</option>
+                    </select>
+                </div>
+
+                <!-- Specific Meat Options -->
+                <div class="form-group" id="meat-container" style="display: none;">
+                    <label style="color: #0284c7; font-weight: 700;">Which type of meat is required?</label>
+                    <select id="meat-dropdown">
+                        <option value="Goat Meat">Goat Meat</option>
+                        <option value="Sheep / Mutton">Sheep / Mutton</option>
+                        <option value="Buffalo (Carabeef)">Buffalo (Carabeef)</option>
+                        <option value="Poultry (Chicken)">Poultry (Chicken)</option>
+                        <option value="Other / Mix">Other / Mix</option>
                     </select>
                 </div>
 
@@ -850,8 +690,10 @@
                 <li><a href="certificates.html">Certificates</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="realestate.html">Real Estate Projects</a></li>
+                <li><a href="compliance.html">Compliance & Licensing</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#order">Place an Order</a></li>
+                <li><a href="index.html#order">Place an Order</a></li>
+                <li><a href="index.html#reviews">Customer Feedback</a></li>
             </ul>
         </div>
 
@@ -861,7 +703,7 @@
             <ul class="footer-links">
                 <li><a href="products.html">Global Import & Export</a></li>
                 <li><a href="realestate.html">Real Estate Solutions</a></li>
-                <li><a href="realestate.html">Sonipat Land Advisory</a></li>
+                <li><a href="compliance.html">Regulatory Compliance</a></li>
                 <li><a href="realestate.html">Kharkhoda Industrial Plots</a></li>
                 <li><a href="realestate.html">Deen Dayal Housing</a></li>
             </ul>
@@ -897,6 +739,32 @@
 </footer>
 
 <script>
+    // --- Dark Mode Logic ---
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = darkModeToggle.querySelector('i');
+    const modeText = document.getElementById('modeText');
+
+    if (localStorage.getItem('dpmDarkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        darkModeIcon.classList.replace('fa-moon', 'fa-sun');
+        if (modeText) modeText.innerText = "Dark Mode";
+    }
+
+    darkModeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('dpmDarkMode', 'enabled');
+            darkModeIcon.classList.replace('fa-moon', 'fa-sun');
+            if (modeText) modeText.innerText = "Dark Mode";
+        } else {
+            localStorage.setItem('dpmDarkMode', 'disabled');
+            darkModeIcon.classList.replace('fa-sun', 'fa-moon');
+            if (modeText) modeText.innerText = "Light Mode";
+        }
+    });
+
     // --- Mobile Menu Toggle Logic ---
     function toggleMenu() {
         const navLinks = document.getElementById('navLinks');
@@ -917,13 +785,20 @@
         }
     });
 
-    function checkSpiceSelection() {
+    function checkSubProductSelection() {
         const productVal = document.getElementById('product-dropdown').value;
         const spiceContainer = document.getElementById('spice-container');
+        const meatContainer = document.getElementById('meat-container');
+
         if (productVal === 'Premium Spices') {
             spiceContainer.style.display = 'block';
+            meatContainer.style.display = 'none';
+        } else if (productVal === 'Meat') {
+            spiceContainer.style.display = 'none';
+            meatContainer.style.display = 'block';
         } else {
             spiceContainer.style.display = 'none';
+            meatContainer.style.display = 'none';
         }
     }
 
@@ -934,7 +809,7 @@
             element.classList.add('active');
         }
         document.getElementById('product-dropdown').value = productName;
-        checkSpiceSelection();
+        checkSubProductSelection();
     }
 
     function orderProductFromCard(productName) {
@@ -963,6 +838,9 @@
         if (product === 'Premium Spices') {
             const selectedSpice = document.getElementById('spice-dropdown').value;
             finalProduct = `Premium Spices (${selectedSpice})`;
+        } else if (product === 'Meat') {
+            const selectedMeat = document.getElementById('meat-dropdown').value;
+            finalProduct = `Meat (${selectedMeat})`;
         }
 
         const newOrder = {
@@ -985,7 +863,7 @@
         
         event.target.reset();
         document.getElementById('product-dropdown').value = 'Onion';
-        checkSpiceSelection();
+        checkSubProductSelection();
         const items = document.querySelectorAll('.product-item');
         items.forEach(item => item.classList.remove('active'));
         items[0].classList.add('active');
