@@ -8,6 +8,13 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Dark Mode Anti-Flicker Script (Keep this at the top of head) -->
+    <script>
+        if (localStorage.getItem('dpmDarkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
     <style>
         /* --- CORE STYLES --- */
         :root {
@@ -19,121 +26,88 @@
             --border-color: #e2e8f0;
             --whatsapp-green: #25d366;
             --whatsapp-hover: #1ebd56;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --body-bg: #ffffff;
+        }
+
+        /* --- DARK MODE VARIABLES --- */
+        html.dark-mode, body.dark-mode {
+            --primary: #38bdf8;
+            --primary-hover: #7dd3fc;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --light-bg: #020617;
+            --border-color: #1e293b;
+            --card-bg: #0f172a;
+            --body-bg: #0f172a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; color: #1e293b; line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--body-bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; }
 
-        /* Topbar */
-        .topbar { position: fixed; top: 0; left: 0; width: 100%; height: 40px; background: var(--primary-hover); color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 2%; font-size: 13.5px; z-index: 1001; }
+        /* ========================================= */
+        /* --- TOPBAR STYLING --- */
+        /* ========================================= */
+        .topbar { position: fixed; top: 0; left: 0; width: 100%; height: 35px; background: #0077b6; color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5%; font-size: 12px; z-index: 1001; white-space: nowrap; }
+        body.dark-mode .topbar { background: #020617; border-bottom: 1px solid #1e293b; }
+        .topbar .left { display: flex; align-items: center; gap: 12px; overflow: hidden; text-overflow: ellipsis; }
         .topbar a { color: white; text-decoration: none; transition: opacity 0.2s; }
         .topbar a:hover { opacity: 0.85; }
-        .topbar .left { display: flex; align-items: center; gap: 15px; }
-        .topbar .right { display: flex; gap: 18px; align-items: center; }
-        .topbar .right a { font-size: 18px; display: inline-flex; align-items: center; justify-content: center; }
+        .topbar .right { display: flex; gap: 16px; align-items: center; }
+        .topbar .right a { font-size: 15px; display: inline-flex; align-items: center; justify-content: center; }
 
-        /* Navbar */
-        nav { 
-            position: fixed; 
-            top: 40px; 
-            left: 0; 
-            width: 100%; 
-            padding: 10px 2%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
-            height: 80px; 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px); 
-            z-index: 1000; 
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
-        }
-        
-        .nav-brand { display: flex; align-items: center; gap: 15px; white-space: nowrap; }
-        
-        .logo-flip-container { width: 60px; height: 60px; position: relative; perspective: 600px; flex-shrink: 0; }
-        .logo-flip-container img { position: absolute; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); backface-visibility: hidden; transform-style: preserve-3d; }
-        .logo-front { animation: flipFront 8s infinite linear; }
-        .logo-back { transform: rotateY(180deg); animation: flipBack 8s infinite linear; }
+        #darkModeToggle { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; transition: background 0.3s; display: flex; align-items: center; gap: 6px; }
+        #darkModeToggle:hover { background: rgba(255,255,255,0.4); }
+        body.dark-mode #darkModeToggle { background: #1e293b; color: #f59e0b; }
 
-        @keyframes flipFront { 0% { transform: rotateY(0deg); z-index: 2; } 50% { transform: rotateY(180deg); z-index: 1; } 50.01% { transform: rotateY(180deg); z-index: 0; } 100% { transform: rotateY(360deg); z-index: 2; } }
-        @keyframes flipBack { 0% { transform: rotateY(180deg); z-index: 1; } 50% { transform: rotateY(360deg); z-index: 2; } 50.01% { transform: rotateY(0deg); z-index: 2; } 100% { transform: rotateY(180deg); z-index: 1; } }
+        /* ========================================= */
+        /* --- NAVIGATION BAR --- */
+        /* ========================================= */
+        nav { position: fixed; top: 35px; left: 0; width: 100%; padding: 10px 1.5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); height: 80px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s; }
+        body.dark-mode nav { background: rgba(15, 23, 42, 0.95); }
+        .nav-brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; text-decoration: none; }
 
-        .logo { font-size: 32px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px; }
+        /* NAV LOGO PERFECT 3D COIN FLIP */
+        .logo-flip-container { width: 50px; height: 50px; position: relative; perspective: 1000px; flex-shrink: 0; }
+        .nav-flipper { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: coinFlip 6s infinite linear; }
+        .nav-flipper img { 
+            position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; 
+            object-fit: cover; border: 2px solid var(--primary); 
+            -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: border-color 0.3s ease;
+        }
+        body.dark-mode .nav-flipper img { border-color: #38bdf8; }
+        .nav-flipper img.logo-front { transform: rotateY(0deg); }
+        .nav-flipper img.logo-back { transform: rotateY(180deg); }
 
-        /* THREE DOTS MOBILE MENU TOGGLE BUTTON */
-        .menu-toggle {
-            display: none;
-            font-size: 22px;
-            color: var(--primary);
-            cursor: pointer;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: #f1f5f9;
-            border: 1px solid #cbd5e1;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
+        .logo { font-size: 28px; font-weight: 900; color: var(--primary); letter-spacing: 0.5px; transition: color 0.3s ease; }
 
-        .menu-toggle:hover {
-            background: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
-        }
+        .menu-toggle { display: none; font-size: 22px; color: var(--primary); cursor: pointer; width: 44px; height: 44px; border-radius: 10px; background: var(--light-bg); border: 1px solid var(--border-color); align-items: center; justify-content: center; transition: all 0.2s ease; }
+        .menu-toggle:hover { background: var(--primary); color: #ffffff; border-color: var(--primary); }
 
-        /* STYLED BUTTON NAV LINKS */
-        nav ul.nav-links { display: flex; list-style: none; gap: 8px; align-items: center; }
-        nav ul.nav-links li a { 
-            color: #1e293b; 
-            text-decoration: none; 
-            font-size: 13.5px; 
-            font-weight: 600; 
-            padding: 8px 16px;
-            background: #f1f5f9;
-            border: 1px solid #cbd5e1;
-            border-radius: 20px;
-            transition: all 0.25s ease;
-            white-space: nowrap; 
-            display: inline-block;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-        }
-        nav ul.nav-links li a:hover { 
-            color: #ffffff; 
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(11, 61, 145, 0.25);
-        }
-        .nav-links li a.active { 
-            background: var(--primary); 
-            color: white; 
-            border-color: var(--primary); 
-        }
+        /* Navigation Links Spacing & Pill Design (Optimized for fit) */
+        nav ul.nav-links { display: flex; list-style: none; gap: 4px; align-items: center; flex-wrap: nowrap; }
+        nav ul.nav-links li a { color: var(--text-main); text-decoration: none; font-size: 11.5px; font-weight: 600; padding: 5px 9px; background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 50px; transition: all 0.25s ease; white-space: nowrap; display: inline-block; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+        nav ul.nav-links li a:hover, nav ul.nav-links li a.active { color: #ffffff; background: #0b3d91; border-color: #0b3d91; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(11, 61, 145, 0.25); }
+        body.dark-mode nav ul.nav-links li a:hover, body.dark-mode nav ul.nav-links li a.active { background: #38bdf8; color: #020617; border-color: #38bdf8; }
 
-        .nav-btn { 
-            background: #2e2a5c !important; 
-            color: white !important; 
-            border-color: #2e2a5c !important;
-            padding: 9px 20px !important; 
-            border-radius: 20px !important; 
-            box-shadow: 0 4px 12px rgba(46, 42, 92, 0.25) !important;
-        }
-        .nav-btn:hover { 
-            background: #1a1740 !important; 
-            border-color: #1a1740 !important;
+        .nav-btn { background: #2e2a5c !important; color: white !important; border-color: #2e2a5c !important; padding: 5px 12px !important; border-radius: 50px !important; box-shadow: 0 4px 12px rgba(46, 42, 92, 0.25) !important; font-size: 11.5px !important; }
+        .nav-btn:hover { background: #1a1740 !important; border-color: #1a1740 !important; }
+        body.dark-mode .nav-btn { background: #38bdf8 !important; color: #020617 !important; border-color: #38bdf8 !important; }
+
+        @keyframes coinFlip {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
 
         /* WhatsApp Float */
         .whatsapp-float { position: fixed; width: 56px; height: 56px; bottom: 30px; right: 30px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.5); z-index: 1002; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.2s, background-color 0.2s; }
         .whatsapp-float:hover { transform: scale(1.08); background-color: var(--whatsapp-hover); }
 
-        /* --- EXPANDED ABOUT US SPECIFIC STYLES --- */
+        /* --- ABOUT US SPECIFIC STYLES --- */
         .about-hero {
-            margin-top: 120px;
+            margin-top: 115px;
             background: linear-gradient(rgba(11, 61, 145, 0.9), rgba(2, 6, 23, 0.92)), url('BURJ.png') center/cover no-repeat;
             color: white;
             text-align: center;
@@ -145,7 +119,7 @@
 
         /* Stats Strip */
         .stats-strip {
-            background: #ffffff;
+            background: var(--card-bg);
             margin: -50px auto 40px;
             max-width: 1100px;
             border-radius: 16px;
@@ -157,6 +131,7 @@
             text-align: center;
             position: relative;
             z-index: 10;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .stat-item {
@@ -175,7 +150,7 @@
 
         .stat-label {
             font-size: 14px;
-            color: #64748b;
+            color: var(--text-muted);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -190,12 +165,12 @@
             display: flex; 
             align-items: center; 
             gap: 40px; 
-            background: #ffffff; 
+            background: var(--card-bg); 
             padding: 40px; 
             border-radius: 16px; 
             border: 1px solid var(--border-color); 
             box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08); 
-            transition: transform 0.3s ease; 
+            transition: transform 0.3s ease, background-color 0.3s, border-color 0.3s; 
         }
 
         .proprietor-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px -5px rgba(0,0,0,0.12); border-color: var(--primary-hover); }
@@ -210,7 +185,7 @@
             box-shadow: 0 10px 25px rgba(11, 61, 145, 0.2);
         }
 
-        .proprietor-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .proprietor-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
         .proprietor-info h2 { font-size: 30px; color: var(--primary); margin-bottom: 5px; font-weight: 800; }
         .proprietor-badge { 
@@ -225,22 +200,23 @@
             text-transform: uppercase; 
             letter-spacing: 0.5px;
         }
+        body.dark-mode .proprietor-badge { background: #0c4a6e; color: #38bdf8; }
 
-        .proprietor-info p { color: #334155; line-height: 1.8; font-size: 15.5px; margin-bottom: 12px; }
+        .proprietor-info p { color: var(--text-main); line-height: 1.8; font-size: 15.5px; margin-bottom: 12px; }
 
         .about-card { 
-            background: #ffffff; 
+            background: var(--card-bg); 
             padding: 40px; 
             border-radius: 16px; 
             border: 1px solid var(--border-color); 
             box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08); 
-            transition: transform 0.3s ease; 
+            transition: transform 0.3s ease, background-color 0.3s, border-color 0.3s; 
         }
 
         .about-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px -5px rgba(0,0,0,0.12); border-color: var(--primary-hover); }
         .about-card h2 { color: var(--primary); font-size: 28px; margin-bottom: 18px; font-weight: 700; position: relative; padding-bottom: 8px; }
         .about-card h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: var(--secondary); }
-        .about-card p { font-size: 16px; color: #334155; line-height: 1.8; margin-bottom: 16px; }
+        .about-card p { font-size: 16px; color: var(--text-main); line-height: 1.8; margin-bottom: 16px; }
 
         /* Grid Section for Pillars */
         .pillars-grid {
@@ -259,7 +235,7 @@
         }
 
         .pillar-item:hover {
-            background: #ffffff;
+            background: var(--card-bg);
             border-color: var(--secondary);
             transform: translateY(-4px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
@@ -273,14 +249,14 @@
 
         .pillar-item h3 {
             font-size: 19px;
-            color: #0f172a;
+            color: var(--text-main);
             margin-bottom: 8px;
             font-weight: 700;
         }
 
         .pillar-item p {
             font-size: 14px;
-            color: #64748b;
+            color: var(--text-muted);
             line-height: 1.6;
             margin-bottom: 0;
         }
@@ -293,11 +269,12 @@
         }
 
         .mv-card {
-            background: #ffffff;
+            background: var(--card-bg);
             padding: 35px;
             border-radius: 16px;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .mv-card h3 {
@@ -311,7 +288,7 @@
 
         .mv-card p {
             font-size: 15px;
-            color: #334155;
+            color: var(--text-main);
             line-height: 1.7;
         }
 
@@ -439,27 +416,20 @@
         }
 
         /* --- MOBILE & RESPONSIVE FIXES --- */
-        @media (max-width: 820px) {
-            .topbar {
-                position: relative;
-                flex-direction: column;
-                height: auto;
-                padding: 8px 2%;
-                gap: 5px;
-            }
-            nav { 
-                position: relative;
-                top: 0;
-                height: auto; 
-                padding: 12px 4%; 
-                flex-wrap: wrap; 
-                justify-content: space-between; 
-            }
+        @media (max-width: 1250px) {
+            nav ul.nav-links li a, .nav-btn { padding: 4px 7px !important; font-size: 11px !important; }
+        }
 
-            .about-hero { 
-                margin-top: 0; 
-                padding: 70px 20px 80px;
-            }
+        @media (max-width: 1050px) {
+            .topbar { position: relative; flex-direction: column; height: auto; padding: 6px 2%; gap: 4px; font-size: 11.5px; }
+            .topbar .left { flex-wrap: wrap; justify-content: center; gap: 8px; }
+            nav { position: relative; top: 0; height: auto; padding: 12px 4%; flex-wrap: wrap; justify-content: space-between; }
+            .about-hero { margin-top: 0; padding: 70px 20px 80px; }
+            .menu-toggle { display: flex; }
+            nav ul.nav-links { display: none; flex-direction: column; width: 100%; margin-top: 15px; gap: 10px; background: var(--card-bg); padding: 15px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid var(--border-color); }
+            nav ul.nav-links.active { display: flex; }
+            nav ul.nav-links li { width: 100%; }
+            nav ul.nav-links li a, .nav-btn { display: block; text-align: center; width: 100%; padding: 12px !important; font-size: 15px !important; border-radius: 10px; }
 
             .stats-strip {
                 margin: -30px 15px 30px;
@@ -472,39 +442,6 @@
             }
 
             .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav ul.nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 15px;
-                gap: 10px;
-                background: #ffffff;
-                padding: 15px;
-                border-radius: 12px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                border: 1px solid #e2e8f0;
-            }
-
-            nav ul.nav-links.active {
-                display: flex;
-            }
-
-            nav ul.nav-links li {
-                width: 100%;
-            }
-
-            nav ul.nav-links li a {
-                display: block;
-                text-align: center;
-                width: 100%;
-                padding: 12px;
-                font-size: 15px;
-            }
 
             .proprietor-card {
                 flex-direction: column;
@@ -519,8 +456,8 @@
         }
 
         @media (max-width: 600px) {
-            .logo { font-size: 22px; } 
-            .logo-flip-container { width: 50px; height: 50px; }
+            .logo { font-size: 24px; } 
+            .logo-flip-container { width: 45px; height: 45px; }
             .about-hero h1 { font-size: 34px; }
             .stats-strip { grid-template-columns: 1fr; }
             .stat-item { border-bottom: 1px solid var(--border-color) !important; }
@@ -536,7 +473,9 @@
     <i class="fa-brands fa-whatsapp" style="font-size: 32px;"></i>
 </a>
 
-<!-- Interactive Topbar -->
+<!-- ========================================= -->
+<!-- TOPBAR & NAVBAR                           -->
+<!-- ========================================= -->
 <div class="topbar">
     <div class="left">
         📧 <a href="mailto:info@dpmglobal.in">info@dpmglobal.in</a> &nbsp;&nbsp; 
@@ -544,24 +483,29 @@
         📞 <a href="tel:+919818150514">+91-9818150514</a>
     </div>
     <div class="right">
-        <a href="https://wa.me/919810088729" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <!-- Dark Mode Toggle Button -->
+        <a href="#" id="darkModeToggle" aria-label="Toggle Dark Mode" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+            <span id="modeText" style="font-weight: bold; font-size: 12px;">Light Mode</span>
+        </a>
+        <a href="https://wa.me/919810088729" target="_blank" aria-label="WhatsApp Direct Chat" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         <a href="https://www.facebook.com/share/1EWE73QuoS/" target="_blank" aria-label="Facebook Profile" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
         <a href="https://www.instagram.com/sk.dpmglobal.in" target="_blank" aria-label="Instagram Profile" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.linkedin.com/company/dpm-global" target="_blank" aria-label="LinkedIn Profile" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
     </div>
 </div>
 
-<!-- Navigation Bar -->
 <nav>
-    <div class="nav-brand">
+    <a href="index.html" class="nav-brand">
         <div class="logo-flip-container">
-            <img src="dpm global logo.png" alt="DPM Global Logo Front" class="logo-front">
-            <img src="new logo.png" alt="DPM Global Logo Back" class="logo-back">
+            <div class="nav-flipper">
+                <img src="dpm global logo.png" alt="DPM Global Logo Front" class="logo-front">
+                <img src="new logo.png" alt="DPM Global Logo Back" class="logo-back">
+            </div>
         </div>
         <div class="logo">DPM GLOBAL</div>
-    </div>
+    </a>
 
-    <!-- THREE DOTS MOBILE TOGGLE -->
     <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">
         <i class="fa-solid fa-ellipsis-vertical"></i>
     </div>
@@ -570,11 +514,13 @@
         <li><a href="index.html#home" onclick="closeMenu()">Home</a></li>
         <li><a href="index.html#services" onclick="closeMenu()">Services</a></li>
         <li><a href="aboutus.html" class="active" onclick="closeMenu()">About Us</a></li>
-        <li><a href="certificates.html" onclick="closeMenu()">Certificates</a></li>
         <li><a href="products.html" onclick="closeMenu()">Products</a></li>
         <li><a href="realestate.html" onclick="closeMenu()">Real Estate</a></li>
+        <li><a href="compliance.html" onclick="closeMenu()">Compliance & Liaisoning</a></li>
+        <li><a href="certificates.html" onclick="closeMenu()">Certificates</a></li>
         <li><a href="gallery.html" onclick="closeMenu()">Gallery</a></li>
         <li><a href="index.html#order" onclick="closeMenu()">Order</a></li>
+        <li><a href="index.html#reviews" onclick="closeMenu()">Feedback</a></li>
         <li><a href="index.html#contact" class="nav-btn" onclick="closeMenu()">Get In Touch &rarr;</a></li>
     </ul>
 </nav>
@@ -630,7 +576,7 @@
             
             <div class="pillars-grid">
                 <div class="pillar-item">
-                    <i class="fa-solid fa-wheat-awt"></i>
+                    <i class="fa-solid fa-wheat-awn"></i>
                     <h3>Agricultural Exports</h3>
                     <p>Direct sourcing, export grading, and shipping of fresh onions, basmati rice, potatoes, garlic, ginger, table eggs, green chillies, and authentic Indian spices to buyers worldwide.</p>
                 </div>
@@ -709,8 +655,10 @@
                 <li><a href="certificates.html">Certificates</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="realestate.html">Real Estate Projects</a></li>
+                <li><a href="compliance.html">Compliance & Licensing</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="index.html#order">Place an Order</a></li>
+                <li><a href="index.html#reviews">Customer Feedback</a></li>
             </ul>
         </div>
 
@@ -720,7 +668,7 @@
             <ul class="footer-links">
                 <li><a href="products.html">Global Import & Export</a></li>
                 <li><a href="realestate.html">Real Estate Solutions</a></li>
-                <li><a href="realestate.html">Sonipat Land Advisory</a></li>
+                <li><a href="compliance.html">Regulatory Compliance</a></li>
                 <li><a href="realestate.html">Kharkhoda Industrial Plots</a></li>
                 <li><a href="realestate.html">Deen Dayal Housing</a></li>
             </ul>
@@ -756,6 +704,32 @@
 </footer>
 
 <script>
+    // --- Dark Mode Logic ---
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = darkModeToggle.querySelector('i');
+    const modeText = document.getElementById('modeText');
+
+    if (localStorage.getItem('dpmDarkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        darkModeIcon.classList.replace('fa-moon', 'fa-sun');
+        if (modeText) modeText.innerText = "DarkMode";
+    }
+
+    darkModeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('dpmDarkMode', 'enabled');
+            darkModeIcon.classList.replace('fa-moon', 'fa-sun');
+            if (modeText) modeText.innerText = "DarkMode";
+        } else {
+            localStorage.setItem('dpmDarkMode', 'disabled');
+            darkModeIcon.classList.replace('fa-sun', 'fa-moon');
+            if (modeText) modeText.innerText = "Light Mode";
+        }
+    });
+
     // --- Mobile Menu Toggle Logic ---
     function toggleMenu() {
         const navLinks = document.getElementById('navLinks');
